@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/meganesu/personal-site-v2.svg?branch=master)](https://travis-ci.com/meganesu/personal-site-v2)
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
