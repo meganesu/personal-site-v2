@@ -14,6 +14,7 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "prettier": "^1.19.1"
   },
   "keywords": [
@@ -22,6 +23,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/meganesu/meganesu.github.io.git",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
@@ -31,9 +33,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/meganesu/meganesu.github.io"
+    "url": "https://github.com/meganesu/personal-site-v2"
   },
   "bugs": {
-    "url": "https://github.com/meganesu/meganesu.github.io/issues"
+    "url": "https://github.com/meganesu/personal-site-v2/issues"
   }
 }
