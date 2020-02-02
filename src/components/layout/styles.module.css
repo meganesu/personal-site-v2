@@ -1,11 +1,14 @@
 .container {
   font-family: sans-serif;
   width: 90%;
+  height: 100vh;
   margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  height: 80vh;
   width: 90%;
   margin: auto;
+  flex: 1;
 }
