@@ -1,0 +1,4 @@
+a:hover {
+  color: 	#FF4500;
+  transition: color .3s;
+}

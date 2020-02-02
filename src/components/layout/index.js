@@ -2,6 +2,7 @@ import React from 'react';
 import SkipLink from '../skip-link'
 import Header from '../header';
 import Footer from '../footer';
+import './global-styles.css';
 import styles from './styles.module.css';
 
 const Layout = ({ children }) => (

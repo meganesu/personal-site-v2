@@ -4,11 +4,6 @@
   margin: auto;
 }
 
-.container a:hover {
-  color: 	#FF4500;
-  transition: color .3s;
-}
-
 .main {
   height: 80vh;
   width: 90%;
