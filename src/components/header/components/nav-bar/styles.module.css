@@ -6,6 +6,8 @@
 }
 
 .nav-bar li {
+  font-family: "Amatic SC", sans-serif;
+  font-size: 24px;
   margin-right: 3rem;
 }
 
