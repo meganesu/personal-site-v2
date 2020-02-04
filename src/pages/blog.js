@@ -24,8 +24,6 @@ const Blog = () => {
     }
   `)
 
-  console.log(data)
-
   return (
     <Layout>
       <ol className={styles.postList}>
