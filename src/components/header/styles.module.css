@@ -1,11 +1,12 @@
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .title {
-  margin-right: 3rem;
   text-decoration: none;
   color: black;
 }

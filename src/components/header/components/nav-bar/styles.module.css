@@ -8,6 +8,9 @@
 .nav-bar li {
   font-family: "Amatic SC", sans-serif;
   font-size: 24px;
+}
+
+.nav-bar li:not(:last-child) {
   margin-right: 3rem;
 }
 
