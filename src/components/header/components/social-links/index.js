@@ -6,7 +6,6 @@ import GitHubLogo from '../../../../images/GitHub-Mark-64px.png';
 import LinkedInLogo from '../../../../images/LI-In-Bug.png';
 import TwitterLogo from '../../../../images/Twitter_Social_Icon_Rounded_Square_Color.png';
 
-console.log(styles);
 const SocialLinks = () => (
   <ul className={styles.socialLinks}>
     <li>
