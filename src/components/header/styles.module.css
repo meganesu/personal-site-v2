@@ -7,8 +7,12 @@
 }
 
 .title {
-  text-decoration: none;
   color: black;
+  border: none;
+}
+
+.title:hover {
+  border: none;
 }
 
 .title h1 {

@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+.social-links a {
+  border: none;
+}
+
 .social-links img {
   height: 32px;
 }
