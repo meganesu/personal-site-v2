@@ -17,4 +17,9 @@
 .nav-bar a {
   text-decoration: none;
   color: black;
+  border-bottom: none;
+}
+
+a.active {
+  border-bottom: solid 3px #5492ff;
 }

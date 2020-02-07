@@ -4,10 +4,12 @@ import { Link } from 'gatsby';
 import styles from './styles.module.css';
 
 const NavBar = () =>
-  <ul className={styles.navBar}>
-    <li><Link to="/">Home</Link></li>
-    <li><Link to="/projects">Projects</Link></li>
-    <li><Link to="/blog">Blog</Link></li>
-  </ul>
+  <nav>
+    <ul className={styles.navBar}>
+      <li><Link to="/" activeClassName={styles.active}>Home</Link></li>
+      <li><Link to="/projects" activeClassName={styles.active}>Projects</Link></li>
+      <li><Link to="/blog" activeClassName={styles.active}>Blog</Link></li>
+    </ul>
+  </nav>
 
 export default NavBar;
