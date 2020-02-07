@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import styles from './styles.module.css';
 
 const SkipLink = (props) => (
-  <Link className={styles.container} to={props.link}>
+  <a className={styles.container} href={props.link}>
     {props.children}
-  </Link>
+  </a>
 )
 
 export default SkipLink
