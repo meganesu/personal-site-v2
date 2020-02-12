@@ -4,10 +4,11 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  background-color: var(--navy);
 }
 
 .title {
-  color: black;
+  color: white;
   border: none;
 }
 

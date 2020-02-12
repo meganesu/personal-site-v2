@@ -3,6 +3,7 @@
   list-style-type: none;
   align-items: center;
   padding: 0;
+  margin-block-start: 0;
 }
 
 .nav-bar li {
@@ -16,7 +17,7 @@
 
 .nav-bar a {
   text-decoration: none;
-  color: black;
+  color: white;
   border-bottom: none;
 }
 
