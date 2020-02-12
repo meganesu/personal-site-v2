@@ -17,3 +17,11 @@
   background-color: var(--light-orange);
   border: 0.5rem solid var(--orange) ;
 }
+
+.post:nth-child(even) a {
+  border-bottom-color: var(--orange);
+}
+
+.post:nth-child(even) a:hover {
+  border-bottom-color: var(--blue);
+}
