@@ -1,12 +1,12 @@
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'src',
-        path: `${__dirname}/src`
-      }
+        name: "src",
+        path: `${__dirname}/src`,
+      },
     },
-    'gatsby-transformer-remark'
-  ]
+    "gatsby-transformer-remark",
+  ],
 }

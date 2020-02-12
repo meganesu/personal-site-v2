@@ -1,19 +1,11 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Layout from '../components/layout'
-import styles from './blog-post.module.css'
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
+import styles from "./blog-post.module.css"
 
 export const query = graphql`
-  query (
-    $slug: String!
-  ){
-    markdownRemark (
-      fields: {
-        slug: {
-          eq: $slug
-        }
-      }
-    ){
+  query($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
         date
@@ -23,11 +15,13 @@ export const query = graphql`
   }
 `
 
-const BlogPost = (props) => (
+const BlogPost = props => (
   <Layout>
-    <h1 className={styles.title}>{ props.data.markdownRemark.frontmatter.title }</h1>
-    <p className={styles.date}>{ props.data.markdownRemark.frontmatter.date }</p>
-    <div dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.html}} />
+    <h1 className={styles.title}>
+      {props.data.markdownRemark.frontmatter.title}
+    </h1>
+    <p className={styles.date}>{props.data.markdownRemark.frontmatter.date}</p>
+    <div dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.html }} />
   </Layout>
 )
 
