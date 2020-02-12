@@ -9,8 +9,8 @@ const Header = () => (
     <Link to="/" className={styles.title}>
       <h1>Megan Sullivan</h1>
     </Link>
-    <NavBar />
     <SocialLinks />
+    <NavBar />
   </header>
 )
 
