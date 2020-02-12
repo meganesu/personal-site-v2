@@ -5,7 +5,15 @@
 
 .post {
   padding: 15px;
-  border: orange solid 2px;
   margin-bottom: 2rem;
-  background-color: #ffeccb;
+}
+
+.post:nth-child(odd) {
+  background-color: var(--light-blue);
+  border: 0.5rem solid var(--blue) ;
+}
+
+.post:nth-child(even) {
+  background-color: var(--light-orange);
+  border: 0.5rem solid var(--orange) ;
 }
