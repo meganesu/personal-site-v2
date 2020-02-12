@@ -7,6 +7,8 @@
 
 .main {
   width: 90%;
+  max-width: 50rem;
   margin: auto;
+  margin-top: 1rem;
   flex: 1;
 }
