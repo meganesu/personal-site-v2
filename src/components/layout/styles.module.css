@@ -6,7 +6,7 @@
 }
 
 .main-wrapper {
-  border: 1rem solid var(--orange);
+  border: 0.75rem solid var(--orange);
   box-sizing: border-box;
   padding: 2rem;
   flex: 1;
