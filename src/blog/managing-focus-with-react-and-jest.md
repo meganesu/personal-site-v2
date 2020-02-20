@@ -158,6 +158,10 @@ Breakdown of what's going on here:
 1. `getDOMNode()` comes from Enzyme
 1. `document.activeElement` comes from ? (Enzyme? Jest?)
 
+## Next Steps
+
+* Trapping focus inside the sidebar (inert polyfill)
+
 ## Resources
 
 - React `ref` documentation: https://reactjs.org/docs/refs-and-the-dom.html
