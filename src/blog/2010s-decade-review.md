@@ -18,6 +18,44 @@ The last decade almost completely encapsulates my entire career in tech, from my
 
 When I graduated high school in 2010, I didn't really know anything about programming, even though I was about to head off to college as a declared computer engineering major. The program was a mix of computer science and electrical engineering, and I'd picked it because I liked programming the light board in my high school tech theater class. I thought that maybe lighting design and electrical engineering would somehow be connected (although really the only connection I could make at the time was that they both required electricity).
 
+2010: 
+* First programming class. Redekopp's 499. "what is going on?!"
+* Sleeping through lectures, getting used to being a student without parents hanging over me.
+* Made friends that I'd end up sticking with (CS Haus, David, Steven?), but most of them already seemed to know what was going on. They'd done programming in high school
+* Mo had to help me step by step through homework projects.
+* Showing mom my hangman game at parent weekend.
+* Went to Redekopp's office hours a lot - me and Nayeon and Steven, all new to programming. Redekopp drawing out diagrams (this is what memory looks like, how the values change when you're manipulating pointers), which really helped make things click (felt concrete, like I could finally wrap my head around it). Learning to think like a computer.
+* Final project: robotics obstacle course, only contributed flowchart diagrams (no code)
+
+2011:
+* Cried when Nazarian pulled me aside after class
+* Sophomore year
+* EE 201 (Ung)
+    * started sitting in the front in my EE class (Ung's "marines")
+    * Paired with Mo on Minesweeper solver
+* Started 3D animation minor (wanted to work at Pixar)
+* Sat in on Intro to Cinema. It made me feel things that none of my CS classes did. (Check my application essay for more details.) I decided I was going to apply to the film school. Worked on my application with Shawn Juju.
+* CSCI 200
+    * Factory project part 1. Opted to work on the art, so that I wouldn't have to do the programming.
+
+2012:
+* Found out I got waitlisted for the film school. Decided to keep taking classes anyway, what's one more minor?
+* Officially enrolled in Intro to Cinema
+* CSCI 201
+    * Factory project part 2. Worked on the implementation of one class, and I'm pretty sure that's all the code I wrote. I'm not sure what else I contributed to that project.
+* GEOL 125
+    * Taught lessons through JEP. 6th grade classroom.
+* EE 357
+    * Redekopp round 2. Flipped classroom, really helped me spend more time at home processing the content at my own pace.
+    * Paired with Mo, but it was still mostly me navigating.
+* Fall
+* CSCI 480
+    * Technical elective. Took it because I was hoping it would help me work at Pixar. The professor was a good advocate for me. He wrote me a letter of rec I think?
+
+
+
+// Notes
+
 ### 2010
 
 - Graduated from high school, leaving the nest
