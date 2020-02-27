@@ -1,0 +1,16 @@
+.greeting {
+    font-family: "Amatic SC", sans-serif;
+    font-size: 4rem;
+    margin: 1rem 0;
+    line-height: 1.25;
+}
+
+.wave {
+    display: inline-block;
+    height: 1em;
+    margin-right: 0.25em;
+}
+
+.name {
+    font-weight: bold;
+}
