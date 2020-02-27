@@ -30,17 +30,23 @@ Big Ideas:
     * City Year was at the job fair
 
 2010: 
-* First programming class. Redekopp's 499. "what is going on?!"
-* Sleeping through lectures, getting used to being a student without parents hanging over me.
-* Made friends that I'd end up sticking with (CS Haus, David, Steven?), but most of them already seemed to know what was going on. They'd done programming in high school
-* Mo had to help me step by step through homework projects.
+* Graduated from high school, leaving the nest
+* I'd gotten into USC on scholarship as a computer engineering major. I had friends from high school that teased me about picking a major in a field that I knew next to nothing about. One of my close friends actually wrote in my yearbook that he'd help me figure out how to turn on my computer. But I knew I was good at learning things - I'd taught myself AP Chemistry and gotten a 5 on the AP test - how much harder could it be to learn computer science?
+* Fall semester: Started at USC as a CS major. First CS class: Redekopp's 499. First time I was not good at something, struggling to learn. "What is going on?!" (Also struggled to stay awake during class - being an 18-year-old living without parent supervision for the first time meant many late nights staying up watching Chuck or A Very Potter Musical.) But also had people from high school who had teased me about not being able to do CS, and I felt like I needed to prove them wrong.
+* It was also the class where I met people who would end up being some of my best friends from college. But a large number of them had all been programming since they were younger, and they already seemed to know what was going on. They weren't always empathetic when I struggled with what they deemed "easy" concepts.
+* Monroe was a godsend, and spent hours helping me figure out the first few assignments. Had to help me step by step through homework projects, basically navigating me through the whole thing, teaching me about concepts that I'd missed in class.
+* I had to learn how to go to office hours and ask for help. I was nervous about it because it meant admitting that I didn't understand what was going on, and I felt embarrassed about that. I'd always been able to figure things out on my own before. Went to Redekopp's office hours a lot - me and Nayeon and Steven, all new to programming. Redekopp drawing out diagrams (this is what memory looks like, how the values change when you're manipulating pointers), which really helped make things click (felt concrete, like I could finally wrap my head around it). Learning to think like a computer.
 * Showing mom my hangman game at parent weekend.
-* Went to Redekopp's office hours a lot - me and Nayeon and Steven, all new to programming. Redekopp drawing out diagrams (this is what memory looks like, how the values change when you're manipulating pointers), which really helped make things click (felt concrete, like I could finally wrap my head around it). Learning to think like a computer.
 * Final project: robotics obstacle course, only contributed flowchart diagrams (no code)
+* Other notable things that happened:
+    * Saw Obama speak at USC for Jerry Brown's reelection.
+    * Became a football person (fight on!)
 
 2011:
 * Cried when Nazarian pulled me aside after class
+* Summer internship at NERSC. (Shout out to Christine.) Did my own thing. Mostly taught another intern how to program.
 * Sophomore year
+* Moved into the CS Haus.
 * EE 201 (Ung)
     * started sitting in the front in my EE class (Ung's "marines")
     * Paired with Mo on Minesweeper solver
@@ -97,24 +103,6 @@ Big Ideas:
 * Graduated from college! Spent a summer bouncing back between LA and the Bay, slowly moving out.
 
 // Notes
-
-### 2010
-
-- Graduated from high school, leaving the nest
-- I'd gotten into USC as a computer engineering major. I had friends from high school that teased me about picking a major in a field that I knew next to nothing about. One of my close friends actually wrote in my yearbook that he'd help me figure out how to turn on my computer. But I knew I was good at learning things - I'd taught myself AP Chemistry and gotten a 5 on the AP test - how much harder could it be to learn computer science?
-- Fall semester: Started at USC as a CS major. First CS class: Redekopp's 499. First time I was not good at something, struggling to learn. (Also struggled to stay awake during class - being an 18-year-old living without parent supervision for the first time meant many late nights staying up watching Chuck or A Very Potter Musical.) But also had people from high school who had teased me about not being able to do CS, and I felt like I needed to prove them wrong.
-- It was also the class where I met people who would end up being some of my best friends from college. But a large number of them had all been programming since they were younger, and they weren't always empathetic when I struggled with what they deemed "easy" concepts. Monroe was a godsend, and spent hours helping me figure out the first few assignments.
-- I had to learn how to go to office hours and ask for help. I was nervous about it because it meant admitting that I didn't understand what was going on, and I felt embarrassed about that. I'd always been able to figure things out on my own before.
-
-Other notable things that happened:
-
-- Saw Obama speak at USC for Jerry Brown's reelection.
-- Became a football person (fight on!)
-
-2011
-
-- Moved into the CS Haus.
-- Summer internship at NERSC. Did my own thing. Mostly taught another intern how to program.
 
 2012
 
