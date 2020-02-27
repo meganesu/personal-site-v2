@@ -54,7 +54,7 @@ When I graduated high school in 2010, I didn't really know anything about progra
 * CTPR 335 - Editing
     * Fell in love with the nitty gritty detail. I loved zooming in to the frame-by-frame details and then zooming out to think about the big picture as a whole. It felt like a great mix of technical/analytical work and creative work. A mix of right brain and left brain. I still love editing, and I'd love to work on it more. I had a TA who told me I was good at it, and he offered to help me get an internship at the place where he worked.
 * CSCI 271 - Discrete Methods in CS (Golubchik?)
-    * Only female professor I ever had in the CS department - actually, the only female professor I had in the entire Viterbi school of engineering.
+    * Only female professor I ever had in the CS department - actually, the only female professor I had in the entire Viterbi school of engineering. Maybe that's part of the reason I never really saw myself being a professional developer.
 * ITP 360 - 3D Compositing and Visual Effects
     * Redid the entire alien movie. Learned the bad lesson that sometimes other people are incompetent and you need to do it all yourself.
 
@@ -67,6 +67,8 @@ When I graduated high school in 2010, I didn't really know anything about progra
     * Took what I'd learned from the test prep lectures in CS 402 and kicked it up a notch. I sat in the front row of every class, with Monroe and Clark and David and others. I started asking questions during all lectures - not just when a test was coming up. If I got lost during a lecture, I'd turn around to Mo or Clark and ask them, "Do you know what's going on right now?" And if I saw that they were also confused, I'd raise my hand to interrupt the professor, asking him to back up and reexplain whatever we were stuck on. And he didn't seem to mind either. And wouldn't you know it, asking questions helped me actually understand what was going on, and I outperformed most of my group of friends in that class (except Monroe, probably). That's when I really started to feel like I was hitting my stride in the CS program. Clark pointed out to me that I was one of the top students in our classes, and I got better grades than most of the CS Haus boys.
 * CSCI 491A - Final Game Project
     * But even with all that, I was still opting for the "easy" route. Toward the end of junior year, Sean had asked if I wanted to join the Maestros team, a final games project that another housemate, Dru, was building. At that point, it sounded more interesting than what I'd heard about the standard CS final capstone class (which was about building something for an industry company or something like that), so I agreed. I can't remember how the conversations went, but I think they specifically wanted me on the team because of my 3D animation experience. I ended up being a manager for all the other animators on the team - remote folks who I'm not even sure were students? And so once again I was doing art instead of programming. At the time, I think I was relieved to not have another thing pulling my attention. This was an easy way to finish my final project requirement, and it allowed me to focus on other things.
+* Applied for City Year. There was a job fair on campus, and they were one of the only organizations that was focused on doing good - not just making money.
+* 
 
 2014:
 
