@@ -25,7 +25,7 @@ a {
   border-bottom: solid 3px var(--blue);
 }
 
-a:hover {
+a:hover, a:focus {
   border-bottom: solid 3px var(--orange);
   transition: color .3s;
 }

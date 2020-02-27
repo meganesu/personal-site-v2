@@ -22,6 +22,6 @@
   border-bottom-color: var(--orange);
 }
 
-.post:nth-child(even) a:hover {
+.post:nth-child(even) a:hover, .post:nth-child(even) a:focus {
   border-bottom-color: var(--blue);
 }
