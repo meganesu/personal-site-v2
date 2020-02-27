@@ -1,26 +1,27 @@
 import React from "react"
 
-import styles from "./styles.module.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
-import GitHubLogo from "../../../../images/GitHub-Mark-64px.png"
-import LinkedInLogo from "../../../../images/LI-In-Bug.png"
-import TwitterLogo from "../../../../images/Twitter_Social_Icon_Rounded_Square_Color.png"
+import styles from "./styles.module.css"
 
 const SocialLinks = () => (
   <ul className={styles.socialLinks}>
     <li>
       <a href="https://github.com/meganesu">
-        <img alt="GitHub" src={GitHubLogo} />
+        <FontAwesomeIcon icon={ faGithub } size="2x" color="white" />
       </a>
     </li>
     <li>
       <a href="https://twitter.com/meganesulli">
-        <img alt="Twitter" src={TwitterLogo} />
+        <FontAwesomeIcon icon={ faTwitter } size="2x" color="white" />
       </a>
     </li>
     <li>
       <a href="https://linkedin.com/in/meganesu">
-        <img alt="LinkedIn" src={LinkedInLogo} />
+        <FontAwesomeIcon icon={ faLinkedin } size="2x" color="white" />
       </a>
     </li>
   </ul>

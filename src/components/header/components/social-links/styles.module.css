@@ -10,10 +10,6 @@
   border: none;
 }
 
-.social-links img {
-  height: 32px;
-}
-
 .social-links li:not(:last-child) {
   margin-right: 2em;
 }
