@@ -10,6 +10,7 @@
 .title {
   color: white;
   border: none;
+  text-align: center;
 }
 
 .title:hover {
