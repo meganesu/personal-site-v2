@@ -62,10 +62,14 @@ Big Ideas:
 * CSCI 201
     * Factory project part 2. Worked on the implementation of one class, and I'm pretty sure that's all the code I wrote. I'm not sure what else I contributed to that project.
 * GEOL 125
-    * Taught lessons through JEP. 6th grade classroom.
+    * Took a geology class as a GE, and taught weekly lessons through JEP to 6th-grade students at a school nearby.
 * EE 357
     * Redekopp round 2. Flipped classroom, really helped me spend more time at home processing the content at my own pace.
     * Paired with Mo, but it was still mostly me navigating.
+* Started ballroom dancing club?
+* Summer
+    * Internship at NERSC, this time with Josh and Monroe.
+    * Hairspray - last time I was in a show
 * Fall
 * CSCI 480
     * Technical elective. Took it because I was hoping it would help me work at Pixar. The professor was a good advocate for me. He wrote me a letter of rec I think?
@@ -78,6 +82,7 @@ Big Ideas:
 
 2013:
 * Spring
+* Started finding a groove in CS classes. Started asking more questions (because I had a solid group of friends and I realized that none of them knew what was going on either).
 * CSCI 402 - Operating Systems (Faber)
     * Class before midterms and final, to prep for the exam. Went through the slides ahead of time, writing up huge lists of questions and things I didn't understand. I started out asking only one or two questions in the exam prep lecture. After a few questions, I looked around nervously to see if there were other people who had questions of their own to ask. But when no one else raised their hand, I figured, "Well, if no one else is going to ask questions, then I will." It's the first time I really started participating during lectures. I had these long bullet lists of questions and things I didn't understand from going through the slides on my own. At first, I was a little nervous to be hogging most of the professor's focus, and I remember looking around to see if there were other people who had questions and were trying to jump into the conversation. But when I saw that no one else was taking my silence as an opportunity to jump in, I figured I might as well just keep asking my own questions. It was the first time I had really participated vocally in a lecture. I thought that people might get annoyed with me for asking so many questions, but they didn't seem to mind. Or if they did, they kept quiet about it. And I think the professor appreciated that someone was actually trying to take advantage of the study session he had planned. I remember following him (with a few other students) to his office hours after those classes, still trying to clarify my understanding and scribbling notes in the margins of my sheet of questions. At some point later on (maybe during my senior year?), he sent out an email recommending a few students for an internship or a job at some university-affiliated organization, and I was surprised to be included on the list. I didn't end up pursuing it, but it felt nice to be picked out of the crowd.
     * "Oh, NO ONE knows what's going on."
@@ -88,6 +93,11 @@ Big Ideas:
     * But even with all that, I was still opting for the "easy" route. Toward the end of junior year, Sean had asked if I wanted to join the Maestros team, a final games project that another housemate, Dru, was building. At that point, it sounded more interesting than what I'd heard about the standard CS final capstone class (which was about building something for an industry company or something like that), so I agreed. I can't remember how the conversations went, but I think they specifically wanted me on the team because of my 3D animation experience. I ended up being a manager for all the other animators on the team - remote folks who I'm not even sure were students? And so once again I was doing art instead of programming. At the time, I think I was relieved to not have another thing pulling my attention. This was an easy way to finish my final project requirement, and it allowed me to focus on other things.
 * Applied for City Year. There was a job fair on campus, and they were one of the only organizations that was focused on doing good - not just making money. My sister was in New York, and I thought it would be great to be closer to her. I knew I didn't want to work as a full-time software developer - I didn't want to be a "code monkey" at a big tech company. I wanted to do work that mattered - that impacted others' lives for good. So I applied and got accepted!
 * TA for CS 103, for Crowley
+- Played a lot of Just Dance at the CS Haus
+- CS Haus Big Bear trip
+- USC beat Stanford, and we all rushed the field
+- Clark moved out
+- Went to India - Alternative Winter Break
 
 2014:
 * Spring.
@@ -98,38 +108,11 @@ Big Ideas:
     * Did the first edit alone, and was a little frustrated when teammates had suggestions. But after sucking it up and working together, I learned that not all group projects are bogus - sometimes having a group can help you make something better than you could have made alone.
 * CSCI 491B - Final Game Project
     * Still managing the artists
+* Interned at GameDesk, filmed and edited a customer success story
 * TA for CS 103 again. Winston my starfish student. Working so closely with him made me really excited to be going to City Year. I liked helping people learn things.
+* Went to Disneyland MANY times
 * Shoutout to Steve Schrader, for being the best advisor. He helped me fit a major and two minors into four years. He let me tailor my college experience so that I could learn everything I wanted to learn. Without him, I wouldn't have had such a good mixture of technical classes and creative classes.
-* Graduated from college! Spent a summer bouncing back between LA and the Bay, slowly moving out.
-
-// Notes
-
-2012
-
-- Took an art class (FA 101)
-- Started ballroom dancing club?
-- Took a geology class as a GE, and taught weekly lessons to 6th-grade students at a school nearby.
-- Wanted to switch out of CS. Applied to the film school, but got waitlisted.
-- Summer internship at NERSC, this time with Josh and Monroe.
-- Hairspray - last time I was in a show
-
-2013
-
-- Started finding a groove in CS classes. Started asking more questions (because I had a solid group of friends and I realized that none of them knew what was going on either).
-- Senior year - started working as a course producer
-- Played a lot of Just Dance at the CS Haus
-- CS Haus Big Bear trip
-- USC beat Stanford, and we all rushed the field
-- Clark moved out
-- Went to India - Alternative Winter Break
-
-2014
-
-- Winston my starfish student
-- Interned at GameDesk, filmed and edited a customer success story
-- WRIT 340 - Still Good in Me
-- Went to Disneyland MANY times
-- Graduated from USC, magna cum laude (0.01 GPA point away from summa cum laude, but whatever)
+* Graduated from college! Magna cum laude (0.01 GPA point away from summa cum laude, but whatever), renaissance scholar. Spent a summer bouncing back between LA and the Bay, slowly moving out.
 
 ## 2014 - 2018: From Student to Teacher
 
@@ -151,7 +134,6 @@ Big Ideas:
 - I started teaching my students how to code, using the Code.org Hour of Code curriculum. Every day, I'd pull up a couple kids from lunch to hang out with me in the City Year office (an old classroom that used to be the AP's office), and they'd work in pairs to solve puzzles on my iPad. I'd help them when they got stuck, making sticky note "maps" on the ground so they could pretend to be the Angry Bird and play through the puzzle themselves. My favorite moment was one day when a student (a girl) exlaimed with surprise, "I never knew I was such a good programmer!"
 - I learned about how important curriculum design is. Started learning Understanding By Design framework (VERY loosely applied to our after school clubs).
 - I learned so many things that - while I didn't realize it at the time - have made me a better consultant and teammate. I could do a whole blog post about that (convert Pecha Kucha).
-
 
 2015
 
@@ -178,7 +160,7 @@ Big Ideas:
 2018
 
 - Left Girls Who Code, started at ThoughtWorks (also took a detour to Zapata Ranch, and fulfilled my lifetime dream of living on a ranch)
-- ThoughtWorks University - a month in China, had just come from creating SIP, so I was using a really particular lens experiencing TWU as a student while also trying to understand the architecture of the program from an instructor's view. Met wonderful people from all over the world, climbed a mountain to the top of the world. Focused on bringing other people up and making them feel more confident (esp non-native English speakers).
+- ThoughtWorks University - a month in China, had just come from creating SIP, so I was using a really particular lens experiencing TWU as a student while also trying to understand the architecture of the program from an instructor's view. Met wonderful people from all over the globe, climbed a mountain to the top of the world. Focused on bringing other people up and making them feel more confident (esp non-native English speakers).
 - Test-driven development & focus on quality
 - Worked on accessibility stories and started getting really interested in that, used a screen reader for the first time
 
