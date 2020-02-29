@@ -116,6 +116,19 @@ Big Ideas:
 
 ## 2014 - 2018: From Student to Teacher
 
+Big Ideas
+* City Year
+    * LOVED working with the kids. Didn't like the bureaucracy/politics within the organization.
+* Code.org
+    * Dream job. Felt some imposter syndrome, but had such a wonderfully supportive group of teammates who were encouraging and enthusiastic. It's still probably the happiest I've ever been at a job.
+* Girls Who Code
+    * First full-time job. If Code.org had been a fully developed mature team, then GWC was on the other end of the spectrum. The whole team was still trying to figure out how to work together.
+    * Grew as a leader. Was put in charge of the SIP curriculum.
+    * Got more practice building a learning experience from top to bottom. Really utilized Understanding By Design framework, and integrated some CSTA CS standards.
+    * Did a lot of teaching. Workshops for students (user testing, visiting students), teacher training, staff club, Teacher Advisory Board.
+    * Did a bunch of presentations. Traveled to talk to students about CS and why it's a cool field and why diversity is important.
+    * Gave me the confidence to apply for a software job. I didn't like feeling like my technical skills were already diminishing (and they hadn't been that strong to start with). Also saw from researching Women in Tech spotlights that being a computer scientist isn't just about going to work for Google or Facebook or Microsoft. You can use it as a tool to build something that helps people.
+
 2014
 
 - Moved to New York
