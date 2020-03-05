@@ -8,17 +8,12 @@
 }
 
 .title {
-  color: white;
-  border: none;
-  text-align: center;
+  margin: 1rem 0;
 }
 
-.title:hover {
-  border: none;
-}
-
-.title h1 {
+.title a {
   font-family: "Dancing Script", sans-serif;
   font-size: 3rem;
-  margin: 1rem 0;
+  color: white;
+  border: none;
 }
