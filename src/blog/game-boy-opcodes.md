@@ -53,7 +53,7 @@ I loved the pastraiser site because of how easy it was to visualize the full set
 
 ## What did you learn along the way?
 
-So Megan, what are the four biggest takeaways that you learned while you were building this project? Well reader, I'm so glad you asked! Here they are:
+This is the first time I've ever actually finished a side project, so I'd say the most important thing I learned was how to stick with a long-term goal. I've got lots of thoughts on that subject, which I'm saving for a future blog post. In the meantime, here are some of my other takeaways from this project:
 
 ### 1. Use a mobile-first design process.
 
