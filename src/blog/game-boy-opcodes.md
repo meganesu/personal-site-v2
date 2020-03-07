@@ -34,7 +34,7 @@ const lookup = {
 
 The challenge with this approach is that you (the developer building the emulator) need to be able to write a function to implement each of these instructions. And that's pretty tough to do if you don't actually know what the instructions are! That's where my project comes in.
 
-### How to use the opcode tables
+### How to Use the Opcode Tables
 
 The main purpose of the Game Boy opcode tables is to let you easily switch back and forth between a high-level view of the entire CPU instruction set (i.e., the whole table) and a low-level view of what a single instruction does (i.e., an individual table cell).
 
