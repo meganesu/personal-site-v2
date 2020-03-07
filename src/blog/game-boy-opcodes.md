@@ -1,5 +1,5 @@
 ---
-title: "Understanding All The Game Boy Opcodes"
+title: "Meet the Game Boy Instruction Set"
 author: "Megan Sullivan"
 date: "March 7, 2020"
 ---
