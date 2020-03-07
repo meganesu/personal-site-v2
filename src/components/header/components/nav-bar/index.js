@@ -12,11 +12,6 @@ const NavBar = () => (
         </Link>
       </li>
       <li>
-        <Link to="/projects" activeClassName={styles.active}>
-          Projects
-        </Link>
-      </li>
-      <li>
         <Link to="/blog" activeClassName={styles.active}>
           Blog
         </Link>
