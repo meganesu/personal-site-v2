@@ -1,7 +1,7 @@
 ---
 title: "Understanding All The Game Boy Opcodes"
 author: "Megan Sullivan"
-date: "March 5, 2020"
+date: "March 7, 2020"
 ---
 
 Like many people my age, I grew up on Nintendo handheld gaming systems. As I've gotten older and that millennial nostalgia has kicked in, I've been able to revisit some of my childhood-favorite titles, thanks to emulators like VisualBoy Advance. Then, last July, I started wondering how those emulators worked, and I decided I wanted to try building one myself.
