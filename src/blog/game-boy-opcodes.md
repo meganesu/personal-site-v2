@@ -8,8 +8,6 @@ Like many people my age, I grew up on Nintendo handheld gaming systems. As I've 
 
 Well, it's been eight months, and... I still haven't built an emulator. But I *have* built something else: [an interactive table of all the Game Boy opcodes](https://meganesu.github.io/generate-gb-opcodes).
 
-[Insert screenshot?]
-
 ## What is this thing?
 
 "Wow Megan, those are some pretty colorful tables, but what actually is this thing?" Great question! These tables are a way of visualizing all the opcodes for the original Game Boy central processing unit (CPU).
@@ -73,7 +71,7 @@ This isn't the project I originally set out to build. But along the way, I start
 
 I've been done with the MVP of this project for a while now, but I've been holding off on sending it out into the world because there are still a bunch of other features and improvements I want to add. But I recently finished reading [Just F*cking Ship](https://stackingthebricks.com/just-fucking-ship/) by [Amy Hoy](https://twitter.com/amyhoy), and now I'm thinking it's better to get this site out in front of real live humans than it is to hoard it until it's "done" (because we all know that software projects will never truly be done).
 
-## Now What?
+## Now what?
 
 There's still more work to do on this project, but I'm excited to get this minimum viable product in front of you. If you're interested in what updates I have planned for the future, you can check out the [GitHub issues page for this project](https://github.com/meganesu/generate-gb-opcodes/issues). And feel free to reach out to me on Twitter to let me know what you think of what I've built so far!
 
