@@ -16,13 +16,13 @@ Well, it's been eight months, and... I still haven't built an emulator. But I *h
 
 ### A Crash Course on CPU Instruction Sets
 
-The game on your Game Boy cartridge is really a bunch of bits - 1's and 0's - stored on a memory card. These bits are the program instructions that tell your Game Boy how the game should work. But your Game Boy's tiny little brain - the CPU - can't read all those bits at once. It has to break the program down into smaller chunks, which it will then read one at a time. On the original Game Boy, each of these chunks is eight bits long (which is why you'll sometimes hear people refer to it as an "8-bit system").
+The game on your Game Boy cartridge is really a bunch of bits - 1s and 0s - stored on a memory card. These bits are the program instructions that tell your Game Boy how the game should work. But your Game Boy's tiny little brain - the CPU - can't read all those bits at once. It has to break the program down into smaller chunks, which it will then read one at a time. On the original Game Boy, each of these chunks is eight bits long (which is why you'll sometimes hear people refer to it as an "8-bit system").
 
 But how does the Game Boy CPU know what to do with those chunks? Well, each unique 8-bit chunk (also called an opcode) can be translated to a particular instruction for the CPU. For example, the opcode `01000001` (or `0x41` in [hexadecimal](https://simple.wikipedia.org/wiki/Hexadecimal)) corresponds to the instruction called `LD B, C`, which tells the CPU to load the contents of register C into register B. 
 
 If that sounded like a bunch of nonsense, don't worry. The main takeaway is that each unique 8-bit value has a corresponding CPU instruction. Although while I have you here, a quick sidebar about instruction names: These names like `LD B, C` aren't for the Game Boy; they're for the humans trying to write Game Boy games. It's easier for humans to remember what `LD B, C` means than it is to remember what `01000001` stands for. That's why these instruction names are also referred to as **mnemonics**.
 
-So now you know what the CPU is *supposed* to do, but how does it actually *do* it? In an actual Game Boy, each of the bits from a single instruction actually gets sent to various hardware components, and those components behave differently based on whether each bit was a 1 or a 0. But in an emulator, you don't have the physical Game Boy hardware. You're using a programming language to fake (or emulate) the internals of how the Game Boy works. One way to implement the CPU is to have a lookup table that maps opcodes to functions that execute a particular instruction. In JavaScript, that might look something like this:
+So now you know what the CPU is *supposed* to do, but how does it actually *do* it? In an actual Game Boy, each of the bits from a single instruction gets sent to various hardware components, and those components behave differently based on whether each bit was a 1 or a 0. But in an emulator, you don't have the physical Game Boy hardware. You're using a programming language to fake (or emulate) the internals of how the Game Boy works. One way to implement the CPU is to have a lookup table that maps opcodes to functions that execute a particular instruction. In JavaScript, that might look something like this:
 
 ```javascript
 const lookup = {
@@ -55,7 +55,7 @@ This is the first time I've ever actually finished a side project, so I'd say th
 
 ### 1. Use a mobile-first design process.
 
-I didn't really do much up-front design when I was building the MVP of this. I was eager to dig into the code to generate the instructions, and I wasn't thinking about much beyond the implementation details. I essentially just based my design off of what already existed on the pastraiser site. Next time, I'd like to have a more mobile-first approach. The big grids are okay on a desktop view (and even then, only when the browser window is large), but the layout doesn't really translate to a smaller device.
+I didn't really do much up-front design when I started building this. I was eager to dig into the code to generate the instructions, and I wasn't thinking about much beyond the implementation details. I essentially just based my design off of what already existed on the pastraiser site. Next time, I'd like to have a more mobile-first approach. The big grids are okay on a desktop view (and even then, only when the browser window is large), but the layout doesn't really translate to a smaller device.
 
 ### 2. The open-source community will help you if you ask.
 
