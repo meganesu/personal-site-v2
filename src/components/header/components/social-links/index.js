@@ -10,17 +10,17 @@ import styles from "./styles.module.css"
 const SocialLinks = () => (
   <ul className={styles.socialLinks}>
     <li>
-      <a href="https://github.com/meganesu">
+      <a href="https://github.com/meganesu" aria-label="GitHub">
         <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
       </a>
     </li>
     <li>
-      <a href="https://twitter.com/meganesulli">
+      <a href="https://twitter.com/meganesulli" aria-label="Twitter">
         <FontAwesomeIcon icon={faTwitter} size="2x" color="white" />
       </a>
     </li>
     <li>
-      <a href="https://linkedin.com/in/meganesu">
+      <a href="https://linkedin.com/in/meganesu" aria-label="LinkedIn">
         <FontAwesomeIcon icon={faLinkedin} size="2x" color="white" />
       </a>
     </li>
