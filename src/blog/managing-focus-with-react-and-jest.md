@@ -41,35 +41,35 @@ Now that we've got a basic understanding of refs, let's see what they look like 
 How to do:
 
 1. In App, create a ref for the sidebar, and pass it down as a prop into Details Sidebar
-```javascript
-const sidebarRef = useRef(null);
-// In JSX returned:
-<Sidebar
-  sidebarRef={sidebarRef}
-  // other props
-/>
-```
+    ```javascript
+    const sidebarRef = useRef(null);
+    // In JSX returned:
+    <Sidebar
+      sidebarRef={sidebarRef}
+      // other props
+    />
+    ```
 1. In Sidebar, assign ref to the element we want to focus on when the sidebar opens (the header). Also need to make it focusable (tab index)!
-```javascript
-const Sidebar = ({ colors, hideSidebar, sidebarRef }) => ( // add sidebarRef prop
-  // ...
-  <h1
-    ref={sidebarRef} // add this
-    tabIndex={-1} // add this
-  >
-    {colors.output}
-  </h1>
-  // ...
-)
-```
+    ```javascript
+    const Sidebar = ({ colors, hideSidebar, sidebarRef }) => ( // add sidebarRef prop
+      // ...
+      <h1
+        ref={sidebarRef} // add this
+        tabIndex={-1} // add this
+      >
+        {colors.output}
+      </h1>
+      // ...
+    )
+    ```
 1. In App, focus on sidebarRef in updateSidebar() event handler (called when a button in the table cell is clicked, and we want to move focus into the sidebar). Now you should be able to click on (or press enter on) a button in the table and see your focus move to inside the sidebar! Try it out with a keyboard, then try it with a screen reader.
-```javascript
-const updateSidebar = (colors) => {
-  setActiveCell(colors);
-  setShowSidebar(true);
-  sidebarRef.current.focus();
-};
-```
+    ```javascript
+    const updateSidebar = (colors) => {
+      setActiveCell(colors);
+      setShowSidebar(true);
+      sidebarRef.current.focus();
+    };
+    ```
 
 Note: need the sidebar to always be rendered for this focus management to work correctly (otherwise, if the sidebar is closed, the sidebarRef isn't assigned to anything (since h1 isn't rendered yet), and on the first click of a cell button, the focus won't move. You'll have to double-click to get focus to move correctly.)
 
@@ -86,48 +86,48 @@ Note: need the sidebar to always be rendered for this focus management to work c
 How to do:
 
 1. Create ref inside of TableCell and assign it to TableCell button element
-```javascript
-const TableCell = ({ colors, updateSidebar }) => {
-  const buttonRef = useRef(null); // add this
-  return (
-    <td>
-      <button
-        onClick={() => updateSidebar(colors)}
-        ref={buttonRef} // add this
-      >
-        { colors.output }
-      </button>
-    </td>
-  )
-}
-```
+    ```javascript
+    const TableCell = ({ colors, updateSidebar }) => {
+      const buttonRef = useRef(null); // add this
+      return (
+        <td>
+          <button
+            onClick={() => updateSidebar(colors)}
+            ref={buttonRef} // add this
+          >
+            { colors.output }
+          </button>
+        </td>
+      )
+    }
+    ```
 1. Pass the ref into updateSidebar() when it's called in TableCell onClick handler
-```javascript
-<button
-  onClick={() => updateSidebar(colors, buttonRef)}
-  ref={buttonRef} // add this
->
-```
+    ```javascript
+    <button
+      onClick={() => updateSidebar(colors, buttonRef)}
+      ref={buttonRef} // add this
+    >
+    ```
 1. In App, add state variable for lastCellClicked
-```javascript
-  const [lastCellClicked, setLastCellClicked] = useState(null);
-```
+    ```javascript
+      const [lastCellClicked, setLastCellClicked] = useState(null);
+    ```
 1. In App updateSidebar() implementation, update lastCellClicked to be buttonRef
-```javascript
-const updateSidebar = (colors, buttonRef) => {
-  setLastCellClicked(buttonRef); // add this
-  setActiveCell(colors);
-  setShowSidebar(true);
-  sidebarRef.current.focus();
-};
-```
+    ```javascript
+    const updateSidebar = (colors, buttonRef) => {
+      setLastCellClicked(buttonRef); // add this
+      setActiveCell(colors);
+      setShowSidebar(true);
+      sidebarRef.current.focus();
+    };
+    ```
 1. In App hideSidebar() implementation, call focus on lastCellClicked (ref of button in TableCell)
-```javascript
-const hideSidebar = () => {
-  setShowSidebar(false);
-  lastCellClicked.current.focus();
-};
-```
+    ```javascript
+    const hideSidebar = () => {
+      setShowSidebar(false);
+      lastCellClicked.current.focus();
+    };
+    ```
 
 Complete solution (focus moves on sidebar open and close):
 
