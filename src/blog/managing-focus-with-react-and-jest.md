@@ -23,9 +23,22 @@ _CodePen with slimmed down example WITHOUT moving focus_
 
 See how many times you have to press tab after clicking a button before your focus moves into the sidebar? The current experience might be feasible for a sighted user, but users who navigate with assistive technology will have to move through so many elements before they can actually tell what content was updated. This isn't ideal.
 
+A better experience would be if - after a user clicks on one of the buttons in the table - their focus automatically moved into the sidebar.
+
 ## How refs work
 
 What is a ref?
+A ref is a reference to another element in the DOM.
+
+ref.current gives you the node being referenced by the ref object
+
+```javascript
+const myRef = useRef(initialValue) // Creates a ref object where the .current property is set to initialValue
+```
+
+Usually, you'll just pass in null for initialValue, since you're going to pass your reference down to some other component anyway.
+
+When you set the ref prop of a component to your ref object myRef, then React sets the .current property of myRef to the component whose prop you just set.
 
 How do you pass it into a component? What does that actually do?
 
@@ -148,7 +161,10 @@ AND focus is moved to the header inside the sidebar
 WHEN InstructionCell is clicked
 THEN focus is moved to the sidebar ref
 
+### Using Jest v24.9.0
+
 ```javascript
+component = mount(<App />);
 const focusedSidebarHeader = component.find('#sidebar-header h2');
 
 expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
@@ -156,7 +172,27 @@ expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
 
 Breakdown of what's going on here:
 1. `getDOMNode()` comes from Enzyme
-1. `document.activeElement` comes from ? (Enzyme? Jest?)
+1. `document.activeElement` comes from JSDOM (which is one of Jest's dependencies)
+
+### Using Jest v25+
+
+The update from Jest v24 to v25 includes a big jump in JSDOM versions (v11.5.1 to v15.1.1), which you can see in the [Jest changelog](https://github.com/facebook/jest/blob/master/CHANGELOG.md#chore--maintenance-5). For me, when I upgraded my Jest dependency to the latest version (at the time, v25.2.7), my tests for focus management broke.
+
+From what I was able to trace down, this problem was because JSDOM changed the way they treated `document.activeElement`. (To be completely honest, I couldn't figure out what specifically the change was, and I got tired of digging through codebases, so if you have more information on what happened, please reach out and let me know!)
+
+By combing through linked pull requests, I found this solution from a [PR in the Carbon Design System repo](https://github.com/carbon-design-system/carbon/pull/5456/files). Here's the updated test that I wrote by following that PR:
+
+```javascript
+let container;
+
+container = document.createElement('div');
+container.id = 'container';
+document.body.appendChild(container);
+
+component = mount(<App />, {
+  attachTo: document.querySelector('#container')
+});
+```
 
 ## Next Steps
 
@@ -165,4 +201,11 @@ Breakdown of what's going on here:
 ## Resources
 
 - React `ref` documentation: https://reactjs.org/docs/refs-and-the-dom.html
+- React `useRef` hook documentation: https://reactjs.org/docs/hooks-reference.html#useref
 - React a11y focus control documentation: https://reactjs.org/docs/accessibility.html#focus-control
+- Jest Changelog for v25.1.0: https://github.com/facebook/jest/blob/master/CHANGELOG.md#2510
+    - Jest PR to update JSDOM: https://github.com/facebook/jest/pull/8851
+- JSDOM Changelog: https://github.com/jsdom/jsdom/blob/master/Changelog.md
+- JSDOM Issue #2723: https://github.com/jsdom/jsdom/issues/2723
+- JSDOM Issue #2586: https://github.com/jsdom/jsdom/issues/2586
+- Carbon Design System PR with test changes to work around JSDOM problem: https://github.com/carbon-design-system/carbon/pull/5456/files
