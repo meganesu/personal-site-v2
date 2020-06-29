@@ -29,14 +29,3 @@ a:hover, a:focus {
   border-bottom: solid 3px var(--orange);
   transition: color .3s;
 }
-
-pre {
-  background-color: var(--light-orange);
-  padding: 1em;
-}
-
-code {
-  font-size: large;
-  padding: 0.25em;
-  background-color: var(--light-orange);
-}
