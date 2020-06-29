@@ -32,7 +32,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "gh-pages -d public -b master -r https://$GITHUB_TOKEN@github.com/meganesu/meganesu.github.io.git",
+    "deploy": "gh-pages -d public -b main -r https://$GITHUB_TOKEN@github.com/meganesu/meganesu.github.io.git",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
