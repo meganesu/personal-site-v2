@@ -9,9 +9,9 @@ date: ""
 * How to use `ref` to move focus in React
 * How to write a Jest test for changing focus
 
-## The Backstory
+## But First, Some Context
 
-I have a side project that I've been building on and off for the past year: it's [a set of tables to help users understand the original Game Boy instruction set](https://meganesu.github.io/generate-gb-opcodes). (For more background on the project, check out this article I wrote: [Meet the Game Boy Instruction Set](https://meganesu.github.io/blog/game-boy-opcodes).)
+I have a side project that I've been building on and off for the past year: it's a set of [tables to help users understand the original Game Boy instruction set](https://meganesu.github.io/generate-gb-opcodes). It's essentially a website with two giant tables, where each cell contains a button and some details about a particular opcode in the Game Boy instruction set. When you click on one of the table cell buttons, a sidebar opens that tells you even more information about that particular instruction. For more background on the project, check out this article I wrote: [Meet the Game Boy Instruction Set](https://meganesu.github.io/blog/game-boy-opcodes).
 
 Here's the basic structure of how the app fits together. This should make the code examples later on in the post make more sense.
 
@@ -153,7 +153,7 @@ How to do:
     };
     ```
 
-Complete solution (focus moves on sidebar open and close):
+And now you're done! Congratulations, you did it! Here's a CodePen with the complete solution (moving focus when the sidebar opens and when it closes):
 
 <iframe height="265" style="width: 100%;" scrolling="no" title="Managing Focus in React (move focus on sidebar open and close)" src="https://codepen.io/meganesu/embed/preview/abOmwbg?height=265&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/meganesu/pen/abOmwbg'>Managing Focus in React (move focus on sidebar open and close)</a> by Megan Sullivan
@@ -162,22 +162,28 @@ Complete solution (focus moves on sidebar open and close):
 
 ## Writing Tests
 
-Test the side effects, not the implementation. Don't want to test that a function got called, want to test that the focus moves as expected.
+As with any new functionality, it's a good idea to write tests as you're implementing, so that you can be sure that things work (and continue to work) as you expect them to.
 
-GIVEN the sidebar is closed
-WHEN I click on a button
-THEN the sidebar opens
+One good tip to keep in mind is that you should be testing the side effects of your application, not the implementation. You don't want your tests to be too closely tied to the exact implementation of your app (like checking that a particular function got called), because it makes your tests more brittle. If a Future You decides to make changes to the way you implemented a feature, you'll probably end up needing to change your tests as well.
+
+Instead, you should test for side effects - what is it that you're expecting your app to have done by the time the code finishes running? In our case, the scenario we're trying to test looks something like this:
+
+GIVEN the sidebar is closed\
+WHEN I click on a button\
+THEN the sidebar opens\
 AND focus is moved to the header inside the sidebar
-
-WHEN InstructionCell is clicked
-THEN focus is moved to the sidebar ref
 
 ### Using Jest v24.9.0
 
 ```javascript
-component = mount(<App />);
-const focusedSidebarHeader = component.find('#sidebar-header h2');
+let component = mount(<App />);
 
+// Simulate click on table cell button
+const instructionCells = component.find('InstructionCell');
+instructionCells.first().find('button').simulate('click');
+
+// Check that focus has moved to the 
+const focusedSidebarHeader = component.find('#sidebar-header h2');
 expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
 ```
 
@@ -203,6 +209,9 @@ document.body.appendChild(container);
 component = mount(<App />, {
   attachTo: document.querySelector('#container')
 });
+
+const focusedSidebarHeader = component.find('#sidebar-header h2');
+expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
 ```
 
 ## Next Steps
