@@ -15,7 +15,7 @@ I have a side project that I've been building on and off for the past year: it's
 
 Here's the basic structure of how the app fits together. This should make the code examples later on in the post make more sense.
 
-_Insert diagram/tree of what component structure looks like_
+![A diagram of the app component tree](./app-structure.png)
 
 * App
 
