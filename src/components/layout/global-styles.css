@@ -37,3 +37,7 @@ a:hover, a:focus {
   border-bottom: solid 3px var(--orange);
   transition: color .3s;
 }
+
+strong {
+  font-weight: bold;
+}

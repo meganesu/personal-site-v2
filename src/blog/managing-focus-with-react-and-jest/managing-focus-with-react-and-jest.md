@@ -17,7 +17,39 @@ Here's the basic structure of how the app fits together. This should make the co
 
 ![A diagram of the app component tree](./app-structure.png)
 
-* App
+Here's a breakdown of the component structure:
+
+* **App**: The top-level component, which renders the Table and Sidebar components.
+    * This component also keeps track of two state variables:
+        * `showSidebar`: a boolean value that is `true` when the sidebar should be open and `false` when it should be closed. The inverse of this value is passed to the Sidebar component as the `isHidden` prop.
+        * `activeCell`: an object corresponding to the colors for the TableCell currently displaying in the Sidebar. When the page first loads, this initializes as `null`. This object is passed to the Sidebar component as the `colors` prop.
+    * This component also defines two functions, which get passed down to rendered components as props:
+        * `updateSidebar(colors)`: a function that updates the value of `activeCell` stored in the App state to the object passed in as `colors`. It also sets the value of `showSidebar` in the App state to `true`.
+        * `hideSidebar()`: a function that sets the value of `showSidebar` in the App state to `false`.
+* **Table**: Renders the table element and all of the TableCell components.
+    * This component the `updateSidebar` function as a prop from App, and passes it down to the TableCell component.
+    * This component also configures the `colors` objects that get passed to each TableCell.
+* **Sidebar**: Renders additional details about the currently selected TableCell.
+    * This component renders an `h1` element for the title of the sidebar, a `button` element for closing the sidebar, and a `p` element for additional details about the TableCell that was clicked.
+    * When the value of the `isHidden` prop is `true`, the Sidebar renders with an additional class that "hides" the Sidebar by moving it offscreen. When `isHidden` is false, the class is removed, and the Sidebar becomes visible.
+* **TableCell**: Renders the `td` element for an individual cell.
+    * Inside the `td` element, there is a `button` element. When this button is clicked, the click event handler calls the `updateSidebar` function with the `colors` prop. 
+
+And then just to make sure we're all on the same page, here's a breakdown of how the data flows between components when the sidebar opens:
+
+1. The user clicks on the button in a TableCell, which triggers the click event handler.
+1. The event handler calls `updateSidebar` with the value of the `colors` prop for that TableCell.
+1. The `updateSidebar` function - which is defined in the App component - updates the value of `activeCell` in the App state and sets `showSidebar` in the App state to `true`.
+1. This state change causes a rerender of the App component, and the Sidebar component gets new prop values for `colors` and `isHidden`.
+1. Since `isHidden` is now false (the opposite of `showSidebar`), the Sidebar component renders without the "hidden" class, and the Sidebar becomes visible to the user.
+
+...and when the sidebar closes:
+
+1. The user clicks on the "Close sidebar" button in the Sidebar, which triggers the click event handler.
+1. The event handler calls `hideSidebar` function that was passed into the Sidebar as a prop.
+1. The `hideSidebar` function - defined in the App component - sets `showSidebar` in the App state to `false`.
+1. This state change causes a rerender of the App component, and the Sidebar component gets a new prop value for `isHidden`.
+1. Since `isHidden` is now true (the opposite of `showSidebar`), the Sidebar component renders with the "hidden" class, and the Sidebar slides off the page and out of sight.
 
 ## The Problem
 
@@ -28,7 +60,7 @@ For the sake of this article, here's a simplified version of the site I built, w
   (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-See how many times you have to press tab after clicking a button before your focus moves into the sidebar? The current experience might be feasible for a sighted user. But users who navigate with a keyboard or screen reader will have to move through so many elements before they can actually tell what content was updated. This isn't ideal, especially considering how many table cells are in the actual project.
+See how many times you have to press tab after clicking a button before your focus moves into the sidebar? The current experience might be feasible for a sighted user. But users who navigate with a keyboard or screen reader will have to move through a frustrating number of elements before they can actually tell what content was updated. This isn't ideal, especially considering how many table cells are in the actual project.
 
 A better experience would be if - after a user clicks on one of the buttons in the table - their focus automatically moves into the sidebar. In this post, I'm going to teach you how to implement that focus management using React `ref`.
 
@@ -218,9 +250,11 @@ expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
 
 In this post, you learned about how to manage focus when opening and closing a sidebar, but there are still more improvements that can be made on this design.
 
-The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU)
+The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU).
 
 ## Resources
+
+The diagrams in this post were created using [Excalidraw](https://excalidraw.com/).
 
 - React `ref` documentation: https://reactjs.org/docs/refs-and-the-dom.html
 - React `useRef` hook documentation: https://reactjs.org/docs/hooks-reference.html#useref
