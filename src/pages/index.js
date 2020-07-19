@@ -5,7 +5,7 @@ import * as styles from "./index.module.css"
 import * as waveImage from "../images/Emoji_u1f44b.svg"
 
 const IndexPage = () => (
-  <Layout>
+  <Layout pageTitle="Home | Megan Sullivan">
     <div>
       <p className={styles.greeting}>
         <img src={waveImage} className={styles.wave} alt="wave emoji" />
