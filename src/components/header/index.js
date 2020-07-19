@@ -6,11 +6,11 @@ import styles from "./styles.module.css"
 
 const Header = () => (
   <header className={styles.header}>
-    <h1 className={styles.title}>
+    <p className={styles.title}>
       <Link to="/">
         Megan Sullivan
       </Link>
-    </h1>
+    </p>
     <NavBar />
     <SocialLinks />
   </header>

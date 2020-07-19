@@ -25,6 +25,7 @@ const Blog = () => {
 
   return (
     <Layout pageTitle="Blog | Megan Sullivan">
+      <h1>Blog</h1>
       <ol className={styles.postList}>
         {data.allMarkdownRemark.edges.map(edge => (
           <li className={styles.post}>
