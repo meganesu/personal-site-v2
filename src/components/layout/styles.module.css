@@ -5,6 +5,12 @@
   flex-direction: column;
 }
 
+@media (min-width: 1400px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
 .main-wrapper {
   border: 0.75rem solid var(--orange);
   box-sizing: border-box;

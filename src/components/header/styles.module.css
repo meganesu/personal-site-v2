@@ -17,3 +17,15 @@
   color: white;
   border: none;
 }
+
+@media (min-width: 1400px) {
+  .header {
+    justify-content: center;
+    padding: 0 3rem;
+    width: 20vw;
+
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+}
