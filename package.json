@@ -19,8 +19,8 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
-    "typeface-amatic-sc": "0.0.72",
     "typeface-dancing-script": "^1.1.4",
+    "typeface-ribeye-marrow": "0.0.71",
     "typeface-ubuntu": "0.0.65"
   },
   "devDependencies": {
