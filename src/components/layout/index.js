@@ -5,7 +5,7 @@ import Header from "../header"
 import Footer from "../footer"
 import "typeface-dancing-script"
 import "typeface-ribeye-marrow"
-import "typeface-ubuntu"
+import "typeface-quicksand"
 import "./global-styles.css"
 import styles from "./styles.module.css"
 
