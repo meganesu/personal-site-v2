@@ -26,3 +26,9 @@
   margin: auto;
   flex: 1;
 }
+
+@media (min-width: 1400px) {
+  .main {
+    flex: 0;
+  }
+}
