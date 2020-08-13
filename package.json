@@ -12,6 +12,7 @@
     "gatsby-plugin-google-analytics": "^2.2.2",
     "gatsby-plugin-sharp": "^2.6.17",
     "gatsby-remark-images": "^3.3.17",
+    "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-remark-prismjs": "^3.5.6",
     "gatsby-source-filesystem": "^2.2.2",
     "gatsby-transformer-remark": "^2.8.23",
@@ -20,9 +21,9 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
-    "typeface-amatic-sc": "0.0.72",
     "typeface-dancing-script": "^1.1.4",
-    "typeface-ubuntu": "0.0.65"
+    "typeface-quicksand": "^1.1.4",
+    "typeface-ribeye-marrow": "0.0.71"
   },
   "devDependencies": {
     "gh-pages": "^2.2.0",
@@ -34,7 +35,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "echo \"Commit: $TRAVIS_COMMIT\nMessage: $TRAVIS_COMMIT_MESSAGE\" && gh-pages -d public -b master -r https://$GITHUB_TOKEN@github.com/meganesu/meganesu.github.io.git -m \"$TRAVIS_COMMIT_MESSAGE ($TRAVIS_COMMIT)\"",
+    "deploy": "./tasks/deploy.sh",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

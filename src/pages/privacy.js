@@ -3,7 +3,7 @@ import { OutboundLink } from "gatsby-plugin-google-analytics"
 import Layout from "../components/layout"
 
 const Privacy = () => (
-  <Layout>
+  <Layout pageTitle="Privacy | Megan Sullivan">
     <h1>Privacy Policy</h1>
     <p>
       I'm using Google Analytics to collect data about visitors to my site

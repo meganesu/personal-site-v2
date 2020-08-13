@@ -8,12 +8,9 @@
 }
 
 .nav-bar li {
-  font-family: "Amatic SC", sans-serif;
+  font-family: "Ribeye Marrow", sans-serif;
   font-size: 24px;
-}
-
-.nav-bar li:not(:last-child) {
-  margin-right: 3rem;
+  padding: 0 1.5rem;
 }
 
 .nav-bar a {
@@ -24,4 +21,14 @@
 
 a.active {
   border-bottom: solid 3px #5492ff;
+}
+
+@media (min-width: 1400px) {
+  .nav-bar {
+    flex-direction: column;
+  }
+
+  .nav-bar li {
+    padding: 0.5rem 0;
+  }
 }

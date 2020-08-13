@@ -5,13 +5,11 @@ import * as styles from "./index.module.css"
 import * as waveImage from "../images/Emoji_u1f44b.svg"
 
 const IndexPage = () => (
-  <Layout>
-    <div>
-      <p className={styles.greeting}>
-        <img src={waveImage} className={styles.wave} alt="wave emoji" />
-        Hey there, I'm <span className={styles.name}>Megan</span>!
-      </p>
-    </div>
+  <Layout pageTitle="Home | Megan Sullivan">
+    <p className={styles.greeting}>
+      <img src={waveImage} className={styles.wave} alt="wave emoji" />
+      Hey there, I'm <span className={styles.name}>Megan</span>!
+    </p>
     <p>
       I’m a software developer. I like{" "}
       <Link to="/projects">building things</Link> and then{" "}
