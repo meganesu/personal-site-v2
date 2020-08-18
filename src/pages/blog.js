@@ -6,7 +6,7 @@ import styles from "./blog.module.css"
 const Blog = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: {fields: frontmatter___date}) {
         edges {
           node {
             frontmatter {
