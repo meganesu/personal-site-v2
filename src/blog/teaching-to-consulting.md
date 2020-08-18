@@ -1,7 +1,7 @@
 ---
 title: "3 Teaching Techniques to Make You a Better Consultant"
 author: "Megan Sullivan"
-date: "August 17, 2020"
+date: "August 18, 2020"
 ---
 
 Before I became a developer, I was an educator. After college, I served a year as a [City Year](https://www.cityyear.org/) AmeriCorps member in New York, where I worked as a teacher's aide in a third-grade classroom in the Bronx. After that, I was a curriculum writer at two different CS education non-profits. When I decided to join [ThoughtWorks](https://www.thoughtworks.com/) as a full-time software developer consultant, I thought I was going to have to put everything I'd learned about teaching and education behind me.
