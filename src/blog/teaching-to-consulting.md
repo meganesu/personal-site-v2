@@ -4,7 +4,7 @@ author: "Megan Sullivan"
 date: "August 17, 2020"
 ---
 
-In my previous life - before I became a developer - I was an educator. After college, I served a year as a [City Year](https://www.cityyear.org/) AmeriCorps member in New York, where I worked as a teacher's aide in a third-grade classroom in the Bronx. After that, I was a curriculum writer at two different CS education non-profits. When I decided to join [ThoughtWorks](https://www.thoughtworks.com/) as a full-time software developer consultant, I thought I was going to have to put everything I'd learned about teaching and education behind me.
+Before I became a developer, I was an educator. After college, I served a year as a [City Year](https://www.cityyear.org/) AmeriCorps member in New York, where I worked as a teacher's aide in a third-grade classroom in the Bronx. After that, I was a curriculum writer at two different CS education non-profits. When I decided to join [ThoughtWorks](https://www.thoughtworks.com/) as a full-time software developer consultant, I thought I was going to have to put everything I'd learned about teaching and education behind me.
 
 But once I started actually consulting, I realized that there's quite a bit of overlap between the skills that make you a good teacher and the skills that make you a good consultant. I'm going to spend the rest of this post talking about some of the similarities I've noticed. In particular, I'll highlight three teaching strategies that you can apply to your own work:
 
