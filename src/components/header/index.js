@@ -7,7 +7,11 @@ import * as profilePicture from "../../images/meganesulli.jpg"
 
 const Header = () => (
   <header className={styles.header}>
-    <img src={profilePicture} className={styles.profilePicture} />
+    <img
+      src={profilePicture}
+      alt=""
+      className={styles.profilePicture}
+    />
     <p className={styles.title}>
       <Link to="/">
         Megan Sullivan
