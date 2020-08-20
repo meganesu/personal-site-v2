@@ -1,70 +1,104 @@
 ---
 title: "Managing Focus with React and Jest"
 author: "Megan Sullivan"
-date: ""
+date: "2020-08-19"
 ---
 
 ## What You Will Learn
-* Why focus management is important
-* How to use `ref` to move focus in React
-* How to write a Jest test for changing focus
 
-## But First, Some Context
+By the end of this article, you will be able to:
 
-I have a side project that I've been building on and off for the past year: it's a set of [tables to help users understand the original Game Boy instruction set](https://meganesu.github.io/generate-gb-opcodes). It's essentially a website with two giant tables, where each cell contains a button and some details about a particular opcode in the Game Boy instruction set. When you click on one of the table cell buttons, a sidebar opens that tells you even more information about that particular instruction. For more background on the project, check out this article I wrote: [Meet the Game Boy Instruction Set](https://meganesu.github.io/blog/game-boy-opcodes).
+* Explain what focus management is and why it's important.
+* Use React `ref` to programmatically move focus.
+* Write a Jest test to check focus management behavior.
 
-Here's the basic structure of how the app fits together. This should make the code examples later on in the post make more sense.
+## Prerequisites
+
+In order to get the most out of this article, you should already know the basics of how React works. (If the words "component," "state," and "props" all sound familiar, you should be good.)
+
+Here are some resources to help you get up to speed:
+
+* Check out Ali Spittel's post, [A Complete Beginner's Guide to React](https://dev.to/aspittel/a-complete-beginners-guide-to-react-2cl6).
+* New to the `useState` hook? Check out Christina Gorton's post, [React Hooks: useState](https://dev.to/coffeecraftcode/react-hooks-usestate-3hfo).
+
+## The Problem
+
+Not everyone who uses a computer can use a mouse. Some users rely on keyboards or assistive technologies like screen readers to be able to navigate websites. As web developers, it's our responsibility to make sure our products are accessible to all users. That means we need to make sure that a user's keyboard focus moves around the page in a way that makes sense.
+
+In this post, we're going to learn about how to programmatically manage a user's focus. To get some hands-on practice, we'll be improving the accessibility of a sample project that I've created. The starter code for the project is in the CodePen below. If you learn better by doing, you can fork the project and follow along as we go. 
+
+The main content of the starter project is a table that shows what color you get when you mix two other colors. It's a simplified version of a project I built recently, a [table of all the Game Boy opcodes](/generate-gb-opcodes). (For more background on that project, check out this article I wrote: [Meet the Game Boy Instruction Set](/blog/game-boy-opcodes).) Each cell in the table has a button. Clicking a button 1) opens a sidebar and 2) updates the text in the sidebar based on which button was clicked.
+
+Try using your keyboard to click some of the buttons inside the table, and see what happens to your focus. You can use the Tab key to move your focus between elements, and you can press the Space or Enter keys to click the currently focused element. (Note: you might need to click on the table first to get your focus inside the actual CodePen result window.)
+
+<iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (no focus management)" src="https://codepen.io/meganesu/embed/preview/OJVXwer?height=265&theme-id=dark&default-tab=result" loading="lazy" allowfullscreen="true" >
+  See the Pen <a href='https://codepen.io/meganesu/pen/OJVXwer'>Managing Focus in React (no focus management)</a> by Megan Sullivan
+  (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+See how many times you have to press Tab after clicking a button before your focus moves into the sidebar? The current experience might be feasible for a sighted user who is using a mouse to navigate the page. But keyboard or screen reader users will have to move through a frustrating number of elements before they can actually get to the updated sidebar content. This isn't ideal, especially as the number of table cells grows.
+
+## The Requirements
+
+Here's a better experience: a user clicks on one of the buttons in the table, and their focus automatically moves into the sidebar. Similarly, when a user clicks on the "Close sidebar" button, their focus should automatically go back to the table cell they clicked on in the first place.
+
+The [acceptance criteria](https://existek.com/blog/what-are-acceptance-criteria/) for these two requirements might look something like this:
+
+**Given** the sidebar is closed\
+**When** I click on a button in a table cell\
+**Then** the keyboard focus moves to the header inside the sidebar.
+
+**Given** the sidebar is open\
+**When** I click on the "Close sidebar" button\
+**Then** the keyboard focus moves back to the table cell button.
+
+## A Deep Dive of the Starter Code
+
+Before we start implementing the focus management features, let's get familiar with the structure of the starter code:
 
 ![A diagram of the app component tree](./app-structure.png)
 
-Here's a breakdown of the component structure:
+Here's a breakdown of all the components fit together:
 
 * **App**: The top-level component, which renders the Table and Sidebar components.
-    * This component also keeps track of two state variables:
+    * The App component keeps track of two state variables:
         * `showSidebar`: a boolean value that is `true` when the sidebar should be open and `false` when it should be closed. The inverse of this value is passed to the Sidebar component as the `isHidden` prop.
-        * `activeCell`: an object corresponding to the colors for the TableCell currently displaying in the Sidebar. When the page first loads, this initializes as `null`. This object is passed to the Sidebar component as the `colors` prop.
-    * This component also defines two functions, which get passed down to rendered components as props:
-        * `updateSidebar(colors)`: a function that updates the value of `activeCell` stored in the App state to the object passed in as `colors`. It also sets the value of `showSidebar` in the App state to `true`.
-        * `hideSidebar()`: a function that sets the value of `showSidebar` in the App state to `false`.
-* **Table**: Renders the table element and all of the TableCell components.
-    * This component the `updateSidebar` function as a prop from App, and passes it down to the TableCell component.
-    * This component also configures the `colors` objects that get passed to each TableCell.
+        * `activeCell`: an object corresponding to the colors for the TableCell currently displayed in the Sidebar. When the page first loads, this initializes as `null`. This object is passed to the Sidebar component as the `colors` prop.
+    * The App component also defines two functions, which get passed down to rendered components as props:
+        * `updateSidebar(colors)`: a function that sets App's `activeCell` state variable to the object passed in as `colors`. It also sets App's `showSidebar` state variable to `true`. It gets passed to the Table component as a prop.
+        * `hideSidebar()`: a function that sets the value of `showSidebar` in the App state to `false`. It gets passed to the Sidebar component as a prop.
+* **Table**: Renders the HTML `table` element and all of the TableCell components.
+    * The Table component receives the `updateSidebar` function as a prop from App and passes it down to the TableCell components rendered.
+    * The Table component also sets the `colors` objects for each TableCell. (Since this is a small example, the configuration is hard-coded for each TableCell.)
 * **Sidebar**: Renders additional details about the currently selected TableCell.
     * This component renders an `h1` element for the title of the sidebar, a `button` element for closing the sidebar, and a `p` element for additional details about the TableCell that was clicked.
-    * When the value of the `isHidden` prop is `true`, the Sidebar renders with an additional class that "hides" the Sidebar by moving it offscreen. When `isHidden` is false, the class is removed, and the Sidebar becomes visible.
+    * When the `isHidden` prop from App is `true`, the Sidebar renders with an additional class that "hides" the Sidebar by moving it offscreen. When `isHidden` is false, the class is removed, and the Sidebar becomes visible.
 * **TableCell**: Renders the `td` element for an individual cell.
-    * Inside the `td` element, there is a `button` element. When this button is clicked, the click event handler calls the `updateSidebar` function with the `colors` prop. 
+    * Inside the `td` element, there is a `button` element. When this button is clicked, the click event handler calls the `updateSidebar` function from props and passes it the `colors` prop for that cell.
 
-And then just to make sure we're all on the same page, here's a breakdown of how the data flows between components when the sidebar opens:
+### What Happens When the Sidebar Opens?
 
-1. The user clicks on the button in a TableCell, which triggers the click event handler.
+Here's a breakdown of how the data flows between components when the sidebar opens:
+
+1. The user clicks on the button in a TableCell, which triggers the button's click event handler.
 1. The event handler calls `updateSidebar` with the value of the `colors` prop for that TableCell.
 1. The `updateSidebar` function - which is defined in the App component - updates the value of `activeCell` in the App state and sets `showSidebar` in the App state to `true`.
 1. This state change causes a rerender of the App component, and the Sidebar component gets new prop values for `colors` and `isHidden`.
 1. Since `isHidden` is now false (the opposite of `showSidebar`), the Sidebar component renders without the "hidden" class, and the Sidebar becomes visible to the user.
 
-...and when the sidebar closes:
+### What Happens When the Sidebar Closes?
 
-1. The user clicks on the "Close sidebar" button in the Sidebar, which triggers the click event handler.
-1. The event handler calls `hideSidebar` function that was passed into the Sidebar as a prop.
-1. The `hideSidebar` function - defined in the App component - sets `showSidebar` in the App state to `false`.
+Here's a breakdown of how the data flows between components when the sidebar closes.
+
+1. The user clicks on the "Close sidebar" button in the Sidebar, which triggers the button's click event handler.
+1. The event handler calls the `hideSidebar` function that was passed into the Sidebar as a prop.
+1. The `hideSidebar` function - which is defined in the App component - sets `showSidebar` in the App state to `false`.
 1. This state change causes a rerender of the App component, and the Sidebar component gets a new prop value for `isHidden`.
 1. Since `isHidden` is now true (the opposite of `showSidebar`), the Sidebar component renders with the "hidden" class, and the Sidebar slides off the page and out of sight.
 
-## The Problem
+## How to Move Focus in React: `ref`
 
-For the sake of this article, here's a simplified version of the site I built, without any focus management. Each cell in the table has a button. Clicking the button opens a sidebar and changes the content that renders in the sidebar. Try using your keyboard to click some of the buttons inside the table, and see what happens to your focus.
-
-<iframe height="265" style="width: 100%;" scrolling="no" title="Managing Focus in React" src="https://codepen.io/meganesu/embed/preview/OJVXwer?height=265&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/meganesu/pen/OJVXwer'>Managing Focus in React</a> by Megan Sullivan
-  (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-See how many times you have to press tab after clicking a button before your focus moves into the sidebar? The current experience might be feasible for a sighted user. But users who navigate with a keyboard or screen reader will have to move through a frustrating number of elements before they can actually tell what content was updated. This isn't ideal, especially considering how many table cells are in the actual project.
-
-A better experience would be if - after a user clicks on one of the buttons in the table - their focus automatically moves into the sidebar. In this post, I'm going to teach you how to implement that focus management using React `ref`.
-
-## Background: How to Use React `ref`
+Now that we know how our starter code works and what we want it to do, we can start implementing our focus management requirements. But how do you move focus in a React app? With `ref`.
 
 What is a ref?
 A ref is a reference to another element in the DOM.
@@ -196,7 +230,7 @@ And now you're done! Congratulations, you did it! Here's a CodePen with the comp
 
 As with any new functionality, it's a good idea to write tests as you're implementing, so that you can be sure that things work (and continue to work) as you expect them to.
 
-One good tip to keep in mind is that you should be testing the side effects of your application, not the implementation. You don't want your tests to be too closely tied to the exact implementation of your app (like checking that a particular function got called), because it makes your tests more brittle. If a Future You decides to make changes to the way you implemented a feature, you'll probably end up needing to change your tests as well.
+One good tip to keep in mind is that you should test the side effects of your application, not the implementation. When your tests are too closely tied to the exact implementation of your app (for example, they check that a particular function was called), they become brittle. If Future You decides to change the way you implemented that feature, you'll probably end up also needing to change your tests, even though the end users sees the same behavior.
 
 Instead, you should test for side effects - what is it that you're expecting your app to have done by the time the code finishes running? In our case, the scenario we're trying to test looks something like this:
 
