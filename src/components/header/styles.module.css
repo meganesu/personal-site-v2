@@ -18,6 +18,10 @@
   border: none;
 }
 
+.profile-picture {
+  display: none;
+}
+
 @media (min-width: 1400px) {
   .header {
     justify-content: center;
@@ -27,5 +31,12 @@
     height: 100vh;
     position: sticky;
     top: 0;
+  }
+
+  .profile-picture {
+    display: block;
+    border-radius: 50%;
+    max-width: 10rem;
+    border: 0.75rem solid var(--orange);
   }
 }
