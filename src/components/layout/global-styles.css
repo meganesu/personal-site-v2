@@ -41,3 +41,9 @@ a:hover, a:focus {
 strong {
   font-weight: bold;
 }
+
+blockquote {
+  background-color: var(--light-blue);
+  border-left: 0.5rem solid var(--blue);
+  padding: 0.25rem 0.5rem;
+}
