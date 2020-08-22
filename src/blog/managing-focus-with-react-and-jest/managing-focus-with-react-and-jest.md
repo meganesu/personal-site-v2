@@ -1,5 +1,5 @@
 ---
-title: "Managing Focus with React and Jest"
+title: "Managing Focus with React, Jest, and Enzyme"
 author: "Megan Sullivan"
 date: "2020-08-19"
 ---
@@ -366,40 +366,70 @@ And that should do it! Don't forget to manually test your changes to make sure i
 
 As with any new functionality, it's a good idea to write tests as you're implementing, so that you can be sure that things work (and continue to work) as you expect them to.
 
-One good tip to keep in mind is that you should test the side effects of your application, not the implementation. When your tests are too closely tied to the exact implementation of your app (for example, they check that a particular function was called), they become brittle. If Future You decides to change the way you implemented that feature, you'll probably end up also needing to change your tests, even though the end users sees the same behavior.
+One good tip to keep in mind is that you should test the side effects of your application, not the implementation. Instead of checking that a particular function was called, think about what behavior your user expects.
 
-Instead, you should test for side effects - what is it that you're expecting your app to have done by the time the code finishes running? In our case, the scenario we're trying to test looks something like this:
+> **Do yourself a favor!** 
+>
+> If your tests are too closely tied to the exact implementation of your app, they become brittle. For example, imagine Future You decides to change the way you implemented that feature. You'll probably end up also needing to change your tests, even though your end users see the same behavior.
+> 
+> On the other hand, if your tests are checking for side effects - things you expect your code to have done by the time it finishes running - they'll be more flexible and less likely to fail because of refactoring.
 
-GIVEN the sidebar is closed\
-WHEN I click on a button\
-THEN the sidebar opens\
-AND focus is moved to the header inside the sidebar
+Let's take one last look at our acceptance criteria:
+
+1. **Given** the sidebar is closed\
+**When** I click on a button in a table cell\
+**Then** the keyboard focus moves to the header inside the sidebar.
+
+1. **Given** the sidebar is open\
+**When** I click on the "Close sidebar" button\
+**Then** the keyboard focus moves back to the table cell button.
+
+In both of these scenarios, the final outcome that we want to test is which element has focus at the end of the interaction.
 
 ### Using Jest v24.9.0
 
+When I first wrote these tests, I was using an older version of Jest, v24.9.0. Here's what the initial tests looked like, in case anyone else is using that version:
+
 ```javascript
-let component = mount(<App />);
+const component = mount(<App />);
 
-// Simulate click on table cell button
-const instructionCells = component.find('InstructionCell');
-instructionCells.first().find('button').simulate('click');
+describe('when a TableCell is clicked', () => {
+  beforeAll(() => {
+    const firstTableCell = component.find('TableCell').first();
+    const firstTableCellButton = firstTableCell.find('button');
+    firstTableCellButton.simulate('click');
+  });
 
-// Check that focus has moved to the 
-const focusedSidebarHeader = component.find('#sidebar-header h2');
-expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
+  it('moves focus to the header in the Sidebar', () => {
+    const sidebarHeader = component.find('Sidebar h1');
+    expect(document.activeElement).toEqual(sidebarHeader.getDOMNode());
+  });
+
+  describe('when close sidebar button is clicked', () => {
+    beforeAll(() => {
+      component.find('Sidebar button').simulate('click');
+    })
+
+    it('moves focus back to the last TableCell clicked', () => {
+      expect(document.activeElement).toEqual(firstTableCellButton.getDOMNode());
+    });
+  });
+});
 ```
 
-Breakdown of what's going on here:
-1. `getDOMNode()` comes from Enzyme
-1. `document.activeElement` comes from JSDOM (which is one of Jest's dependencies)
+A few notes that might be helpful:
+
+* [`getDOMNode()`](https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/getDOMNode.html) comes from Enzyme. It returns the DOM node for an Enzyme wrapper.
+    * For example, `component.find('Sidebar h1')` returns an Enyzme wrapper for the `h1` element in the Sidebar. Calling `component.find('Sidebar h1').getDOMNode()` returns the actual DOM element for the `h1`.
+* [`document.activeElement`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/activeElement) is a property that returns the DOM element that currently has focus. In our tests, this property comes from [JSDOM](https://github.com/jsdom/jsdom), another library that's a dependency of Jest.
 
 ### Using Jest v25+
 
-The update from Jest v24 to v25 includes a big jump in JSDOM versions (v11.5.1 to v15.1.1), which you can see in the [Jest changelog](https://github.com/facebook/jest/blob/master/CHANGELOG.md#chore--maintenance-5). For me, when I upgraded my Jest dependency to the latest version (at the time, v25.2.7), my tests for focus management broke.
+The update from Jest v24 to v25 includes a big jump in JSDOM versions (v11.5.1 to v15.1.1), which you can see in the [Jest changelog](https://github.com/facebook/jest/blob/master/CHANGELOG.md#chore--maintenance-5). For me, when I upgraded my Jest dependency to the latest version (at the time, v25.2.7), my focus management tests broke.
 
 From what I was able to trace down, this problem was because JSDOM changed the way they treated `document.activeElement`. (To be completely honest, I couldn't figure out what specifically the change was, and I got tired of digging through codebases, so if you have more information on what happened, please reach out and let me know!)
 
-By combing through linked pull requests, I found this solution from a [PR in the Carbon Design System repo](https://github.com/carbon-design-system/carbon/pull/5456/files). Here's the updated test that I wrote by following that PR:
+By combing through linked pull requests (PRs), I found this fix from a [PR in the Carbon Design System repo](https://github.com/carbon-design-system/carbon/pull/5456/files). Here's what my updated tests looked like after following that pull request:
 
 ```javascript
 let container;
@@ -412,30 +442,42 @@ component = mount(<App />, {
   attachTo: document.querySelector('#container')
 });
 
-const focusedSidebarHeader = component.find('#sidebar-header h2');
-expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
+describe('when a TableCell is clicked', () => {
+  // ...
+}
 ```
+
+To fix the tests, I had to create a fake DOM element and then explicitly mount the App component onto that element. The content of the tests themselves didn't change.
 
 ## Next Steps
 
-In this post, you learned about how to programmatically focus when opening and closing a sidebar, but there are still more improvements that can be made on this design!
+Congratulations, you made it to the end! 🥳
 
-The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU).
+In this post, you learned about how to programmatically move a user's focus when opening and closing a sidebar. But there are still more improvements that can be made on this design!
 
-In the meantime, reach out to me on Twitter and let me know what you think about this post! I'm by no means an accessibility expert, and I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
+The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the Tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU).
+
+Until then, reach out to me on Twitter and let me know what you think about this post! I'm by no means an accessibility expert, and I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
 
 ## Resources
 
 The diagrams in this post were created using [Excalidraw](https://excalidraw.com/).
 
+### React Documentation
+
 - [React `ref` documentation](https://reactjs.org/docs/refs-and-the-dom.html)
-    * This doc is a little out of date (they don't take the `useRef` hook into account), but they're a good introduction to why and when you might use `ref`.
-- React `useRef` hook documentation: https://reactjs.org/docs/hooks-reference.html#useref
-- React a11y focus control documentation: https://reactjs.org/docs/accessibility.html#focus-control
-- Jest Changelog for v25.1.0: https://github.com/facebook/jest/blob/master/CHANGELOG.md#2510
-    - Jest PR to update JSDOM: https://github.com/facebook/jest/pull/8851
-- JSDOM Changelog: https://github.com/jsdom/jsdom/blob/master/Changelog.md
-- JSDOM Issue #2723: https://github.com/jsdom/jsdom/issues/2723
-- JSDOM Issue #2586: https://github.com/jsdom/jsdom/issues/2586
-- Carbon Design System PR with test changes to work around JSDOM problem: https://github.com/carbon-design-system/carbon/pull/5456/files
-- A11ycasts #02: Inert Polyfill: https://www.youtube.com/watch?v=fGLp_gfMMGU
+- [React `useRef` hook documentation](https://reactjs.org/docs/hooks-reference.html#useref)
+- [React accessibility documentation about focus control](https://reactjs.org/docs/accessibility.html#focus-control)
+
+### Troubleshooting Jest Upgrade
+
+- [Jest Changelog for v25.1.0](https://github.com/facebook/jest/blob/master/CHANGELOG.md#2510)
+    - [Jest PR to update JSDOM](https://github.com/facebook/jest/pull/8851)
+- [JSDOM Changelog](https://github.com/jsdom/jsdom/blob/master/Changelog.md)
+- [JSDOM Issue #2723: `document.activeElement` not working in 15.2.1](https://github.com/jsdom/jsdom/issues/2723)
+- [JSDOM Issue #2586: `Element.focus()` does not set active element on document object](https://github.com/jsdom/jsdom/issues/2586)
+- [Carbon Design System PR with test changes to work around JSDOM problem](https://github.com/carbon-design-system/carbon/pull/5456/files)
+
+### Future Improvements
+
+- [A11ycasts #02: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU)
