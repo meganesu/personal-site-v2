@@ -167,58 +167,102 @@ Object { current: button }
 
 > Now that `myRef.current` is a focusable HTMLElement, you can call its [`focus` method](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus), which will automatically move keyboard focus to that element.
 
-## The Solution: `ref` in Action
+## The Solution
 
-Now that we've got a basic understanding of refs, let's see what they look like within the context of our original problem.
+Now that we've got a basic understanding of how `ref` works, let's see how to use it within the context of our original problem: programmatically moving the user's focus.
 
-### Step 1: Move Focus When the Sidebar Opens
+### Part 1: Move Focus When the Sidebar Opens
 
-Here's the expected behavior:
+Let's start with a quick recap of the first acceptance criteria:
 
-1. User clicks on a button in the TableCell in the table.
-1. The Sidebar opens, and the user's focus moves to the h3 in the sidebar.
+**Given** the sidebar is closed \
+**When** I click on a button in a table cell \
+**Then** the keyboard focus moves to the header inside the sidebar.
 
-(Create ref inside of App, and pass down to DetailsSidebar)
+Before we get too deep into the code, let's take a step back and think about the high-level overview of what we need to do:
 
-How to do:
+* Create a new `ref`. Let's call it `sidebarRef`. (So creative!)
+* Attach it to the `h1` element in the Sidebar component.
+* Call `sidebarRef.current.focus()` in the TableCell button click handler.
 
-1. In App, create a ref for the sidebar, and pass it down as a prop into Details Sidebar
+With that big picture in mind, let's get into the code to implement this:
+
+1. Start by adding `useRef` to the list of methods imported from React.
     ```javascript
-    const sidebarRef = useRef(null);
-    // In JSX returned:
-    <Sidebar
-      sidebarRef={sidebarRef}
-      // other props
-    />
+    import { Fragment, useState, useRef } from "react";
     ```
-1. In Sidebar, assign ref to the element we want to focus on when the sidebar opens (the header). Also need to make it focusable (tab index)!
+    > In CodePen, this import looks a little different:
+    > ```javascript
+    > const { Fragment, useState, useRef } = React;
+    > ```
+1. Create `sidebarRef`. Which component should we create it in? We know that we eventually want to attach it to the `h1` in the Sidebar component. We also need to be able to call `sidebarRef.current.focus()` from inside the click handler for the TableCell button, `updateSidebar`. Since the App component is a parent of Sidebar and it's where `updateSidebar` is defined, let's create `sidebarRef` inside the App component.
     ```javascript
-    const Sidebar = ({ colors, hideSidebar, sidebarRef }) => ( // add sidebarRef prop
+    const App = () => {
+      const [showSidebar, setShowSidebar] = useState(false);
+      const [activeCell, setActiveCell] = useState(null);
+
+      const sidebarRef = useRef(null); // add this
       // ...
-      <h1
-        ref={sidebarRef} // add this
-        tabIndex={-1} // add this
-      >
-        {colors.output}
-      </h1>
-      // ...
-    )
+    }
     ```
-1. In App, focus on `sidebarRef` in `updateSidebar()` event handler (called when a button in the table cell is clicked, and we want to move focus into the sidebar). Now you should be able to click on (or press enter on) a button in the table and see your focus move to inside the sidebar! Try it out with a keyboard, then try it with a screen reader.
+1. Now we can pass `sidebarRef` down to the Sidebar component as a prop.
+    ```javascript
+    const App = () => {
+      // ...
+      return (
+        // ...
+        <Sidebar
+          colors={activeCell}
+          hideSidebar={hideSidebar}
+          isHidden={!showSidebar}
+          sidebarRef={sidebarRef} // add this
+        />
+        // ...
+      )
+    }
+    ```
+1. In Sidebar, pass the new `sidebarRef` prop as a `ref` attribute to the element we want to focus on when the sidebar opens (i.e., the header). Since headers aren't focusable elements by default, we'll also need to add the [`tabIndex` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) to make it focusable. Give it a `tabIndex` value of `-1`. (That way, users won't be able to focus on the header when they're tabbing sequentially through the page, but we'll still be able to programmatically move focus to it.)
+    ```javascript
+    const Sidebar = ({
+      colors,
+      hideSidebar,
+      isHidden,
+      sidebarRef // add this
+    }) => {
+      // ...
+      return(
+        // ...
+        <h1
+          ref={sidebarRef} // add this
+          tabIndex={-1} // add this
+        >
+          {colors.output}
+        </h1>
+        // ...
+      )
+    }
+    ```
+1. Finally, go back to the `updateSidebar` event handler in the App component. Add a step to move focus to the element assigned to `sidebarRef`:
     ```javascript
     const updateSidebar = (colors) => {
       setActiveCell(colors);
       setShowSidebar(true);
-      sidebarRef.current.focus();
+      sidebarRef.current.focus(); // add this
     };
     ```
 
-Note: need the sidebar to always be rendered for this focus management to work correctly (otherwise, if the sidebar is closed, the sidebarRef isn't assigned to anything (since h1 isn't rendered yet), and on the first click of a cell button, the focus won't move. You'll have to double-click to get focus to move correctly.)
+Now you should be able to click on (or press enter on) a button in the table and see your focus automatically move to inside the sidebar! Try it out with a keyboard, then try it with a screen reader. Here's another CodePen with all the changes we've made so far:
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="Managing Focus in React (move focus on sidebar open only)" src="https://codepen.io/meganesu/embed/preview/jOPMbGX?height=265&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (move focus on sidebar open only)" src="https://codepen.io/meganesu/embed/preview/jOPMbGX?height=265&theme-id=dark&default-tab=js,result" loading="lazy" allowfullscreen="true" >
   See the Pen <a href='https://codepen.io/meganesu/pen/jOPMbGX'>Managing Focus in React (move focus on sidebar open only)</a> by Megan Sullivan
   (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+
+> **Note:** For this focus management to work correctly, you need the sidebar to always be rendered in the DOM.
+>
+> Initially, I used [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to only add the Sidebar component to the DOM if it was visible on the screen. But this caused problems for the focus management.
+>
+> The first time you clicked a TableCell button, the sidebar would open, but the keyboard focus wouldn't move. It turns out, this was because the sidebar component wasn't mounted yet, which meant that `sidebarRef.current` wasn't assigned to anything. To get the focus management to work, you had to click the TableCell button twice: once to open the sidebar and mount the component, and once to actually move focus once the component was mounted.
 
 ### Step 2: Move Focus When the Sidebar Closes
 
