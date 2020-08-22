@@ -181,7 +181,7 @@ Let's start with a quick recap of the first acceptance criteria:
 
 Before we get too deep into the code, let's take a step back and think about the high-level overview of what we need to do:
 
-* Create a new `ref`. Let's call it `sidebarRef`. (So creative!)
+* Create a new `ref` for the sidebar. Let's call it `sidebarRef`. (So creative!)
 * Attach it to the `h1` element in the Sidebar component.
 * Call `sidebarRef.current.focus()` in the TableCell button click handler.
 
@@ -251,30 +251,49 @@ With that big picture in mind, let's get into the code to implement this:
     };
     ```
 
-Now you should be able to click on (or press enter on) a button in the table and see your focus automatically move to inside the sidebar! Try it out with a keyboard, then try it with a screen reader. Here's another CodePen with all the changes we've made so far:
+Now, the most important part of adding accessibilty features: manual testing! When you view the project in a browser, you should be able to click on (or press enter on) a button in the table and see your focus automatically move to inside the sidebar! Try it out with a keyboard, then try it with a screen reader. Here's another CodePen with all the changes we've made so far:
 
-<iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (move focus on sidebar open only)" src="https://codepen.io/meganesu/embed/preview/jOPMbGX?height=265&theme-id=dark&default-tab=js,result" loading="lazy" allowfullscreen="true" >
+<iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (move focus on sidebar open only)" src="https://codepen.io/meganesu/embed/preview/jOPMbGX?height=265&theme-id=dark&default-tab=result" loading="lazy" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/meganesu/pen/jOPMbGX'>Managing Focus in React (move focus on sidebar open only)</a> by Megan Sullivan
   (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-> **Note:** For this focus management to work correctly, you need the sidebar to always be rendered in the DOM.
+> **Note:** For this focus management solution to work correctly, you need the sidebar to always be rendered in the DOM.
 >
 > Initially, I used [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to only add the Sidebar component to the DOM if it was visible on the screen. But this caused problems for the focus management.
 >
 > The first time you clicked a TableCell button, the sidebar would open, but the keyboard focus wouldn't move. It turns out, this was because the sidebar component wasn't mounted yet, which meant that `sidebarRef.current` wasn't assigned to anything. To get the focus management to work, you had to click the TableCell button twice: once to open the sidebar and mount the component, and once to actually move focus once the component was mounted.
 
-### Step 2: Move Focus When the Sidebar Closes
+### Part 2: Move Focus When the Sidebar Closes
 
-1. Click on close button in DetailsSidebar
-1. Focus on InstructionCell that was clicked before (create ref inside of InstructionCell button, and pass that ref as param in handleClick function (along with instruction object)).
+You're halfway done! Hang in there, you're doing great.
 
-How to do:
+Let's take another look at our second acceptance criteria:
 
-1. Create ref inside of TableCell and assign it to TableCell button element
+**Given** the sidebar is open\
+**When** I click on the "Close sidebar" button\
+**Then** the keyboard focus moves back to the table cell button.
+
+Like last time, let's take a quick step back and think about the high-level overview of what we need to do:
+
+* Create a new `ref` for the TableCell button. Let's call it `buttonRef`. (Another creative name.)
+* Attach it to the `button` element in the TableCell component.
+* Update the TableCell button click handler to keep track of the last `buttonRef` that was clicked. We'll use a new React state variable for this. Let's call it `lastCellClicked`.
+* Call `lastCellClicked.current.focus()` in the "Close sidebar" button click handler.
+
+Now let's implement this in code:
+
+1. Create `buttonRef`. Which component should we create it in? Since we want to have a separate `ref` object for each TableCell, let's define `buttonRef` in the TableCell component. That way, each TableCell that mounts will have its own unique `ref` that can focused.
     ```javascript
     const TableCell = ({ colors, updateSidebar }) => {
       const buttonRef = useRef(null); // add this
+      // ...
+    }
+    ```
+1. Now attach `buttonRef` to the `button` element in the TableCell component.
+    ```javascript
+    const TableCell = ({ colors, updateSidebar }) => {
+      // ...
       return (
         <td>
           <button
@@ -287,37 +306,58 @@ How to do:
       )
     }
     ```
-1. Pass the ref into updateSidebar() when it's called in TableCell onClick handler
+1. Pass `buttonRef` as an additional argument to `updateSidebar` when it's called in TableCell `button` click handler. (We'll get to `updateSidebar` in a moment.)
     ```javascript
-    <button
-      onClick={() => updateSidebar(colors, buttonRef)}
-      ref={buttonRef} // add this
-    >
+    const TableCell = ({ colors, updateSidebar }) => {
+      // ...
+      return (
+        // ...
+        <button
+          onClick={() => updateSidebar(colors, buttonRef)} // add buttonRef
+          ref={buttonRef}
+        >
+        // ...
+      )
+    }
     ```
-1. In App, add state variable for lastCellClicked
+1. Create a new state variable to keep track of the last cell clicked. Where should this state variable be created? Since we know we'll want to update the state variable when `updateSidebar` is called, and `updateSidebar` is defined in the App component, let's create it in the App component. We can use an initial value of `null`, since when the App first mounts none of the TableCells have been clicked yet.
     ```javascript
-      const [lastCellClicked, setLastCellClicked] = useState(null);
+    const App = () => {
+      const [showSidebar, setShowSidebar] = useState(false);
+      const [activeCell, setActiveCell] = useState(null);
+      const [lastCellClicked, setLastCellClicked] = useState(null); // add this
+      // ...
+    }
     ```
-1. In App updateSidebar() implementation, update lastCellClicked to be buttonRef
+1. Now it's time to change `updateSidebar`. First, we can add the new `buttonRef` parameter. Then, we can set `lastCellClicked` to the `buttonRef` that's passed in.
+    > This means that when a user clicks on a TableCell button and `updateSidebar` is called, `lastCellClicked` will be updated with the `ref` for the TableCell button that was clicked.
     ```javascript
-    const updateSidebar = (colors, buttonRef) => {
-      setLastCellClicked(buttonRef); // add this
-      setActiveCell(colors);
-      setShowSidebar(true);
-      sidebarRef.current.focus();
-    };
+    const App = () => {
+      // ...
+      const updateSidebar = (colors, buttonRef) => { // add buttonRef parameter
+        setLastCellClicked(buttonRef); // add this
+        setActiveCell(colors);
+        setShowSidebar(true);
+        sidebarRef.current.focus();
+      };
+      // ...
+    }
     ```
-1. In App hideSidebar() implementation, call focus on lastCellClicked (ref of button in TableCell)
+1. Now that we have a way to determine the most recently clicked TableCell, we can update `hideSidebar` to move focus back to that TableCell button when the "Close sidebar" button is clicked.
     ```javascript
-    const hideSidebar = () => {
-      setShowSidebar(false);
-      lastCellClicked.current.focus();
-    };
+    const App = () => {
+      // ...
+      const hideSidebar = () => {
+        setShowSidebar(false);
+        lastCellClicked.current.focus(); // add this
+      };
+      // ...
+    }
     ```
 
-And now you're done! Congratulations, you did it! Here's a CodePen with the complete solution (moving focus when the sidebar opens and when it closes):
+And that should do it! Don't forget to manually test your changes to make sure it's working as expected. Now, when you view the project in a browser, your focus should move into the sidebar when you click a TableCell button, and it should move back to that TableCell button when you close the sidebar. Try it out with a keyboard and with a screen reader. So much nicer than the initial experience! Here's the final CodePen, with all our focus management changes:
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="Managing Focus in React (move focus on sidebar open and close)" src="https://codepen.io/meganesu/embed/preview/abOmwbg?height=265&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (move focus on sidebar open and close)" src="https://codepen.io/meganesu/embed/preview/abOmwbg?height=265&theme-id=dark&default-tab=result" loading="lazy" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/meganesu/pen/abOmwbg'>Managing Focus in React (move focus on sidebar open and close)</a> by Megan Sullivan
   (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -378,9 +418,11 @@ expect(focusedSidebarHeader.getDOMNode()).toEqual(document.activeElement);
 
 ## Next Steps
 
-In this post, you learned about how to manage focus when opening and closing a sidebar, but there are still more improvements that can be made on this design.
+In this post, you learned about how to programmatically focus when opening and closing a sidebar, but there are still more improvements that can be made on this design!
 
 The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU).
+
+In the meantime, reach out to me on Twitter and let me know what you think about this post! I'm by no means an accessibility expert, and I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
 
 ## Resources
 
