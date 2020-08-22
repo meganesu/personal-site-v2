@@ -1,7 +1,7 @@
 ---
 title: "A Deep Dive on Managing Focus with React, Jest, and Enzyme"
 author: "Megan Sullivan"
-date: "2020-08-19"
+date: "2020-08-22"
 ---
 
 ## What You Will Learn
