@@ -23,11 +23,11 @@ If they don't, here are some resources to help you get up to speed:
 
 ## The Problem
 
-Not everyone who uses a computer can use a mouse. Some users rely on keyboards or assistive technologies like screen readers to navigate websites. As web developers, it's our responsibility to make sure our products are accessible to all users. That means we need to make sure that a user's keyboard focus moves around the page in a way that makes sense.
+Not everyone who uses a computer can use a mouse. Some users have physical disabilities and need to use keyboard navigation instead. Other users are blind or have low vision and use screen readers to consume and interact with websites. As web developers, it's our responsibility to make sure our products are accessible to all users. That means we need to make sure that our sites are [keyboard compatible](https://www.w3.org/WAI/perspective-videos/keyboard/). That is, a user's keyboard focus should move around the page in a way that makes sense.
 
-In this post, we're going to learn about how to programmatically manage a user's focus. To get some hands-on practice, we'll be improving the accessibility of a sample project that I've created. The starter code is in the CodePen below. If you prefer learning by doing, you can fork the project and follow along as we go.
+Let's look at an example to see what I mean. The CodePen below has some starter code for the React project we'll be working on in this post. The main content is a table that shows what color you get when you mix two other colors.
 
-Let's check out what's in the starter code. The main content is a table that shows what color you get when you mix two other colors. The table structure is a simplified version of a project I built recently, a [table of all the Game Boy opcodes](https://meganesu.github.io/generate-gb-opcodes). (For more background on that project, check out this article I wrote: [Meet the Game Boy Instruction Set](/blog/game-boy-opcodes).)
+> This table structure is a simplified version of a project I built recently, a [table of all the Game Boy opcodes](https://meganesu.github.io/generate-gb-opcodes). For more background on that project, check out this article I wrote: [Meet the Game Boy Instruction Set](/blog/game-boy-opcodes).
 
 Each cell in the table has a button. Clicking a button does two things:
 
@@ -43,9 +43,12 @@ Try using your keyboard to click some of the buttons inside the table, and see w
 
 See how many times you have to press Tab after clicking a button before your focus moves into the sidebar? The current experience might be feasible for a sighted user who is using a mouse to navigate the page. But keyboard or screen reader users will have to move through a frustrating number of elements before they can actually get to the updated sidebar content. This isn't ideal, especially as the number of table cells grows.
 
+In this post, you'll learn about how to programmatically manage a user's focus to create a more accessible experience. If you prefer learning by doing, you can fork the CodePen and follow along as we go.
+
+
 ## The Requirements
 
-Here's what we want to happen instead: When a user clicks on one of the buttons in the table, their focus automatically moves into the sidebar. Additionally, when a user clicks on the "Close sidebar" button, their focus should automatically go back to the table cell they clicked on in the first place.
+Here's a more accessible user experience: When a user clicks on one of the buttons in the table, their focus should automatically move into the sidebar. Additionally, when a user clicks on the "Close sidebar" button, their focus should automatically go back to the table cell they clicked on in the first place.
 
 The [acceptance criteria](https://existek.com/blog/what-are-acceptance-criteria/) for these two requirements might look something like this:
 
@@ -63,11 +66,11 @@ The [acceptance criteria](https://existek.com/blog/what-are-acceptance-criteria/
 >
 > If you want to jump right into implementing focus management, you can skip ahead to the next section: [How to Move Focus in React: `ref`](#react-ref)
 
-Before we start implementing focus management features, let's get familiar with the structure of the [starter code](https://codepen.io/meganesu/pen/OJVXwer):
+Before we start implementing focus management features, let's get familiar with the component structure of the [starter code](https://codepen.io/meganesu/pen/OJVXwer):
 
 ![A diagram of the app component tree](./app-structure.png)
 
-Here's a breakdown of all the components fit together:
+Here's a breakdown of how all the components fit together:
 
 * **App**: The top-level component, which renders the Table and Sidebar components.
     * The App component keeps track of two state variables:
@@ -77,10 +80,10 @@ Here's a breakdown of all the components fit together:
         * `updateSidebar(colors)`: a function that sets App's `activeCell` state variable to the object passed in as `colors`. It also sets App's `showSidebar` state variable to `true`. This function gets passed to the Table component as a prop.
         * `hideSidebar()`: a function that sets the value of `showSidebar` in the App state to `false`. It gets passed to the Sidebar component as a prop.
 * **Table**: Renders the HTML `table` element and all of the TableCell components.
-    * The Table component receives the `updateSidebar` function as a prop from App and passes it down to the TableCell components rendered.
+    * The Table component receives the `updateSidebar` function as a prop from App and passes it down to the TableCell components.
     * The Table component also sets the `colors` object for each TableCell. (Since this is a contrived example, the configuration is hard-coded for each TableCell.)
 * **Sidebar**: Renders additional details about the currently selected TableCell.
-    * This component renders an `h1` element for the title of the sidebar, a `button` element for closing the sidebar, and a `p` element for additional details about the TableCell that was clicked.
+    * This component renders an `h1` element for the title of the sidebar, a `button` element for closing the sidebar, and a `p` element with the `colors` details for the TableCell that was clicked.
     * When the `isHidden` prop from App is `true`, the Sidebar renders with an additional class that hides the Sidebar by moving it offscreen. When `isHidden` is false, the class is removed, and the Sidebar becomes visible.
 * **TableCell**: Renders the `td` element for an individual cell.
     * Inside the `td` element, there is a `button` element. When this button is clicked, the click event handler calls the `updateSidebar` function from props and passes it the `colors` prop for that cell.
@@ -132,7 +135,7 @@ If you're using functional components, you can create a new `ref` object using t
 useRef(initialValue)
 ```
 
-Usually, you'll just pass in an initial value of `null`.
+Usually, you'll just pass in an initial value of `null`:
 
 ```javascript
 const myRef = useRef(null)
@@ -188,19 +191,19 @@ Before we get too deep into the code, let's take a step back and think about the
 
 * Create a new `ref` for the sidebar. Let's call it `sidebarRef`. (So creative!)
 * Attach it to the `h1` element in the Sidebar component.
-* Call `sidebarRef.current.focus()` inside of `updateSidebar` (which is called by the TableCell button click handler).
+* Call `sidebarRef.current.focus()` when the TableCell button is clicked.
 
 With that big picture in mind, let's get into the code to implement this:
 
 1. Start by adding `useRef` to the list of methods imported from React.
     ```javascript
-    import { Fragment, useState, useRef } from "react";
+    import { Fragment, useState, useRef } from 'react';
     ```
     > In CodePen, this import looks a little different:
     > ```javascript
     > const { Fragment, useState, useRef } = React;
     > ```
-1. Create `sidebarRef`. Which component should we create it in? We know that we eventually want to attach it to the `h1` in the Sidebar component. We also need to be able to call `sidebarRef.current.focus()` from inside `updateSidebar`. Since the App component is a parent of Sidebar, and it's where `updateSidebar` is defined, let's create `sidebarRef` inside the App component.
+1. Create `sidebarRef`. Which component should we create it in? We know that we eventually want to attach it to the `h1` in the Sidebar component. We also need to be able to call `sidebarRef.current.focus()` when the TableCell is clicked. Since the App component is a parent of Sidebar, and it's where `updateSidebar` (the function called from the TableCell click handler) is defined, let's create `sidebarRef` inside the App component.
     ```javascript
     const App = () => {
       const [showSidebar, setShowSidebar] = useState(false);
@@ -261,7 +264,7 @@ With that big picture in mind, let's get into the code to implement this:
     }
     ```
 
-Now, the most important part of adding accessibilty features: manual testing! When you view the project in a browser, you should be able to click (or press enter) on a button in the table and see your focus automatically move to the header in the sidebar! Try it out with a keyboard, then try it with a screen reader.
+Now, the most important part of adding accessibilty features: manual testing! When you view the project in a browser, you should be able to click (or press enter) on a button in the table and see your focus automatically move to the header in the sidebar! Try it out with a keyboard, then [test it with a screen reader](https://webaim.org/articles/screenreader_testing/).
 
 Here's another CodePen with all the changes we've made so far:
 
@@ -272,9 +275,9 @@ Here's another CodePen with all the changes we've made so far:
 
 > **Note:** For this focus management solution to work correctly, you need the sidebar to always be rendered in the DOM.
 >
-> Initially, I used [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to only add the Sidebar component to the DOM if it was visible on the screen. But this caused problems with the focus management behavior.
+> When I initially built this project, I used [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to only add the Sidebar component to the DOM if it was visible on the screen. But this caused problems with the focus management behavior.
 >
-> The first time you clicked a TableCell button, the sidebar would open, but the keyboard focus wouldn't move. It turns out, this was because the Sidebar component wasn't mounted yet, which meant that `sidebarRef.current` wasn't assigned to anything. To get the focus to move into the sidebar, you had to click the TableCell button twice: once to open the sidebar and mount the component, and once to actually move focus once the component was mounted. Not ideal.
+> The first time I clicked a TableCell button, the sidebar would open, but the keyboard focus wouldn't move. It turns out, this was because the Sidebar component wasn't mounted yet, which meant that `sidebarRef.current` wasn't assigned to anything. To get the focus to move into the sidebar, I had to click the TableCell button twice: once to open the sidebar and mount the component, and once to actually move focus once the component was mounted. Not ideal.
 
 ### Part 2: Move Focus When the Sidebar Closes
 
@@ -290,8 +293,8 @@ Like last time, let's take a step back and lay out a high-level overview of what
 
 * Create a new `ref` for the TableCell button. Let's call it `buttonRef`. (Another creative name.)
 * Attach it to the `button` element in the TableCell component.
-* Update the TableCell button click handler to keep track of the last `buttonRef` that was clicked. We'll use a new React state variable for this. Let's call it `lastCellClicked`.
-* Call `lastCellClicked.current.focus()` in the "Close sidebar" button click handler.
+* Update the TableCell button click handler to keep track of the last `buttonRef` clicked. We'll use a new React state variable for this. Let's call it `lastCellClicked`.
+* Call `lastCellClicked.current.focus()` when the "Close sidebar" button is clicked.
 
 Now let's implement this in code:
 
@@ -411,9 +414,11 @@ When I first wrote these tests, I was using an older version of Jest, v24.9.0. H
 const component = mount(<App />);
 
 describe('when a TableCell is clicked', () => {
+  let firstTableCellButton;
+
   beforeAll(() => {
     const firstTableCell = component.find('TableCell').first();
-    const firstTableCellButton = firstTableCell.find('button');
+    firstTableCellButton = firstTableCell.find('button');
     firstTableCellButton.simulate('click');
   });
 
@@ -425,7 +430,7 @@ describe('when a TableCell is clicked', () => {
   describe('when close sidebar button is clicked', () => {
     beforeAll(() => {
       component.find('Sidebar button').simulate('click');
-    })
+    });
 
     it('moves focus back to the last TableCell clicked', () => {
       expect(document.activeElement).toEqual(firstTableCellButton.getDOMNode());
@@ -449,13 +454,11 @@ From what I was able to trace down, this problem was because JSDOM changed the w
 By combing through linked pull requests (PRs), I found this fix from a [PR in the Carbon Design System repo](https://github.com/carbon-design-system/carbon/pull/5456/files). Here's what my updated tests looked like after following that pull request:
 
 ```javascript
-let container;
-
-container = document.createElement('div');
+const container = document.createElement('div');
 container.id = 'container';
 document.body.appendChild(container);
 
-component = mount(<App />, {
+const component = mount(<App />, {
   attachTo: document.querySelector('#container')
 });
 
@@ -474,11 +477,15 @@ In this post, you learned about how to programmatically move a user's focus when
 
 The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the Tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU).
 
-Until then, reach out to me on Twitter and let me know what you think about this post! I'm by no means an accessibility expert, and I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
+Until then, [reach out to me on Twitter](https://twitter.com/meganesulli) and let me know what you think about this post! I'm by no means an accessibility expert, and I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
 
 ## Resources
 
 The diagrams in this post were created using [Excalidraw](https://excalidraw.com/).
+
+### Accessibility
+
+* [W3C WAI overview on keyboard compatibility](https://www.w3.org/WAI/perspective-videos/keyboard/)
 
 ### React Documentation
 
