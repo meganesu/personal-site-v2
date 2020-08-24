@@ -1,7 +1,7 @@
 ---
 title: "A Deep Dive on Managing Focus with React, Jest, and Enzyme"
 author: "Megan Sullivan"
-date: "2020-08-22"
+date: "2020-08-23"
 ---
 
 ## What You Will Learn
@@ -442,7 +442,7 @@ describe('when a TableCell is clicked', () => {
 A few notes that might be helpful:
 
 * [`getDOMNode()`](https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/getDOMNode.html) comes from Enzyme. It returns the DOM node for an Enzyme wrapper.
-    * For example, `component.find('Sidebar h1')` returns an Enyzme wrapper for the `h1` element in the Sidebar. Calling `component.find('Sidebar h1').getDOMNode()` returns the actual DOM element for the `h1`.
+    * For example, `component.find('Sidebar h1')` returns an Enzyme wrapper for the `h1` element in the Sidebar. Calling `component.find('Sidebar h1').getDOMNode()` returns the actual DOM element for the `h1`.
 * [`document.activeElement`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/activeElement) is a property that returns the DOM element that currently has focus. In our tests, this property comes from [JSDOM](https://github.com/jsdom/jsdom), another library that's a dependency of Jest.
 
 ### Using Jest v25+
