@@ -266,7 +266,7 @@ With that big picture in mind, let's get into the code to implement this:
 
 Now, the most important part of adding accessibilty features: manual testing! When you view the project in a browser, you should be able to click (or press enter) on a button in the table and see your focus automatically move to the header in the sidebar! Try it out with a keyboard, then [test it with a screen reader](https://webaim.org/articles/screenreader_testing/).
 
-Here's another CodePen with all the changes we've made so far:
+Here's [another CodePen](https://codepen.io/meganesu/pen/jOPMbGX) with all the changes we've made so far:
 
 <iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (move focus on sidebar open only)" src="https://codepen.io/meganesu/embed/preview/jOPMbGX?height=265&theme-id=dark&default-tab=result" loading="lazy" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/meganesu/pen/jOPMbGX'>Managing Focus in React (move focus on sidebar open only)</a> by Megan Sullivan
@@ -372,7 +372,7 @@ Now let's implement this in code:
 
 And that should do it! Don't forget to manually test your changes to make sure it's working as expected. Now, when you view the project in a browser, your focus should move into the sidebar when you click a TableCell button, and it should move back to that TableCell button when you close the sidebar. Try it out with a keyboard and with a screen reader. So much nicer than the initial experience!
 
-Here's the final CodePen, with all our focus management changes:
+Here's [the final CodePen](https://codepen.io/meganesu/pen/abOmwbg), with all our focus management changes:
 
 <iframe style="width: 100%; border: none; min-height: 400px;" title="Managing Focus in React (move focus on sidebar open and close)" src="https://codepen.io/meganesu/embed/preview/abOmwbg?height=265&theme-id=dark&default-tab=result" loading="lazy" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/meganesu/pen/abOmwbg'>Managing Focus in React (move focus on sidebar open and close)</a> by Megan Sullivan
