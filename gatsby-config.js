@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    "gatsby-plugin-sharp",
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -25,6 +26,12 @@ module.exports = {
             resolve: "gatsby-remark-prismjs",
             options: {
               classPrefix: "language-",
+            }
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 800,
             }
           }
         ]
