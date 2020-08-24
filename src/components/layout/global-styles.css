@@ -30,11 +30,11 @@ h3 {
 a {
   color: black;
   text-decoration: none;
-  border-bottom: solid 3px var(--blue);
+  border-bottom: solid 0.20rem var(--blue);
 }
 
 a:hover, a:focus {
-  border-bottom: solid 3px var(--orange);
+  border-bottom: solid 0.25rem var(--orange);
   transition: color .3s;
 }
 
