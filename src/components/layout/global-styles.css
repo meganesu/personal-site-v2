@@ -38,6 +38,12 @@ a:hover, a:focus {
   transition: color .3s;
 }
 
+.header-anchor,
+.header-anchor:focus,
+.header-anchor:hover {
+  border-bottom: unset;
+}
+
 strong {
   font-weight: bold;
 }
