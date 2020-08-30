@@ -64,7 +64,7 @@ The [acceptance criteria](https://existek.com/blog/what-are-acceptance-criteria/
 
 > "Cut to the chase, Megan. Where's the code?"
 >
-> If you want to jump right into implementing focus management, you can skip ahead to the next section: [How to Move Focus in React: `ref`](#react-ref)
+> If you want to jump right into implementing focus management, you can skip ahead to the next section: [How to Move Focus in React: `ref`](#how-to-move-focus-in-react-ref)
 
 Before we start implementing focus management features, let's get familiar with the component structure of the [starter code](https://codepen.io/meganesu/pen/OJVXwer):
 
@@ -108,7 +108,7 @@ Here's a breakdown of how the data flows between components when the sidebar clo
 1. This state change causes a rerender of the App component, and the Sidebar component gets a new prop value for `isHidden`.
 1. Since `isHidden` is now `true` (the opposite of `showSidebar`), the Sidebar component renders with the "hidden" class, and the Sidebar slides off the page and out of sight.
 
-<h2 id="react-ref">How to Move Focus in React: <code class="language-text">ref</code></h2>
+## How to Move Focus in React: `ref`
 
 Now that we know how our starter code works and what we want it to do, we can start implementing our focus management requirements. But how do you move focus in a React app? Enter `ref`.
 
