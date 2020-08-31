@@ -13,8 +13,7 @@ const IndexPage = () => (
       Hey there, I'm <span className={styles.name}>Megan</span>!
     </p>
     <p>
-      I’m a software developer. I like{" "}
-      <Link to="/projects">building things</Link> and then{" "}
+      I’m a software developer and educator. I like building things and then{" "}
       <Link to="/blog">teaching others</Link> about what I’ve learned.
     </p>
     <p>
