@@ -5,7 +5,7 @@ const Head = ({title}) => {
   
   return (
     <Helmet
-      title={title || "Megan Sullivan"}
+      title={title}
     >
       <html lang="en" />
     </Helmet>
