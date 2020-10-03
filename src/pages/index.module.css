@@ -1,14 +1,5 @@
-.greeting {
-    font-family: "Ribeye Marrow", sans-serif;
-    font-size: 3.5rem;
-    margin: 1rem 0;
-    line-height: 1.25;
-}
-
 .wave {
   display: inline-block;
-  height: 1em;
-  margin-right: 0.25em;
   transform-origin: 80% 85%;
 }
 
@@ -25,6 +16,8 @@
   animation: wave 1s;
 }
 
-.name {
-    font-weight: bold;
+@media (prefers-reduced-motion) {
+  .wave:hover {
+    animation: none;
+  }
 }
