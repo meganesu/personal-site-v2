@@ -1,11 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'
 
-const Head = ({title}) => {
+const Head = ({pageTitle}) => {
   
   return (
     <Helmet
-      title={title || "Megan Sullivan"}
+      title={pageTitle}
     >
       <html lang="en" />
     </Helmet>
