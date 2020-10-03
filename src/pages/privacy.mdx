@@ -1,0 +1,34 @@
+---
+title: Privacy | Megan Sullivan
+---
+
+import { OutboundLink } from "gatsby-plugin-google-analytics"
+
+# Privacy Policy
+
+Since this is a relatively new site, and I'm not sure anyone is even looking at it, I'm using Google Analytics to collect data about visitors (that's you!). Here's a list of some data that's being collected and how I'm using it:
+
+* What pages you're visiting. I use this data to understand which of my posts are more popular, so that I can keep making content that's useful to you.
+* What browser you're using. I use this data so that I can make sure my site has a good user experience on whatever platform you might be using.
+* How you got to my site. I use this data to understand how to better promote my content so that I can get it to you more effectively.
+
+## Want a more comprehensive list of what data Google Analytics tracks?
+
+Check out this article: <OutboundLink href="http://www.google.com/policies/privacy/partners/">Google Analytics - "How Google uses data when you use our partners' sites or apps"</OutboundLink>.
+
+## Don't want me to collect this info about you?
+
+You can click the button below to opt out of Google Analytics tracking. (This will only disable tracking for this particular site. If you want to opt out of Google Analytics across sites, look into something like this [opt-out browser add-on](https://tools.google.com/dlpage/gaoptout).)
+
+<button
+  onClick={(e) => {
+    window['ga-disable-UA-159656850-1'] = true;
+    e.target.innerText="You are no longer being tracked!"
+  }}
+>
+  Opt out of Google Analytics tracking!
+</button>
+
+## Have a different privacy-focused analytics platform that you prefer?
+
+I'd love to hear about it! Reach out to me on Twitter and let me know about your experience.
