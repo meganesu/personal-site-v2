@@ -1,11 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet'
 
-const Head = ({pageTitle}) => {
+const Head = ({title}) => {
   
   return (
     <Helmet
-      title={pageTitle}
+      title={title}
     >
       <html lang="en" />
     </Helmet>
