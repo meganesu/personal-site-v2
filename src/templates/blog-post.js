@@ -11,6 +11,7 @@ export const query = graphql`
         date(formatString: "MMMM Do, YYYY")
       }
       html
+      timeToRead
     }
   }
 `
@@ -21,6 +22,7 @@ const BlogPost = props => (
       {props.data.markdownRemark.frontmatter.title}
     </h1>
     <p className={styles.date}>{props.data.markdownRemark.frontmatter.date}</p>
+    <p className={styles.timeToRead}>{`(${props.data.markdownRemark.timeToRead} minute read)`}</p>
     <div dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.html }} />
   </Layout>
 )
