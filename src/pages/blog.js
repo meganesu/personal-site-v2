@@ -22,6 +22,7 @@ const Blog = () => {
             fields {
               slug
             }
+            timeToRead
           }
         }
       }
@@ -39,7 +40,7 @@ const Blog = () => {
                 {edge.node.frontmatter.title}
               </Link>
             </h2>
-            <p>{edge.node.frontmatter.date}</p>
+            <p>{`${edge.node.frontmatter.date} | ${edge.node.timeToRead} minute read`}</p>
             <p>{edge.node.excerpt}</p>
           </li>
         ))}
