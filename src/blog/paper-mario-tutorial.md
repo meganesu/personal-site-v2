@@ -1,34 +1,37 @@
 ---
-title: "Lessons from Paper Mario about Writing Good Documentation"
+title: "3 Lessons from Paper Mario to Improve Your Documentation"
 author: "Megan Sullivan"
 date: "2020-11-01"
+description: "What do good documentation and Paper Mario have in common? Scaffolding. Learn three ways to improve your docs by supporting readers in their journey to understand complex concepts."
 ---
 
-> What do good documentation and Paper Mario have in common? Scaffolding. Learn more about it in my article: Lessons from Paper Mario about Writing Good Documentation.
+## Introduction
 
 A few weeks ago, I started playing [*Paper Mario: The Origami King*](https://papermario.nintendo.com/). It's the latest game in the *Paper Mario* franchise, available on the Nintendo Switch.
 
-As I was working my way through the first few battles, I was really impressed by the way the game introduced the new battle system. It reminded me a lot of the best practices I keep in mind when writing documentation. In fact, those practices could really be applied to any educational content.
+As I worked my way through the first few battles, I was impressed by the way the game introduced the new battle system. It reminded me a lot of the best practices I keep in mind when writing documentation (or really any educational content). [I wrote about some of these parallels on Twitter.](https://twitter.com/meganesulli/status/1320569001643159552?s=20)
 
-In this article, I outline three lessons that you can take away from the *Paper Mario* tutorial to improve your own documentation and tutorials.
+Video game tutorials and documentation both have a similar goal: to help users build up the knowledge and skills they need to be able to play successfully on their own. If the tutorial is done poorly, new players will feel overwhelmed and give up before they make it to the really good part of the game. But if done well, players will slowly get better at the core skills of the game without even consciously realizing that it's happening.
 
-## But First, Some Context: How the Battle System Works 💥
+In this article, I outline three lessons from *Paper Mario: The Origami King* that you can use to improve your documentation and set your users up for success.
+
+## But First, Some Context: The *Paper Mario* Battle System
 
 In case you haven't played *Paper Mario*, here's a quick video trailer to show how battles work. (The part about the battle system starts at 2:14.)
 
-In each battle, a group of four or more enemies appear on a circular grid of rings. As Mario, you can attack enemies by jumping on them or hitting them with your hammer, consistent with the previous *Paper Mario* games. But in *The Origami King*, there's also a new twist (literally): you can rotate and slide the rings on the map to line up the enemies. If you get them all perfectly aligned, your attacks for that round deal extra damage. (There's some other stuff too, but we'll get to that in a bit.)
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CB7KBIgn2m0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+In each battle, a group of four or more enemies appear on a circular grid of rings. As Mario, you can attack enemies by jumping on them or hitting them with your hammer, consistent with the previous *Paper Mario* games. But in *The Origami King*, there's also a new twist (literally): you can rotate and slide the rings on the map to line up the enemies. If you get them all perfectly aligned, your attacks for that round deal extra damage. (There's some other stuff too, but we'll get to that in a bit.)
 
 If the video makes it look complicated, that's because it is. Especially when there are multiple sets of enemies and it's not obvious how they're supposed to be lined up.
 
-But the great thing about this game (and many video games with complicated mechanics) is that the tutorial doesn't just throw you right into the deep end and expect you to figure out how to swim. It starts you off with easy puzzles and gradually increases the difficulty level as you become more skilled at solving them.
+But the great thing about this game (and many video games with complicated mechanics) is that the tutorial doesn't just throw you right into the deep end and expect you to figure out how everything works. It starts you off with easy puzzles and gradually increases the difficulty level as you become more skilled at solving them.
 
 It scaffolds your experience through the game.
 
-## What is scaffolding?
+## What is Scaffolding?
 
-In education, the term **scaffolding** refers to breaking down a complex concept into a sequence of smaller chunks. As learners progress through this sequence, the newer lessons build on the concepts that came before, which helps students deepen their understanding.
+In education, the term **scaffolding** refers to breaking down a complex concept into a sequence of smaller chunks. As learners progress through the sequence, the newer lessons build on the concepts that came before, which helps students deepen their understanding.
 
 To quote [The Glossary of Education Reform](https://www.edglossary.org/scaffolding/):
 
@@ -42,23 +45,19 @@ Your second-grade English teacher (hopefully) didn't just give you an open-ended
 
 Sure, by the time you got to high school or college your instructors weren't giving you quite so much guidance. But at that point, you didn't need it. You'd already mastered the fundamentals of how to write an essay, which meant your instructors could spend more time focusing on more advanced topics.
 
-## What does this have to do with writing documentation?
-
-
-
 ## Scaffolding in *Paper Mario: The Origami King*
 
-In the rest of this article, I'm going to highlight three pieces of *The Origami King* that do a good job of scaffolding the player's experience. Each one corresponds to a key takeaway that can be applied to writing good documentation:
+In the rest of this article, I'm going to highlight three parts of *The Origami King* that help scaffold the player's experience. Each one corresponds to a key lesson that can be applied to writing documentation:
 
-* The tutorial: Only introduce one new idea at a time.
+* The tutorial: Focus on one new idea at a time.
 * Boss battles: Only introduce a concept when you need it.
 * The Battle Lab: Provide opportunities for practice.
 
-### The Tutorial
+### The Tutorial: One New Idea at a Time
 
 Like many video games, the first part of *Paper Mario: The Origami King* is a tutorial. Mario's new sidekick, Olivia, takes the role of your teacher, cheerfully making suggestions to guide you through the first part of the game.
 
-The tutorial writers behind Olivia clearly understood the concept of scaffolding. Oliva introduces each of the battle system mechanics gradually over the first several battles:
+The tutorial writers behind Olivia clearly understood the concept of scaffolding. Olivia introduces each of the battle system mechanics gradually over the first several battles:
 
 * In the first encounter, Olivia basically directs your every move. She teaches you the controls to rotate the rings to line up enemies for a jump attack. The puzzle is simplified so that you only have to rotate one ring, and circles appear on the grid to show you exactly where the enemies should end up. In the second wave of enemies, Olivia teaches you how to line up enemies for a hammer attack.
 * The second encounter has the exact same arrangement of enemies, which provides you an opportunity to practice the skills Olivia already taught you. This time, Olivia gently reminds you what you need to do (line up the enemies, and use the right attack for the arrangement), but she doesn't tell you explicitly how to do it. She also teaches you a new mechanic: you can time your attacks to do even more bonus damage to enemies. At the end of the battle, Olivia also tells you that you can block enemy attacks.
@@ -67,140 +66,58 @@ The tutorial writers behind Olivia clearly understood the concept of scaffolding
 * The next few encounters don't introduce any new mechanics, but they let you practice what you've learned so far.
 * Once you reach the next area, Olivia teaches you how to slide sections of the rings, as well as how to switch between sliding and rotating rings.
 
-By gradually introducing one new mechanic at a time, the tutorial writers give players a chance to practice getting good at each skill before moving on to the next concept.
+By gradually introducing one new mechanic at a time, the tutorial writers give players a chance to practice getting good at each skill before moving on to the next concept. (More on practice in a bit!)
 
-Does this mean that players' first few battles are sub-optimal? Sure. But they're just getting started, so it's okay. Eventually, players will have access to the full suite of battle mechanics and be ready to kick some origami butt. And more importantly, because they're only learning one new thing a time, they won't feel overwhelmed and quit partway in.
+Does this mean that players' first few battles are sub-optimal? Sure. But they're just getting started, so it's okay. Eventually, players will have access to the full suite of battle mechanics and be ready to kick some origami butt. And more importantly, because they're only learning one new thing at a time, they won't feel overwhelmed and quit partway in.
 
-There are a few other aspects of the game that I want to touch on, but I'll get to that in a moment.
+> #### How to Apply This to Your Documentation
+>
+> * **Break up complicated topics into smaller chunks.** If you find yourself trying to explain a bunch of concepts all at once, try to tease them apart into a series of shorter docs (or even just separate sections of the same doc).
+> * **Be intentional about the order in which you introduce new ideas.** Each step in the sequence should help readers build or accomplish something. (Players can still win a battle even if all they have is jump and hammer attacks!)
 
-### Boss Battles
+### Boss Battles: Only Introduce It When You Need It
 
-Boss battles have an entirely different game mechanic. (see the video) But you don't find that out until you reach the first boss.
+Boss battles have an entirely different game mechanic from regular enemy battles. (The [game trailer](https://youtu.be/CB7KBIgn2m0) showcases boss battles at 3:48.) Instead of trying to line up enemies, you rotate and slide the rings to create a path to get Mario in front of the boss in the center of the arena.
 
-Imagine if Olivia explained how boss battles worked in your first encounter. What would that even look like? "Oh and also some day you'll reach a harder enemy and we'll have to do something totally different to fight them." It wouldn't make any sense.
+But you don't find out about those mechanics until you reach the first boss. The game developers protect you from that extra complexity until you absolutely need it.
 
-The developers only introduce those mechanics when they become relevant.
+Imagine if Olivia explained the boss battle mechanics in the first encounter of the game. What would that even look like? "Hey, jump on these Goombas. Oh and also, some day you'll reach a giant enemy and you'll have to do something totally different to fight them." It wouldn't make any sense. And since the information wouldn't be relevant yet, players would probably just skim past it and forget about it by the time they needed it in an actual boss battle.
 
-Another thing that Paper Mario does well: new rules are only introduced when you need them.
+Yeah, there's a teaser of this "advanced" mechanic in the trailer, to hook people's attention or give them a sneak peek of what's to come. But in the actual game, the developers don't explain all the nitty-gritty details until they're sure players have a solid grasp of the basics first.
 
-Boss battles have an entirely different gameplay mechanic. But you don't find out about them until it's relevant (i.e., in the first boss battle).
+> #### How to Apply This to Your Documentation
+>
+> * **Keep your [Expert Blind Spot](https://thevaluable.dev/expert-blind-spot-software-development/) in check.** It's hard to learn new things. Humans can only keep roughly four pieces of information in their brain's working memory at the same time, but learning a new technology frequently requires juggling many more than four concepts. As the documentation writer, it's your responsibility to protect your readers from unnecessary mental load as they get up to speed with your docs. That means putting yourself back into the shoes of a complete beginner. What implicit information do you know as a writer that your readers might not know yet? Where can you add those details so that they are easily discoverable?
+> * **Separate the main idea from the edge cases.** I've noticed that sometimes docs jump deep into the weeds of implementation before establishing a big picture for readers. But comprehensiveness comes at the expense of clarity. Is it obvious to a newcomer that those edge cases are an "advanced" feature? Or is going into detail just muddying up their understanding of the basic idea? Yes, it's important to tell folks about edge cases somewhere. But your readers need to have a clear understanding of the main idea first. Try using headers and labels to clearly mark advanced topics that can be skipped by beginners. Better yet, pull edge cases out into their own "Troubleshooting" doc, and add a callout at the top to highlight prerequisite knowledge for beginners: "Looking for an introduction to X? Here's a link to the overview doc!" (Think of it like a side quest.)
 
-https://youtu.be/CB7KBIgn2m0?t=228
+### The Battle Lab: Provide Opportunities for Practice
 
-Maybe you show them a teaser of this "advanced" mechanic in the trailer, to hook people's attention or give them a sneak peek of what's to come.
+One of the hidden gems of *The Origami King* is the Battle Lab. It's a special building you gain access to early on in the game. Inside, there are special machines that let you run practice drills for individual battle mechanics. You can practice timing your attacks, solving ring puzzles, and even rerunning previous boss battles! And, because it's all just practice, you don't get a "Game Over" screen if you die in one of the battles.
 
-But in the actual game, you don't explain all the nitty-gritty details until you know players have a solid grasp of the basics first.
+I love the Battle Lab because it's a perfect example of scaffolding. Advanced users who already feel comfortable with the battle mechanics probably won't spend much time there. But beginners (or people who just can't seem to figure out the ring puzzles, like myself) can spend as much time as they want in a low-risk environment, gradually improving the skills they need to be successful in the game.
 
-
-### Battle Lab
-
-There's 
-
-## How does this relate to documentation?
-
-## How to use this
-
-### Only introduce one idea at a time
-
-* Be intentional about the sequence
-* Focus on the essential understanding. Eliminate distractions.
-
-There should be an intentional sequence in which you introduce new ideas.
-
-And each step in the sequence should help readers accomplish something. Build a thing. (Players can still win a battle if all they have is jump and hammer attacks.)
-
-### Only introduce new concepts when you need them
-
-I think there's a tendency when writing docs to want to explain all the information at once, so that you've told readers about all the features and edge cases available to them.
-
-But you have to be careful about how those ideas are introduced.
-
-Is it going to be obvious to a newcomer that those edge cases are an "advanced" feature? Or is it just muddying up their understanding of the basic idea?
-
-Yes, you want to tell folks about edge cases somewhere, but maybe it can live somewhere besides the intro to a new concept.
-
-### 
-
-### Provide opportunities to practice
-
----
-
-There are lots of different elements in each battle. But the game introduces them one at a time. You learn how to attack before you learn about the map-moving mechanics.
-
-And you only learn one new thing per battle.
-
-Your docs should have scaffolding. There should be an intentional sequence in which you introduce new ideas.
-
-And each step in the sequence should help readers accomplish something. Build a thing. (Players can still win a battle if all they have is jump and hammer attacks.)
-
-Does this mean your players' first few battles will be sub-optimal? Sure. But if they're just getting started, that's okay.
-
-They'll eventually get the full suite of features and be ready to kick some butt. And more importantly, they won't get overwhelmed and quit halfway in.
-
-
-
-I think there's a tendency when writing docs to want to explain all the information at once, so that you've told readers about all the features and edge cases available to them.
-
-But you have to be careful about how those ideas are introduced.
-
-Is it going to be obvious to a newcomer that those edge cases are an "advanced" feature? Or is it just muddying up their understanding of the basic idea?
-
-Yes, you want to tell folks about edge cases somewhere, but maybe it can live somewhere besides the intro to a new concept.
-
-tl;dr:
-
-Paper Mario: The Origami King is great. Also, scaffold your docs to make it easier for people to learn.
-
-Thanks for coming to my TED talk.
-
----
-
-## Background context on the battle system
-
-Give context and define the jargon that I'll be using to talk about the gameplay for the rest of the article.
-
-## What is scaffolding?
-
-## How Paper Mario scaffolds the player's experience
-
-* Introduce one thing at a time
-
-## How does this relate to documentation?
-
-Video game tutorials are like documentation. You have people who are coming to your game with varying levels of experience. Some might have played every other game in the franchise, some might be picking up a controller for the first time. And your tutorial has to work for both audiences.
-
-You have to make sure that you gradually teach players new concepts once they have a solid grasp of previous ones. You have to build their understanding of the entire system, one step at a time. If you do this poorly, they'll feel overwhelmed and give up before really getting to the good part of your game. But if you do it well, they'll slowly get better at the game without even consciously realizing that it's happening.
-
-## How can you add better scaffolding to documentation?
-
-* Only introduce one new idea at a time. If you find that they need some prerequisite information, cover that in a separate section first. (Or link them away to another resource that can get them up to speed. Think of it like a side quest.)
-    * Be intentional with the progression of concepts. They should build on each other.
-*  Only introduce complexity when they need to know about it. You don't teach about boss battles in their first encounter.
-    * If something isn't fundamental or essential, consider saving it for later. Or clearly label it as a side quest, so that readers can choose for themselves if they want to go down that particular rabbit hole.
-* Give them opportunities to practice. This is especially important for people who are new to the game. Low-risk scenarios let them build up their confidence so that they can master the fundamentals before getting into the complexities. In practice, these could be checks for understanding, or suggestions at the end of an article for challenges that they can practice on their own.
-
-
-* Make stronger recommendations at the beginning. When they're new, they might not have enough context to be able to decide which CSS framework is right for them. As the teacher and expert, you can make a best guess at what will be the right fit for them, and lead them in that direction. Later on, once they're more advanced, they can learn about the other options and decide for themselves what they want to use moving forward. But their first battle isn't the right time to overwhelm them with all the possibilities.
+> #### How to Apply This to Your Documentation
+>
+> * **Add checks for understanding to help readers test themselves.** Consider adding a few short prompts to the end of each doc. These could be open-ended questions ("Why is it important to do X?"), or they could be sample exercises that require the reader to put some content into practice ("How would you write an API call to accomplish Y?"). The checks should be tied to the main idea you want readers to take away from that doc. By testing themselves on what they just read, readers can check if they understood the material or if they need to go back and reread something.
+>     * Checks for understanding are a good place to collect metrics! Track readers' answers to each question. If lots of folks get a particular question wrong, you might need to investigate where they're getting stuck and make improvements to your doc.
+> * **Provide a sandbox where readers can practice applying new ideas.** Consider creating a sandbox mode or an example project that users can explore to practice a new topic. You could either give them some starter code with a prompt for new features to add, or you could give them a completed code example showing how the final product works. (Or both!) In either case, be sure to provide text prompts to guide their exploration and highlight the important bits.
 
 ## Conclusion
 
-SUMMARY
+Figuring out how to teach a whole new technology from scratch can be a daunting task. But as documentation writers, we don't have to recreate the wheel every time! We can learn from other educators, including video game tutorial writers.
 
-If you're interested in hearing more of my thoughts on education and the tech industry, follow me on Twitter! I'd love to hear your thoughts on this post (or on documentation in general).
+To summarize the lessons from this article:
+
+* Focus on introducing one new idea at a time.
+* Only introduce a concept when you need it.
+* Provide low-risk opportunities for practice.
+
+If you're interested in hearing more of my thoughts on education and the tech industry, [follow me on Twitter](https://twitter.com/meganesulli)! I'd love to hear your thoughts on this post (or on documentation in general).
 
 Are there any other parallels you've noticed between video game tutorials and programming tutorials? What other video games do a good job of getting new players up to speed?
 
 ## Additional Resources
 
-* [How to make a good video game tutorial](https://schoolofgamedesign.com/project/good-video-game-tutorial/) (School of Game Design)
-
-## Illustration ideas:
-
-For scaffolding:
-
-* Show learner journey. Beginners get lots of scaffolding, because they need extra help. Experienced users don't need the scaffolding, because they can solve the problems themselves. They already have the tools.
-    * Imagine you're teaching a woodworking class where students build a bookcase. You're going to change the content of what you teach based on your students' prior knowledge. Beginner gets IKEA furniture. The pieces are already cut out, you just have to put them together. Expert can craft their own furniture from scratch - cut the wood, sand it, put a finish on it, *and* assemble it. Both users get a bookcase at the end of it all, but the advanced users have more tools to customize their bookcase to make it exactly what they want it to be. As the instructor, it's your job to break down the problem (how to build a bookcase) into chunks that are appropriately challenging based on the learner's experience level.
-* Word association
-    * Support
-    * Chunks
-    * Structure
+* [Working Memory](https://www.coursera.org/lecture/learning-how-to-learn-youth/video-8-working-memory-t1j7O): Video. (Learning How to Learn for Youth; Coursera course by Arizona State University)
+* [How to make a good video game tutorial](https://schoolofgamedesign.com/project/good-video-game-tutorial/): Article with corresponding video. (School of Game Design)
+* [Practice Perfect: 42 Rules for Getting Better at Getting Better](https://teachlikeachampion.com/books/practice-perfect/): Book. (Doug Lemov, Erica Woolway, and Katie Yezzie)
