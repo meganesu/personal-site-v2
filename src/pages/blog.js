@@ -17,6 +17,7 @@ const Blog = () => {
             frontmatter {
               title
               date(formatString: "MMMM Do, YYYY")
+              description
             }
             excerpt(format: PLAIN)
             fields {
@@ -40,8 +41,8 @@ const Blog = () => {
                 {edge.node.frontmatter.title}
               </Link>
             </h2>
-            <p>{`${edge.node.frontmatter.date} | ${edge.node.timeToRead} minute read`}</p>
-            <p>{edge.node.excerpt}</p>
+            <p>{`${edge.node.frontmatter.date} | ${edge.node.timeToRead}-minute read`}</p>
+            <p>{edge.node.frontmatter.description || edge.node.excerpt}</p>
           </li>
         ))}
       </ol>
