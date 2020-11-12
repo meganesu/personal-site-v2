@@ -19,7 +19,7 @@ In this article, I outline three lessons from *Paper Mario: The Origami King* th
 
 In case you haven't played *Paper Mario*, here's a quick video trailer to show how battles work. (The part about the battle system starts at 2:14.)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CB7KBIgn2m0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="text-align: center;" width="560" height="315" src="https://www.youtube.com/embed/CB7KBIgn2m0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 In each battle, a group of four or more enemies appear on a circular grid of rings. As Mario, you can attack enemies by jumping on them or hitting them with your hammer, consistent with the previous *Paper Mario* games. But in *The Origami King*, there's also a new twist (literally): you can rotate and slide the rings on the map to line up the enemies. If you get them all perfectly aligned, your attacks for that round deal extra damage. (There's some other stuff too, but we'll get to that in a bit.)
 
@@ -81,9 +81,9 @@ Boss battles have an entirely different game mechanic from regular enemy battles
 
 But you don't find out about those mechanics until you reach the first boss. The game developers protect you from that extra complexity until you absolutely need it.
 
-Imagine if Olivia explained the boss battle mechanics in the first encounter of the game. What would that even look like? "Hey, jump on these Goombas. Oh and also, some day you'll reach a giant enemy and you'll have to do something totally different to fight them." It wouldn't make any sense. And since the information wouldn't be relevant yet, players would probably just skim past it and forget about it by the time they needed it in an actual boss battle.
+Imagine if Olivia explained the boss battle mechanics in the first encounter of the game. What would that even look like? "Hey, jump on these Goombas. Oh and also, some day you'll reach a giant enemy and you'll have to do something totally different to fight them." It wouldn't make any sense. Since the information wouldn't be relevant yet, players would probably just skim past it and forget about it by the time they needed it in an actual boss battle.
 
-Yeah, there's a teaser of this "advanced" mechanic in the trailer, to hook people's attention or give them a sneak peek of what's to come. But in the actual game, the developers don't explain all the nitty-gritty details until they're sure players have a solid grasp of the basics first.
+It's fine to tease the "advanced" boss battle mechanic in the trailer, to hook people's attention or give them a sneak peek of what's to come. But in the actual game, the developers don't explain all the nitty-gritty details until they're sure players have a solid grasp of the basics first.
 
 > #### How to Apply This to Your Documentation
 >
