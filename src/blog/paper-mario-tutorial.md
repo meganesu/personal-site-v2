@@ -1,5 +1,5 @@
 ---
-title: "3 Lessons from Paper Mario to Improve Your Documentation"
+title: "Improve Your Documentation by Playing Paper Mario"
 author: "Megan Sullivan"
 date: "2020-11-11"
 description: "What do good documentation and Paper Mario have in common? Scaffolding. Learn three ways to improve your docs by supporting readers in their journey to understand complex concepts."
