@@ -1,6 +1,7 @@
 ---
 title: "[Sketchnote] Why Use GraphQL?"
 date: "2020-12-13"
+description: "GraphQL is an alternative to REST, but what does that mean? This sketchnote explains some of the differences through visual metaphors."
 ---
 
 ## Introduction

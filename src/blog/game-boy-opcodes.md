@@ -2,6 +2,7 @@
 title: "Meet the Game Boy Instruction Set"
 author: "Megan Sullivan"
 date: "2020-03-07"
+description: "I built an interactive opcode table to help people understand the Game Boy instruction set. This post describes the project and highlights some lessons I learned along the way."
 ---
 
 Like many people my age, I grew up on Nintendo handheld gaming systems. As I've gotten older and that millennial nostalgia has kicked in, I've been able to revisit some of my childhood-favorite titles, thanks to emulators like VisualBoy Advance. Then, last July, I started wondering how those emulators worked, and I decided I wanted to try building one myself.
