@@ -1,4 +1,9 @@
 module.exports = {
+  siteMetadata: {
+    title: `Megan Sullivan's Personal Website`,
+    siteUrl: `https://meganesulli.com`,
+    description: `The personal website for Megan Sullivan, a software developer and educator.`,
+  },
   plugins: [
     "gatsby-plugin-sharp",
     {
@@ -50,6 +55,43 @@ module.exports = {
             }
           }
         ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        feeds: [
+          {
+            title: `Megan Sullivan's Blog RSS Feed`,
+            output: `/rss.xml`,
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  url: `${site.siteMetadata.siteUrl}/blog/${edge.node.fields.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.fields.slug}`,
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                        description
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+          }
+        ],
       }
     },
   ],
