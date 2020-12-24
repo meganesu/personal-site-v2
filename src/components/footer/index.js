@@ -13,6 +13,9 @@ const Footer = () => (
       <li>
         <Link to="/privacy">Privacy Policy</Link>
       </li>
+      <li>
+        <Link to="/rss.xml">RSS</Link>
+      </li>
     </ul>
   </footer>
 )
