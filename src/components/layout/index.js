@@ -9,12 +9,12 @@ import "typeface-quicksand"
 import "./global-styles.css"
 import styles from "./styles.module.css"
 
-const Layout = ({ children, pageContext }) => {
-  const pageTitle = pageContext?.frontmatter?.title || "Megan Sullivan"
+const Layout = ({ children, pageContext, pageTitle }) => {
+  const title = pageContext?.frontmatter?.title || pageTitle || "Megan Sullivan"
 
   return (
     <div className={styles.container}>
-      <Head title={pageTitle} />
+      <Head title={title} />
       <SkipLink link="#main-content">Skip to main content</SkipLink>
       <Header />
       <div className={styles.mainWrapper}>
