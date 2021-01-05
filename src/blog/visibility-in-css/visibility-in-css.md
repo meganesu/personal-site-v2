@@ -6,7 +6,7 @@ description: There are multiple ways to toggle visibility in CSS. This diagram h
 
 ## Introduction
 
-There are multiple ways to toggle visiblity in CSS. Personally, I didn't really understand why you'd choose one approach over another until I took [Marcy Sutton's](marcysutton.com/) [Frontend Masters](https://frontendmasters.com/courses/javascript-accessibility/) course: [Accessibility in JavaScript Applications](https://frontendmasters.com/courses/javascript-accessibility/).
+There are multiple ways to toggle visiblity in CSS. Personally, I didn't really understand why you'd choose one approach over another until I took [Marcy Sutton's](https://marcysutton.com/) Frontend Masters course: [Accessibility in JavaScript Applications](https://frontendmasters.com/courses/javascript-accessibility/).
 
 Marcy highlights two considerations when choosing the right approach to hiding an element with CSS:
 
