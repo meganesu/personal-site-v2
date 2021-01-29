@@ -6,45 +6,47 @@ description: "RSS feeds are a low-maintenance way to help your readers stay up-t
 
 ## Introduction
 
-As a content creator, you want to make it easy for your readers to stay updated on your latest content. By adding an RSS feed to your site, readers can get automatic updates whenever you post a new article, video, or photo of your dog.
+As a content creator, you want to make it easy for your readers to stay updated on your latest content. By adding an [RSS feed](https://www.rssboard.org/rss-specification) to your site, readers can get automatic updates whenever you post a new article, video, or photo of your dog.
 
 In this post, I'll show you how to add an RSS feed to a Gatsby site.
 
 ## A Quick Crash Course on RSS Feeds
+### How does an RSS feed work?
 
-### What is an RSS feed?
+RSS stands for "really simple syndication." In other words, it's a way to give other websites information about your content so that they can get it in front of more users.
 
-An [RSS feed](https://www.rssboard.org/rss-specification) is a specific kind of XML file. The structure looks similar to HTML, but it uses different kinds of elements.
+Here's a brief overview of how it works:
+
+1. Your site generates an RSS feed that includes information about all your content. You add a link to it someplace (maybe your site's header or footer) where it's easy for users to find.
+1. A reader decides they love your content and want to get updates from your site. (Hooray!) They add the URL for your RSS feed to whatever **feed aggregator** software they use (like Feedly). The feed aggregator periodically checks your RSS feed to see if there's any new content.
+1. Time goes by. When you post a new piece of content, your RSS feed gets updated to include additional data about the new content.
+1. The next time your reader's feed aggregator checks your site's RSS feed, it sees the new content and notifies the reader. The reader checks out your new content and marvels at how handy it is that your site has an RSS feed!
+
+The best part is, once you set up your RSS feed the first time, all the updates happen automatically! 🥳
+
+### What does an RSS feed actually look like?
+
+An RSS feed is a specific kind of XML file. The structure looks similar to HTML, but it uses different kinds of elements.
 
 The two main RSS elements are:
 
-* `<channel>` - Contains information about your overall site, like the URL where it's hosted. Also contains one or more `<item>` elements. Each RSS feed contains a single `<channel>` element.
+* `<channel>` - Contains information about your overall site, like the URL where it's hosted. Each RSS feed contains a single `<channel>` element, which itself contains one or more `<item>` child elements.
 * `<item>` - Contains information about a single unit of content on your site, like a specific blog post or video. You'll have multiple `<item>` elements - one for each piece of content on your site.
 
 > Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
 
-### How does an RSS feed work?
-
-Here's a brief overview:
-
-1. Your site generates an RSS feed for all your content. You add a link to it someplace (maybe your site's header or footer) where it's easy for users to find.
-1. A reader decides they love your content and want to get updates from your site. (Hooray!) They add the URL for your RSS feed to whatever **feed aggregator** software they use (like Feedly). The feed aggregator checks your RSS feed periodically to see if there's any new content.
-1. Time goes by. When you post a new piece of content, your RSS feed gets updated to include a new `<item>` element with information about the new content.
-1. The next time your reader's feed aggregator checks your site's RSS feed, it sees the new content and notifies the reader. The reader checks out your new content and marvels at how handy it is that your site has an RSS feed!
-
-The best part is, once you set up your RSS feed the first time, all the updates happen automatically! 🥳
 
 ## Prerequisites
 
 In this post, you'll learn specifically how to add an RSS feed to an existing Gatsby site.
 
-If you don't have a Gatsby site on your own, that's fine! I created some starter code that you can use to follow along. (Don't worry, I won't tell.) More on that in the next section.
+If you don't have a Gatsby site of your own, that's fine! I created some starter code that you can use to follow along. (Don't worry, I won't tell.) More on that in the next section.
 
 If you'd rather follow along with your own Gatsby site, it will be helpful to have a basic blog set up, with separate pages for each post. The starter code uses the `gatsby-transformer-remark` plugin to query for Markdown nodes, but if your blog posts use something besides Markdown, you can make adjustments to the GraphQL queries specified in this post.
 
 ## The Starter Code
 
-The starter code for this post is a simplified Gatsby blog. Posts are written in Markdown and stored in the `src/blog` directory.
+The starter code for this post is a simplified Gatsby blog. Posts are written in Markdown and are stored in the `src/blog` directory.
 
 To get the site up and running locally:
 
@@ -57,14 +59,14 @@ To get the site up and running locally:
    ```shell
    cd gatsby-blog-with-rss-feed-example
    ```
-1. Start up the local developmenet server.
+1. Start up the local development server.
    ```shell
    npm run develop
    ```
 1. In a web browser, navigate to `localhost:8000`. You should see something like this:
    <img
      src="./blog-landing-page.png"
-     alt='A blog landing page. The title says "My Blog Posts", and three posts are listed: "My First Post," "Another Great Post," and "Yet Another Post."'
+     alt='A blog landing page. The title says "My Blog Posts", and links to three posts are listed: "My First Post," "Another Great Post," and "Yet Another Post."'
    />
 
 > A few notes on the starter code, if you're curious how it works:
@@ -73,7 +75,7 @@ To get the site up and running locally:
 > * It also uses the [`gatsbyPath` field](https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/#routing-and-linking) from the File System Route API to generate slugs for each blog post page that's created.
 
 
-## Add an RSS Feed
+## Adding an RSS Feed
 
 The high-level process for adding an RSS feed to your Gatsby site looks like this:
 
@@ -83,7 +85,7 @@ The high-level process for adding an RSS feed to your Gatsby site looks like thi
 * **Step 3:** Build and serve your site locally to test the RSS feed.
 * **Step 4:** (Optional) Add a link to your RSS feed to your site.
 
-> To skip ahead and see the finished product, check out the `solution` branch of the starter code repo. **TODO: add link to the branch**
+> To skip ahead and see the finished product, check out the [`solution` branch](https://github.com/meganesu/gatsby-blog-with-rss-feed-example/tree/solution) of the starter code repo.
 
 ### Prerequisite: Confirm that you have `siteMetadata`
 
@@ -91,9 +93,9 @@ If you haven't already, you'll need to add a `siteMetadata` object to your `gats
 
 Your `siteMetadata` object will need the following properties:
 
-- `title` - The name of your site
-- `siteUrl` - The URL where your site will be hosted once it's deployed
-- `description` - A short sentence describing the purpose of your site
+- `title` - The name of your site.
+- `siteUrl` - The URL where your site will be hosted once it's deployed.
+- `description` - A short sentence describing the purpose of your site.
 
 This data will be added to the `<channel>` element in your RSS feed.
 
@@ -137,7 +139,7 @@ module.exports = {
       options: {
         // We'll get to this in a moment
       }
-    }
+    },
     // The rest of the existing plugins
   ]
 }
@@ -145,16 +147,16 @@ module.exports = {
 
 Next, configure the additional options that `gatsby-plugin-feed` needs to generate your RSS feed. Your `options` object should have the following fields:
 
-* `query` - The GraphQL query for pulling in data that should be shared across all the RSS feeds generated
-    * By default, this will pull in the data from `siteMetadata`
-* `feeds` - An array of feed objects (described below)
-    * Unless you want to have separate RSS feeds for different kinds of content, you'll probably only need one feed object in this array
+* `query` - The GraphQL query for pulling in data that should be shared across all the RSS feeds generated.
+    * By default, this will pull in the data from `siteMetadata`.
+* `feeds` - An array of feed objects (described below).
+    * Unless you want to have separate RSS feeds for different kinds of content, you'll probably only need one feed object in this array.
 
 A feed object has the following properties:
 
-* `title` - (string) The text to put in the `<title>` element of the generated RSS feed
-* `output` - (string) The path where you want your generated RSS feed to be hosted on your site
-* `query` - (string) A GraphQL query for how to get the data for the contents of the feed
+* `title` - (string) The text to put in the `<title>` element of the generated RSS feed.
+* `output` - (string) The path where you want your generated RSS feed to be hosted on your site.
+* `query` - (string) A GraphQL query for how to get the data for the contents of the feed.
 * `serialize` - (function) A function specifying how to set properties on the `<item>` elements in the RSS feed for each piece of content.
 
 Setting the `title` and `output` options are more straightforward, but the `query` and `serialize` options are described in more detail below.
@@ -293,17 +295,15 @@ After adding all the plugin options to your `gatsby-config.js` file, the configu
 
 ### Step 3: Build and serve your site locally to test the RSS feed
 
-The `gatsby-plugin-feed` plugin only generates an RSS feed for production-style builds. (That means the link to your RSS feed won't work if you're running `npm run develop`.)
+The `gatsby-plugin-feed` plugin only generates an RSS feed for production-style builds. (That means the URL to your RSS feed won't work if you're running `npm run develop`. You'll get a 404 error.)
 
-To test your RSS feed locally, you'll have to build and serve your site by running the following command:
+To test your RSS feed locally, you'll have to build your site and start up a server by running the following command:
 
 ```shell
 npm run build && npm run serve
 ```
 
-Once your site is up and running, you should be able to see it in a web browser at `localhost:9000`.
-
-You can check your RSS feed by visiting `localhost:9000/rss.xml` (or whatever you configured the `output` option to be).
+Once your site is up and running, you should be able to see it in a web browser at `localhost:9000`. You can check your RSS feed by visiting `localhost:9000/rss.xml` (or whatever you configured the `output` option to be).
 
 The generated RSS feed should look something like this:
 
@@ -346,19 +346,24 @@ If it worked, congratulations, your site now has an automatically generated RSS 
 
 ### Step 4: (Optional) Add a link to your RSS feed to your site
 
-Now that you've done all this work to generate and RSS feed for your site, it's time to make it discoverable by your readers! (This step is optional, although it's probably a good idea if you want people to actually use your RSS feed.)
+Now that you've done all this work to generate an RSS feed for your site, it's time to make it discoverable by your readers! (This step is technically optional, although it's probably a good idea if you want people to actually find your RSS feed.)
 
-Add a link to your RSS feed to the blog page. (Header or footer?)
+Use Gatsby's `<Link>` component to add a link to your RSS feed somewhere on your home page. (Not sure where to put it? The header or footer is a good start.)
 
-Test your link by killing your local server and restarting it. (Production builds don't do hot reloading, so you need to restart the server to see your changes.)
+```javascript
+// import { Link } from 'gatsby'
+<Link to="/rss.xml">RSS feed</Link>
+```
 
-You could test the link using the development server (npm run develop), but the RSS feed doesn't get generated for dev builds, so you'll get a 404 when you try to visit the URL.
+If your prod build is still running from Step 3, you'll need to kill the server (with `ctrl + c` or by closing the terminal window) and rerun the build/serve command to see your changes. (Production builds don't have hot reloading, so you need to restart the server for your changes to be picked up.)
+
+> You could also test the link using the development server (by running `npm run develop`), but since the RSS feed doesn't get generated for dev builds, you'll get a 404 when you actually click on the link.
 
 And you're done! The next time you deploy your site, you should be able to visit `<your-domain>/rss.xml` (or whatever you configured `output` to be) and see your own RSS feed.
 
 ## Troubleshooting Errors
 
-To help troubleshoot, here are some of the errors I ran into as I was implementing this on my own site, as well as the solution for how I fixed the problem:
+To help troubleshoot, here are some of the errors I ran into as I was implementing this on my own site, as well as the solution for how I fixed the problem.
 
 <details>
   <summary>
@@ -417,17 +422,17 @@ GraphQL request:16:15
 17 |                 slug
 ```
 
-**The Underlying Problem:** Your blog posts don't have a slug field. The default GraphQL query used by `gatsby-plugin-feed` expects your MarkdownRemark nodes to have a `fields.slug` property. (You can use the GraphiQL explorer to manually inspect the available fields on the MarkdownRemark query and confirm that `fields.slug` is not available.)
+**The Underlying Problem:** Your blog posts don't have a `slug` field. The default GraphQL query used by `gatsby-plugin-feed` expects your MarkdownRemark nodes to have a `fields.slug` property. (You can use the GraphiQL explorer to manually inspect the available fields on the MarkdownRemark query and confirm that `fields.slug` is not available.)
 
-**The Solution:** In your configuration for `gatsby-plugin-feed` (in the `gatsby-config.js` file), make sure the `feed.query` option includes the `slug` field in the query.
+**The Solution:** In your configuration for `gatsby-plugin-feed` (in the `gatsby-config.js` file), make sure the `feed.query` option includes a `slug` field in the query. See the section on [Configuring `options.query` and `feed.query`](#configuring-optionsquery-and-feedquery) in Step 2.
 
 </details>
 
 ## Wrap It Up
 
-Now that you've added an RSS feed to this sample blog site, try adding one to your own Gatsby site. Let me know how it goes!
+Now that you've added an RSS feed to this sample blog site, try adding one to your own Gatsby site. If you run into problems, you can reach out to me on Twitter and I'll do my best to help troubleshoot.
 
-Want to be notified when I write new content? You can subscribe to the [RSS feed for my own blog](/rss.xml), or you can [follow me on Twitter](https://twitter.com/meganesulli). See you around!
+Want to be notified when I write new content? You can subscribe to the [RSS feed for my own blog](/rss.xml), or you can [follow me on Twitter](https://twitter.com/meganesulli).
 
 ## Additional Resources
 
