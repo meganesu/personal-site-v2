@@ -48,7 +48,7 @@ Back in July, when I started trying to build an emulator, I was doing a lot of r
 * The [pastraiser Game Boy opcodes table](https://www.pastraiser.com/cpu/gameboy/gameboy_opcodes.html).
 * An archived version of the [Nintendo Game Boy Programming Manual](https://archive.org/details/GameBoyProgManVer1.1/mode/2up).
 
-I loved the pastraiser site because of how easy it was to visualize the full set of CPU instructions. (I'm all about the big picture!) But I struggled to make use of the tables, because it wasn't clear from just the mnemonic what each instructions was actually supposed to do. Luckily, the Nintendo Game Boy Programming Manual had pretty detailed documentation on the CPU instruction set. I saw an opportunity to combine these two resources into something that would be more useful to newcomers to Game Boy emulation. And thus, a new and improved version of the opcode tables was born!
+I loved the pastraiser site because of how easy it was to visualize the full set of CPU instructions. (I'm all about the big picture!) But I struggled to make use of the tables, because it wasn't clear from just the mnemonic what each instruction was actually supposed to do. Luckily, the Nintendo Game Boy Programming Manual had pretty detailed documentation on the CPU instruction set. I saw an opportunity to combine these two resources into something that would be more useful to newcomers to Game Boy emulation. And thus, a new and improved version of the opcode tables was born!
 
 ## What did you learn along the way?
 
@@ -70,10 +70,10 @@ This isn't the project I originally set out to build. But along the way, I start
 
 ### 4. But also, know when to call it good and just ship!
 
-I've been done with the MVP of this project for a while now, but I've been holding off on sending it out into the world because there are still a bunch of other features and improvements I want to add. But I recently finished reading [Just F*cking Ship](https://stackingthebricks.com/just-fucking-ship/) by [Amy Hoy](https://twitter.com/amyhoy), and now I'm thinking it's better to get this site out in front of real live humans than it is to hoard it until it's "done" (because we all know that software projects will never truly be done).
+I've been done with the first pass (a.k.a the minimum viable product, or MVP) of this project for a while now, but I've been holding off on sending it out into the world because there are still a bunch of other features and improvements I want to add. But I recently finished reading [Just F*cking Ship](https://stackingthebricks.com/just-fucking-ship/) by [Amy Hoy](https://twitter.com/amyhoy), and now I'm thinking it's better to get this site out in front of real live humans than it is to hoard it until it's "done" (because we all know that software projects will never truly be done).
 
 ## Now what?
 
-There's still more work to do on this project, but I'm excited to get this minimum viable product in front of you. If you're interested in what updates I have planned for the future, you can check out the [GitHub issues page for this project](https://github.com/meganesu/generate-gb-opcodes/issues). And feel free to reach out to me on Twitter to let me know what you think of what I've built so far!
+There's still more work to do on this project, but I'm excited to get this MVP in front of you. If you're interested in what updates I have planned for the future, you can check out the [GitHub issues page for this project](https://github.com/meganesu/generate-gb-opcodes/issues). And feel free to reach out to me on Twitter to let me know what you think of what I've built so far!
 
 Trying to build your own Game Boy emulator, but not sure where to start? I started a [Twitter thread with some of the resources I've found helpful](https://twitter.com/meganesulli/status/1146306829418262528?s=20). Let me know if you find other good ones! Hopefully you'll be able to add my project to your own list of helpful resources 😉
