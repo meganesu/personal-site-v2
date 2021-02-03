@@ -79,11 +79,11 @@ To get the site up and running locally:
 
 The high-level process for adding an RSS feed to your Gatsby site looks like this:
 
-* **Prerequisite:** Confirm that you have `siteMetadata` set up in your `gatsby-config.js` file.
-* **Step 1:** Install the `gatsby-plugin-feed` plugin.
-* **Step 2:** Configure `gatsby-plugin-feed` in your `gatsby-config.js` file.
-* **Step 3:** Build and serve your site locally to test the RSS feed.
-* **Step 4:** (Optional) Add a link to your RSS feed to your site.
+* **[Prerequisite](#prerequisite-confirm-that-you-have-sitemetadata):** Confirm that you have `siteMetadata` set up in your `gatsby-config.js` file.
+* **[Step 1](#step-1-install-gatsby-plugin-feed):** Install the `gatsby-plugin-feed` plugin.
+* **[Step 2](#step-2-configure-the-plugin-in-your-gatsby-configjs-file):** Configure `gatsby-plugin-feed` in your `gatsby-config.js` file.
+* **[Step 3](#step-3-build-and-serve-your-site-locally-to-test-the-rss-feed):** Build and serve your site locally to test the RSS feed.
+* **[Step 4](#step-4-optional-add-a-link-to-your-rss-feed-to-your-site):** (Optional) Add a link to your RSS feed to your site.
 
 > To skip ahead and see the finished product, check out the [`solution` branch](https://github.com/meganesu/gatsby-blog-with-rss-feed-example/tree/solution) of the starter code repo.
 
