@@ -1,6 +1,6 @@
 ---
 title: "How RSS Feeds Work"
-date: "2021-02-10"
+date: "2021-02-11"
 description: "A brief, illustrated introduction to RSS feeds and how they work."
 ---
 
