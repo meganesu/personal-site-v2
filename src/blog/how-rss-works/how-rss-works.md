@@ -22,7 +22,7 @@ Under the hood, an RSS feed is a specific kind of [XML](https://developer.mozill
 The two main RSS elements are:
 
 * `<channel>` - Contains information about your overall site, like the URL where it's hosted. Each RSS feed has a single `<channel>` element, which contains one or more `<item>` child elements.
-* `<item>` - Contains information about a single unit of content on your site, like a specific blog post or video. You'll have several `<item>` elements - one for each piece of content on your site.
+* `<item>` - Contains information about a single unit of content on your site, like a specific blog post or video. Your feed will have several `<item>` elements - one for each piece of content on your site.
 
 > Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
 
@@ -30,23 +30,23 @@ The two main RSS elements are:
 
 ### Initial Scenario
 
-You have a blog site that you run: `https://your-site.com`. Your blog has multiple posts, which live at paths like `/blog/post1` or `/blog/post2`.
+Imagine you have a blog site that you run: `https://your-site.com`. Your blog has multiple posts, which live at paths like `/blog/post1` or `/blog/post2`.
 
-Your site also has an RSS feed, which lives at `/rss.xml`. The RSS feed contains information about each of your posts, including the title, the publish date, and the URL where it lives.
+Your site also has a page for your RSS feed, which lives at `/rss.xml`. The RSS feed contains information about each of your posts, including the title, the publish date, and the URL where it lives.
 
 ![A diagram showing the pages in your site.](./step-0.png)
 
 ### Step 1
 
-A reader reads one of the posts on your site and enjoys it.
+A reader finds your blog. They read one of the posts and enjoy it.
 
 ![A reader reads one of your posts and enjoys it.](./step-1.png)
 
 ### Step 2
 
-The reader decides they like your content so much that they want to get updated when you post new things. They find the URL to your RSS feed on your site, and they add it to their **feed aggregator** software of choice (e.g., [Feedly](https://feedly.com/)).
+The reader decides they like your content so much that they want to get updated when you post new things. They find the URL to your RSS feed, and they add it to their **feed aggregator** software of choice (e.g., [Feedly](https://feedly.com/)).
 
-The feed aggregator periodically checks your RSS feed to see if there's any new content.
+The feed aggregator then checks your RSS feed periodically to see if there's any new content.
 
 ![The reader adds your site's RSS feed to their feed aggregator tool of choice. The feed aggregator then watches your RSS feed for updates.](./step-2.png)
 
@@ -54,11 +54,11 @@ The feed aggregator periodically checks your RSS feed to see if there's any new 
 
 Time goes by. You write a new blog post, which gets added as a new page on your site. Your RSS feed gets updated to include another item with information about your new post.
 
-![You write a new post, which adds a new page to your site and updates your RSS feed.](./step-3.png)
+![You write a new post, which adds a new page to your site and a new <item> element to your RSS feed.](./step-3.png)
 
 ### Step 4
 
-The next time the reader's feed aggregator checks your RSS feed, it sees that there is new content. It sends a notification to the reader, including the data from the new post's item in your RSS feed (e.g., title, date, URL).
+The next time the reader's feed aggregator checks your RSS feed, it sees that there is new content. It sends a notification to the reader, including the data from the `<item>` element for your new post (e.g., title, date, URL).
 
 ![The feed aggregator sees the new post in your RSS feed and notifies the reader.](./step-4.png)
 
@@ -68,10 +68,16 @@ The reader clicks on the link in the feed aggregator's notification. They're tak
 
 ![The reader happily reads your new post.](./step-5.png)
 
-Repeat steps 3-5 indefinitely.
+Steps 3-5 repeat indefinitely.
+
+## Why use an RSS feed?
+
+Some readers want to stay on top of content from their favorite creators but don't want to sign up for a million email newsletters. With an RSS feed aggregator, they can keep track of all the updates from their favorite content creators in one place, without giving up their email address.
+
+As a content creator, adding an RSS feed to your site is a low-lift way for you to let readers know as soon as you publish something new. Once you do the initial setup work, readers can get automatic updates without any extra effort on your end.
 
 ## Wrap It Up
 
 I hope this was a helpful introduction to RSS feeds. Looking for more specifics on how to generate an RSS feed for your site? I wrote a guide on [how to add an RSS feed to a Gatsby site](/blog/gatsby-rss-feed).
 
-If you're interested in getting updates on my new content, you can subscribe to the [RSS feed for my personal site](/rss.xml). If you want cute photos of my dog, Clifford, you can [follow me on Twitter](https://twitter.com/meganesulli).
+If you're interested in getting updates on my new content, you can subscribe to the [RSS feed for my personal site](/rss.xml). If you want random musings and cute photos of my dog, Clifford, you can [follow me on Twitter](https://twitter.com/meganesulli).
