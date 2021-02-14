@@ -1,6 +1,6 @@
 ---
 title: "How RSS Feeds Work"
-date: "2021-02-11"
+date: "2021-02-13"
 description: "A brief, illustrated introduction to RSS feeds and how they work."
 ---
 
@@ -25,6 +25,13 @@ The two main RSS elements are:
 * `<item>` - Contains information about a single unit of content on your site, like a specific blog post or video. Your feed will have several `<item>` elements - one for each piece of content on your site.
 
 > Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
+
+You can give readers access to your RSS feed in a few different ways:
+
+* You can add a visible `<a>` tag in your site's header or footer.
+* You can add a `<link>` element to the `<head>` of your site, which will make your feed autodiscoverable by some browsers.
+
+> Interested in more implementation details? Check out the "Telling People About Your Feed" section of this [RSS Tutorial by Mark Nottingham](https://www.mnot.net/rss/tutorial/).
 
 ## How do people use RSS feeds?
 
@@ -81,3 +88,10 @@ As a content creator, adding an RSS feed to your site is a low-lift way for you 
 I hope this was a helpful introduction to RSS feeds. Looking for more specifics on how to generate an RSS feed for your site? I wrote a guide on [how to add an RSS feed to a Gatsby site](/blog/gatsby-rss-feed).
 
 If you're interested in getting updates on my new content, you can subscribe to the [RSS feed for my personal site](/rss.xml). If you want random musings and cute photos of my dog, Clifford, you can [follow me on Twitter](https://twitter.com/meganesulli).
+
+## Additional Resources
+
+* [RSS Specification](https://www.rssboard.org/rss-specification)
+* [RSS Tutorial by Mark Nottingham](https://www.mnot.net/rss/tutorial/)
+* [How Do RSS Feeds Work? (RSS.com)](https://rss.com/blog/how-do-rss-feeds-work/)
+* [What is RSS? (Software Garden, Inc.)](https://rss.softwaregarden.com/aboutrss.html)
