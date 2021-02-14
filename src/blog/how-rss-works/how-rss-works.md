@@ -28,7 +28,7 @@ The two main RSS elements are:
 
 You can give readers access to your RSS feed in a few different ways:
 
-* You can add a visible `<a>` tag in your site's header or footer.
+* You can add an `<a>` tag someplace where readers will easily find it, like in your site's header or footer.
 * You can add a `<link>` element to the `<head>` of your site, which will make your feed autodiscoverable by some browsers.
 
 > Interested in more implementation details? Check out the "Telling People About Your Feed" section of this [RSS Tutorial by Mark Nottingham](https://www.mnot.net/rss/tutorial/).
