@@ -7,18 +7,22 @@ import "typeface-dancing-script"
 import "typeface-ribeye-marrow"
 import "typeface-quicksand"
 import "./global-styles.css"
-import styles from "./styles.module.css"
+import {
+  container as containerStyles,
+  mainWrapper as mainWrapperStyles,
+  main as mainStyles,
+} from "./styles.module.css"
 
 const Layout = ({ children, pageContext, pageTitle }) => {
   const title = pageContext?.frontmatter?.title || pageTitle || "Megan Sullivan"
 
   return (
-    <div className={styles.container}>
+    <div className={containerStyles}>
       <Head title={title} />
       <SkipLink link="#main-content">Skip to main content</SkipLink>
       <Header />
-      <div className={styles.mainWrapper}>
-        <main className={styles.main} id="main-content" tabIndex={-1}>
+      <div className={mainWrapperStyles}>
+        <main className={mainStyles} id="main-content" tabIndex={-1}>
           {children}
         </main>
         <Footer />

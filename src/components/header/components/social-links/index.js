@@ -7,10 +7,10 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
-import styles from "./styles.module.css"
+import { socialLinks as socialLinksStyles } from "./styles.module.css"
 
 const SocialLinks = () => (
-  <ul className={styles.socialLinks}>
+  <ul className={socialLinksStyles}>
     <li>
       <OutboundLink href="https://github.com/meganesu" aria-label="GitHub">
         <FontAwesomeIcon icon={faGithub} size="2x" color="white" />

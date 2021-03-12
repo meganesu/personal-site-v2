@@ -1,8 +1,8 @@
 import React from "react"
-import styles from "./styles.module.css"
+import { container as containerStyles } from "./styles.module.css"
 
 const SkipLink = props => (
-  <a className={styles.container} href={props.link}>
+  <a className={containerStyles} href={props.link}>
     {props.children}
   </a>
 )

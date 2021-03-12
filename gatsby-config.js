@@ -6,6 +6,8 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-sharp",
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-mdx",
       options: {
@@ -14,7 +16,6 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
