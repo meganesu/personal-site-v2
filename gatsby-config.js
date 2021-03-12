@@ -8,6 +8,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-postcss",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-image",
     {
       resolve: "gatsby-plugin-mdx",
       options: {
