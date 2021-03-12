@@ -64,10 +64,7 @@ To get the site up and running locally:
    npm run develop
    ```
 1. In a web browser, navigate to `localhost:8000`. You should see something like this:
-   <img
-     src="./blog-landing-page.png"
-     alt='A blog landing page. The title says "My Blog Posts", and links to three posts are listed: "My First Post," "Another Great Post," and "Yet Another Post."'
-   />
+   ![A blog landing page. The title says "My Blog Posts", and links to three posts are listed: "My First Post," "Another Great Post," and "Yet Another Post."](./blog-landing-page.png)
 
 > A few notes on the starter code, if you're curious how it works:
 >
