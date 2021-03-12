@@ -1,18 +1,21 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import styles from "./styles.module.css"
+import {
+  navBar as navBarStyles,
+  active as activeLinkStyles,
+} from "./styles.module.css"
 
 const NavBar = () => (
   <nav>
-    <ul className={styles.navBar}>
+    <ul className={navBarStyles}>
       <li>
-        <Link to="/" activeClassName={styles.active}>
+        <Link to="/" activeClassName={activeLinkStyles}>
           Home
         </Link>
       </li>
       <li>
-        <Link to="/blog" activeClassName={styles.active}>
+        <Link to="/blog" activeClassName={activeLinkStyles}>
           Blog
         </Link>
       </li>

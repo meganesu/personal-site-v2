@@ -1,8 +1,8 @@
 import React from 'react'
-import * as styles from './styles.module.css'
+import { container as containerStyles } from './styles.module.css'
 
 const CallToActionBox = ({children}) => (
-  <div className={styles.container}>
+  <div className={containerStyles}>
     {children}
   </div>
 )

@@ -1,12 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import styles from "./styles.module.css"
+import {
+  footer as footerStyles,
+  footerLinks as footerLinksStyles,
+} from "./styles.module.css"
 
 const Footer = () => (
-  <footer className={styles.footer}>
+  <footer className={footerStyles}>
     <p>{`Made by Megan Sullivan © 2019 - ${new Date().getFullYear()}`}</p>
-    <ul className={styles.footerLinks}>
+    <ul className={footerLinksStyles}>
       <li>
         <Link to="/accessibility">Accessibility</Link>
       </li>
