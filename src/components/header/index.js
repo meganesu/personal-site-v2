@@ -7,11 +7,11 @@ import {
   profilePicture as profilePictureStyles,
   title as titleStyles,
 } from "./styles.module.css"
-import * as profilePicture from "../../images/meganesulli.jpg"
+import { StaticImage } from "gatsby-plugin-image"
 
 const Header = () => (
   <header className={headerStyles}>
-    <img src={profilePicture} alt="" className={profilePictureStyles} />
+    <StaticImage src="../../images/meganesulli.jpg" alt="" className={profilePictureStyles} />
     <p className={titleStyles}>
       <Link to="/">Megan Sullivan</Link>
     </p>
