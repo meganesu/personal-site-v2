@@ -89,7 +89,7 @@ The moral of this story is to test out your *exact* technical setup ahead of tim
 
 ### Get teammates to help moderate the chat
 
-If possible, have a few extra teammates hang out in the session to act as teaching assistants (TAs) and help moderate the chat. When specific issues come up (e.g., a student gets an unexpected error message), ask the TAs to help them troubleshoot in the chat while you continue teaching. That way, students can get the individualized attention they need without derailing the entire lesson.
+If possible, have a few extra teammates sit in the session to act as teaching assistants (TAs) and help moderate the chat. When specific issues come up (e.g., a student gets an unexpected error message), ask the TAs to help them troubleshoot in the chat while you continue teaching. That way, students can get the individualized attention they need without derailing the entire lesson.
 
 I didn't always do a great job at this hand-off in our workshop. Sometimes, a question in chat would catch my eye, and I would stop what I was saying to answer the question myself, instead of passing it on to my other teammates in the chat. As a result, there were a few times when the rest of the students were stuck waiting for me to finish explaining something that wasn't relevant to them.
 
@@ -120,7 +120,7 @@ Overall, I'm reasonably happy with how our GatsbyConf workshop went. But I do wa
 - **Overcommunicate expectations about pre-work.**
   - Many of the issues that came up in the first part of the workshop were related to students trying to install the necessary tools. We'd included installation instructions in the workshop description and asked students to complete them ahead of time, but we could have been better about sending out reminders. Next time, I'd want to clearly communicate that we won't be spending time in the workshop helping people troubleshoot their setups. Instead, we could hold an office hours session a few days before the workshop, where folks can drop in and get individualized help with debugging.
 - **Set up contingency plans** ahead of time, to unblock workshop attendees who have trouble setting up the tools or project on their own computers.
-  - A few days before the workshop, I tried to test out the curriculum on my boyfriend, but he wasn't able to install Gatsby on his laptop, which blocked him from doing the rest of the workshop. I started setting up a CodeSandbox starter project, so that he and other participants could have a controlled environment where they could work on the project without fighting with installers. But I was new to CodeSandbox and couldn't figure it out in time for the workshop. Next time, I'd like to prepare the backup plan in advance.
+  - A few days before the workshop, I tried to test out the curriculum on my partner, but he wasn't able to install Gatsby on his laptop, which blocked him from doing the rest of the workshop. I started setting up a CodeSandbox starter project, so that he and other participants could have a controlled environment where they could work on the project without fighting with installers. But I was new to CodeSandbox and couldn't figure it out in time for the workshop. Next time, I'd like to prepare the backup plan in advance.
 
 ## Wrap It Up
 
