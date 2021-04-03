@@ -6,7 +6,7 @@ description: "Leading a workshop remotely presents some unique challenges. This 
 
 ## Introduction
 
-Last month, I co-facilitated a four-hour workshop at GatsbyConf. Although I've led many workshops in the past, this was my first time teaching remotely. More than 1000 people tuned in over the course of the event, with attendance staying around 250 participants for the full four hours. There were a few technical hiccups, but in general it went pretty well!
+Last month, I co-facilitated a four-hour workshop at GatsbyConf. Although I've led many workshops in the past, this was my first time teaching remotely. We had over 1000 unique visitors, with around 250 participants at any given time for the full four hours. There were a few technical hiccups, but in general it went pretty well!
 
 > **Want to watch the workshop recording?** Check it out on YouTube: [Getting Started with Gatsby](https://www.youtube.com/watch?v=231bkZnebvo).
 >
