@@ -19,7 +19,7 @@
   border: none;
 }
 
-.profile-picture {
+:global(.gatsby-image-wrapper-constrained).profile-picture {
   display: none;
 }
 
@@ -34,7 +34,7 @@
     top: 0;
   }
 
-  .profile-picture {
+  :global(.gatsby-image-wrapper-constrained).profile-picture {
     display: block;
     border-radius: 50%;
     max-width: 10rem;
