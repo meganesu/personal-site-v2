@@ -3,6 +3,7 @@ title: "A Deep Dive on Managing Focus with React, Jest, and Enzyme"
 author: "Megan Sullivan"
 date: "2020-08-23"
 description: "Focus management is an important part of building accessible websites. This post explains how to use React ref to programatically move focus between elements on a web page. (Including tests!)"
+tags: ["accessibility", "react"]
 ---
 
 ## What You Will Learn

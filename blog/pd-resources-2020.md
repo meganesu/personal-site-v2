@@ -2,6 +2,7 @@
 title: Ways to Use Up Your Professional Development Budget
 date: "2020-12-03"
 description: "Not sure how to use up the rest of your professional development budget? Here's a list of resources I've either used or added to my own wishlist."
+tags: ["career"]
 ---
 
 ## Introduction

@@ -2,6 +2,7 @@
 title: Tips for Teaching a Remote Workshop
 date: "2021-04-02"
 description: "Leading a workshop remotely presents some unique challenges. This post outlines some teaching strategies to help things go smoothly."
+tags: ["education"]
 ---
 
 ## Introduction
