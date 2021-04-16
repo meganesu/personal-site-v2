@@ -2,6 +2,7 @@
 title: How to Add an RSS Feed to Your Gatsby Site
 date: "2021-01-30"
 description: "RSS feeds are a low-maintenance way to help your readers stay up-to-date on your latest content. This post walks you through the steps to add an RSS feed to an existing Gatsby site."
+tags: ["javascript", "rss", "gatsby"]
 ---
 
 ## Introduction

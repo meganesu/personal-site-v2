@@ -2,6 +2,7 @@
 title: "Year in Review: 2020 Restrospective"
 date: "2020-12-31"
 description: "Reflecting on 2020, and setting goals for the year ahead."
+tags: ["retrospective"]
 ---
 
 ## Introduction

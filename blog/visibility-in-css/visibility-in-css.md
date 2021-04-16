@@ -2,6 +2,7 @@
 title: "[Sketchnote] Visibility in CSS"
 date: "2021-01-04"
 description: There are multiple ways to toggle visibility in CSS. This diagram helps you decide which approach is right for your use case.
+tags: ["accessibility", "css"]
 ---
 
 ## Introduction
