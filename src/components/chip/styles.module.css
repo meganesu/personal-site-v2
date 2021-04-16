@@ -1,0 +1,52 @@
+.chip {
+  border-radius: 1rem;
+  padding: 0.25rem 0.75rem;
+  font-family: inherit;
+  font-size: inherit;
+  border: solid 4px transparent;
+}
+
+.blue {
+  background-color: var(--light-blue);
+}
+
+.orange {
+  background-color: var(--light-orange);
+}
+
+.chip::after {
+  content: attr(data-text);
+  font-weight: bold;
+  height: 0;
+  display: block;
+  visibility: hidden;
+}
+
+.chip:hover, .chip:focus {
+  border: solid 4px var(--blue);
+  outline: none;
+}
+
+.orange:hover, .orange:focus {
+  border: solid 4px var(--orange);
+}
+
+.blue:active {
+  background-color: var(--blue);
+}
+
+.orange:active {
+  background-color: var(--orange);
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.blue.selected {
+  border: solid 4px var(--blue);
+}
+
+.orange.selected {
+  border: solid 4px var(--orange);
+}
