@@ -1,0 +1,11 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}
