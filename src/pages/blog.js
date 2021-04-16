@@ -44,11 +44,11 @@ const Blog = () => {
           "🌿 Growing",
           "🌳 Mature"
         ]}
-        color="orange"
+        color="blue"
       />
       <PostFilterList
         filters={Array.from(uniquePostTags).sort()}
-        color="blue"
+        color="orange"
       />
       <ol className={postListStyles}>
         {data.allMarkdownRemark.nodes.map((node) => (
