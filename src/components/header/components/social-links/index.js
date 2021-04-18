@@ -12,17 +12,17 @@ import { socialLinks as socialLinksStyles } from "./styles.module.css"
 const SocialLinks = () => (
   <ul className={socialLinksStyles}>
     <li>
-      <OutboundLink href="https://github.com/meganesu" aria-label="GitHub">
+      <OutboundLink href="https://github.com/meganesu" aria-label="Megan's GitHub profile">
         <FontAwesomeIcon icon={faGithub} size="2x" color="white" />
       </OutboundLink>
     </li>
     <li>
-      <OutboundLink href="https://twitter.com/meganesulli" aria-label="Twitter">
+      <OutboundLink href="https://twitter.com/meganesulli" aria-label="Megan's Twitter profile">
         <FontAwesomeIcon icon={faTwitter} size="2x" color="white" />
       </OutboundLink>
     </li>
     <li>
-      <OutboundLink href="https://linkedin.com/in/meganesu" aria-label="LinkedIn">
+      <OutboundLink href="https://linkedin.com/in/meganesu" aria-label="Megan's LinkedIn profile">
         <FontAwesomeIcon icon={faLinkedin} size="2x" color="white" />
       </OutboundLink>
     </li>
