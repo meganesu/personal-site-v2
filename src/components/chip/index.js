@@ -6,7 +6,7 @@ import {
   orange as orangeStyles,
 } from "./styles.module.css"
 
-const ToggleChip = ({ text, color }) => {
+const ToggleChip = ({ text, color, onAdd, onRemove }) => {
   const [isSelected, setIsSelected] = useState(false)
 
   let colorStyles
@@ -19,11 +19,18 @@ const ToggleChip = ({ text, color }) => {
 
   return (
     <button
+      type="button"
       className={`${chipStyles} ${colorStyles} ${isSelected ? selectedStyles : ""}`}
       onClick={() => {
+        if (isSelected) {
+          onRemove(text)
+        } else {
+          onAdd(text)
+        }
         setIsSelected(!isSelected)
       }}
       data-text={text}
+      aria-pressed={isSelected.toString()}
     >
       {text}
     </button>
