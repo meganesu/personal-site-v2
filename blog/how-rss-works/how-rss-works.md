@@ -2,7 +2,7 @@
 title: "An Intro to RSS Feeds"
 date: "2021-02-13"
 description: "A brief, illustrated introduction to RSS feeds and how they work."
-tags: ["illustration", "rss"]
+tags: ["illustration", "rss", "web dev"]
 ---
 
 ## Introduction
