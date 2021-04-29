@@ -72,6 +72,9 @@ const Blog = () => {
         onAdd={addFilter(selectedPostTags, setSelectedPostTags)}
         onRemove={removeFilter(selectedPostTags, setSelectedPostTags)}
       />
+      <p aria-live="polite" aria-atomic="true">
+        {postsToDisplay.length} {postsToDisplay.length === 1 ? "post" : "posts"} found
+      </p>
       <ol className={postListStyles}>
         {postsToDisplay.map((node) => (
           <li className={postStyles}>
