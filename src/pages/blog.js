@@ -38,29 +38,20 @@ const Blog = () => {
   })
 
   const [selectedPostTags, setSelectedPostTags] = useState(new Set())
-  const [selectedPostStatuses, setSelectedPostStatuses] = useState(new Set())
-  const [postList, setPostList] = useState(allPosts)
+  const [postsToDisplay, setPostsToDisplay] = useState(allPosts)
 
-  const addFilter = (filterList, setFilterList) => filterName => {
-    console.log(filterList)
-    const newFilterList = filterList.add(filterName)
-    setFilterList(newFilterList)
-    setPostList(allPosts.filter(shouldPostDisplay))
+  const addFilter = () => filterName => {
+    const newFilterList = selectedPostTags.add(filterName)
+    setSelectedPostTags(newFilterList)
+    setPostsToDisplay(allPosts.filter(shouldPostDisplay))
   }
 
-  const removeFilter = (filterList, setFilterList) => filterName => {
-    console.log('removed', filterName)
-    const newFilterList = filterList
+  const removeFilter = () => filterName => {
+    const newFilterList = selectedPostTags
     newFilterList.delete(filterName)
-    setFilterList(newFilterList)
-    setPostList(allPosts.filter(shouldPostDisplay))
+    setSelectedPostTags(newFilterList)
+    setPostsToDisplay(allPosts.filter(shouldPostDisplay))
   }
-
-  const postStatuses = [
-    "🌱 Sprouting",
-    "🌿 Growing",
-    "🌳 Mature"
-  ]
 
   const shouldPostDisplay = node => {
     // When no filters are selected, show all posts
@@ -76,19 +67,13 @@ const Blog = () => {
     <Layout pageTitle="Blog | Megan Sullivan">
       <h1>Blog</h1>
       <PostFilterList
-        filters={postStatuses}
-        color="blue"
-        onAdd={addFilter(selectedPostStatuses, setSelectedPostStatuses)}
-        onRemove={removeFilter(selectedPostStatuses, setSelectedPostStatuses)}
-      />
-      <PostFilterList
         filters={Array.from(uniquePostTags).sort()}
         color="orange"
         onAdd={addFilter(selectedPostTags, setSelectedPostTags)}
         onRemove={removeFilter(selectedPostTags, setSelectedPostTags)}
       />
       <ol className={postListStyles}>
-        {postList.map((node) => (
+        {postsToDisplay.map((node) => (
           <li className={postStyles}>
             <h2>
               <Link to={`/blog/${node.fields.slug}`}>
