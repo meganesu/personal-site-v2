@@ -2,7 +2,7 @@
 title: "[Sketchnote] Web Storage APIs: How Browsers Store Data"
 date: "2020-11-29"
 description: "localStorage and sessionStorage are two ways that web browsers store data. This sketchnote describes the difference between the two and illustrates their common API."
-tags: ["web dev"]
+tags: ["web dev", "illustration", "javascript"]
 ---
 
 ![A sketchnote about localStorage and sessionStorage](./web-storage-sketchnote.png)
