@@ -41,7 +41,22 @@ a:hover, a:focus {
 .header-anchor,
 .header-anchor:focus,
 .header-anchor:hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  padding-right: 4px;
+
   border-bottom: unset;
+}
+
+.header-anchor {
+  opacity: 0;
+}
+
+.header-anchor:focus,
+.header-anchor:hover {
+  opacity: unset;
 }
 
 strong {
