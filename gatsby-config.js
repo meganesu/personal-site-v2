@@ -13,29 +13,8 @@ module.exports = {
       options: {
         defaultLayouts: {
           default: require.resolve("./src/components/layout")
-        }
-      }
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "UA-159656850-1",
-        head: false, // Place the tracking script in the head (instead of in the body)
-        anonymize: true, // (optional) Anonymize the IP address of the sender
-        respectDNT: true, // (optional) Respect user's Do Not Track setting
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "blog",
-        path: `${__dirname}/blog`,
-      },
-    },
-    {
-      resolve: "gatsby-transformer-remark",
-      options: {
-        plugins: [
+        },
+        gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-autolink-headers",
             options: {
@@ -59,33 +38,47 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-159656850-1",
+        head: false, // Place the tracking script in the head (instead of in the body)
+        anonymize: true, // (optional) Anonymize the IP address of the sender
+        respectDNT: true, // (optional) Respect user's Do Not Track setting
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "blog",
+        path: `${__dirname}/blog`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-feed`,
       options: {
         feeds: [
           {
             title: `Megan Sullivan's Blog RSS Feed`,
             output: `/rss.xml`,
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
-                return Object.assign({}, edge.node.frontmatter, {
-                  url: `${site.siteMetadata.siteUrl}/blog/${edge.node.fields.slug}`,
-                  guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.fields.slug}`,
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map(node => {
+                return Object.assign({}, node.frontmatter, {
+                  url: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
                 })
               })
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
-                  edges {
-                    node {
-                      fields { slug }
-                      frontmatter {
-                        title
-                        date
-                        description
-                      }
+                  nodes {
+                    slug
+                    frontmatter {
+                      title
+                      date
+                      description
                     }
                   }
                 }
