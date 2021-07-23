@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
-import Layout from "../components/layout/"
+import Layout from "../../components/layout/"
 import {
   postList as postListStyles,
   post as postStyles,
-} from "./blog.module.css"
-import PostFilterList from "../components/post-filter-list"
+} from "./index.module.css"
+import PostFilterList from "../../components/post-filter-list"
 
 const Blog = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
         nodes {
           frontmatter {
             title
@@ -18,17 +18,15 @@ const Blog = () => {
             description
             tags
           }
-          excerpt(format: PLAIN)
-          fields {
-            slug
-          }
+          excerpt
+          slug
           timeToRead
         }
       }
     }
   `)
 
-  const allPosts = data.allMarkdownRemark.nodes
+  const allPosts = data.allMdx.nodes
 
   const uniquePostTags = new Set()
   allPosts.forEach(node => {
@@ -79,7 +77,7 @@ const Blog = () => {
         {postsToDisplay.map((node) => (
           <li className={postStyles}>
             <h2>
-              <Link to={`/blog/${node.fields.slug}`}>
+              <Link to={`/blog/${node.slug}`}>
                 {node.frontmatter.title}
               </Link>
             </h2>
