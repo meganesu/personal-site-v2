@@ -11,7 +11,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 const Header = () => (
   <header className={headerStyles}>
-    <StaticImage src="../../images/meganesulli.jpg" alt="" className={profilePictureStyles} />
+    <StaticImage src="../../images/meganesulli.jpg" alt="" className={profilePictureStyles} imgStyle={{ borderRadius: "50%" }} />
     <p className={titleStyles}>
       <Link to="/">Megan Sullivan</Link>
     </p>
