@@ -1,0 +1,14 @@
+.container {
+  background-color: var(--light-blue);
+  padding: 1rem;
+  border-left: 0.5rem solid var(--blue);
+  margin: 1rem 3rem;
+}
+
+.container :first-child {
+  margin-top: 0rem;
+}
+
+.container :last-child {
+  margin-bottom: 0rem;
+}
