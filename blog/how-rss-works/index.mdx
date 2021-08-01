@@ -5,11 +5,14 @@ description: "A brief, illustrated introduction to RSS feeds and how they work."
 tags: ["illustrated", "rss", "web dev"]
 ---
 
+import CalloutBox from '../../src/components/callout-box'
+
 ## Introduction
 
 RSS feeds are a great low-lift way to keep your readers up to date with your latest content. But what actually is an RSS feed? And how do people use them?
 
 In this post, I'll explain the basics of how RSS feeds work.
+
 ## What is an RSS feed?
 
 RSS stands for "really simple syndication."
@@ -25,14 +28,22 @@ The two main RSS elements are:
 * `<channel>` - Contains information about your overall site, like the URL where it's hosted. Each RSS feed has a single `<channel>` element, which contains one or more `<item>` child elements.
 * `<item>` - Contains information about a single unit of content on your site, like a specific blog post or video. Your feed will have several `<item>` elements - one for each piece of content on your site.
 
-> Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
+<CalloutBox>
+
+Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
+
+</CalloutBox>
 
 You can give readers access to your RSS feed in a few different ways:
 
 * You can add an `<a>` tag someplace where readers will easily find it, like in your site's header or footer.
 * You can add a `<link>` element to the `<head>` of your site, which will make your feed autodiscoverable by some browsers.
 
-> Interested in more implementation details? Check out the "Telling People About Your Feed" section of this [RSS Tutorial by Mark Nottingham](https://www.mnot.net/rss/tutorial/).
+<CalloutBox>
+
+Interested in more implementation details? Check out the "Telling People About Your Feed" section of this [RSS Tutorial by Mark Nottingham](https://www.mnot.net/rss/tutorial/).
+
+</CalloutBox>
 
 ## How do people use RSS feeds?
 

@@ -6,6 +6,9 @@ description: "Focus management is an important part of building accessible websi
 tags: ["accessibility", "react", "web dev"]
 ---
 
+import CalloutBox from '../../src/components/callout-box'
+import Collapsible from '../../src/components/collapsible'
+
 ## What You Will Learn
 
 By the end of this article, you will be able to:
@@ -29,7 +32,11 @@ Not everyone who uses a computer can use a mouse. Some users have physical disab
 
 Let's look at an example to see what I mean. The CodePen below has some starter code for the React project we'll be working on in this post. The main content is a table that shows what color you get when you mix two other colors.
 
-> This table structure is a simplified version of a project I built recently, a [table of all the Game Boy opcodes](https://meganesu.github.io/generate-gb-opcodes). For more background on that project, check out this article I wrote: [Meet the Game Boy Instruction Set](/blog/game-boy-opcodes).
+<CalloutBox>
+
+This table structure is a simplified version of a project I built recently, a [table of all the Game Boy opcodes](https://meganesu.github.io/generate-gb-opcodes). For more background on that project, check out this article I wrote: [Meet the Game Boy Instruction Set](/blog/game-boy-opcodes).
+
+</CalloutBox>
 
 Each cell in the table has a button. Clicking a button does two things:
 
@@ -54,23 +61,31 @@ Here's a more accessible user experience: When a user clicks on one of the butto
 
 The [acceptance criteria](https://existek.com/blog/what-are-acceptance-criteria/) for these two requirements might look something like this:
 
-1. **Given** the sidebar is closed\
-**When** I click on a button in a table cell\
+1. **Given** the sidebar is closed<br/>
+**When** I click on a button in a table cell<br/>
 **Then** the keyboard focus moves to the header inside the sidebar.
 
-1. **Given** the sidebar is open\
-**When** I click on the "Close sidebar" button\
+1. **Given** the sidebar is open<br/>
+**When** I click on the "Close sidebar" button<br/>
 **Then** the keyboard focus moves back to the table cell button.
 
 ## A Closer Look at the Starter Code
 
-> "Cut to the chase, Megan. Where's the code?"
->
-> If you want to jump right into implementing focus management, you can skip ahead to the next section: [How to Move Focus in React: `ref`](#how-to-move-focus-in-react-ref)
+<CalloutBox>
+
+**"Cut to the chase, Megan. Where's the code?"**
+
+If you want to jump right into implementing focus management, you can skip ahead to the next section: [How to Move Focus in React: `ref`](#how-to-move-focus-in-react-ref)
+
+</CalloutBox>
 
 Before we start implementing focus management features, let's get familiar with the component structure of the [starter code](https://codepen.io/meganesu/pen/OJVXwer):
 
 ![A diagram of the app component tree](./app-structure.png)
+
+<Collapsible
+  summary={<h3>How Do the Components Fit Together?</h3>}
+>
 
 Here's a breakdown of how all the components fit together:
 
@@ -90,7 +105,11 @@ Here's a breakdown of how all the components fit together:
 * **TableCell**: Renders the `td` element for an individual cell.
     * Inside the `td` element, there is a `button` element. When this button is clicked, the click event handler calls the `updateSidebar` function from props and passes it the `colors` prop for that cell.
 
-### What Happens When the Sidebar Opens?
+</Collapsible>
+
+<Collapsible
+  summary={<h3>What Happens When the Sidebar Opens?</h3>}
+>
 
 Here's a breakdown of how the data flows between components when the sidebar opens:
 
@@ -100,7 +119,11 @@ Here's a breakdown of how the data flows between components when the sidebar ope
 1. This state change causes a rerender of the App component, and the Sidebar component gets new prop values for `colors` and `isHidden`.
 1. Since `isHidden` is now `false` (the opposite of `showSidebar`), the Sidebar component renders without the "hidden" class, and the Sidebar becomes visible to the user.
 
-### What Happens When the Sidebar Closes?
+</Collapsible>
+
+<Collapsible
+  summary={<h3>What Happens When the Sidebar Closes?</h3>}
+>
 
 Here's a breakdown of how the data flows between components when the sidebar closes.
 
@@ -110,6 +133,8 @@ Here's a breakdown of how the data flows between components when the sidebar clo
 1. This state change causes a rerender of the App component, and the Sidebar component gets a new prop value for `isHidden`.
 1. Since `isHidden` is now `true` (the opposite of `showSidebar`), the Sidebar component renders with the "hidden" class, and the Sidebar slides off the page and out of sight.
 
+</Collapsible>
+
 ## How to Move Focus in React: `ref`
 
 Now that we know how our starter code works and what we want it to do, we can start implementing our focus management requirements. But how do you move focus in a React app? Enter `ref`.
@@ -118,9 +143,13 @@ What is a `ref`? It's short for "reference." It's a way to refer directly to an 
 
 Normally, in React, information only flows through components in one direction: a parent component passes data down to its children as props. But sometimes, you'll need one component (like the TableCell in our example) to be able to talk to another component in a totally different part of the DOM tree (like the Sidebar). `ref` is React's way of letting you do that.
 
-> **Don't overuse `ref`!**
->
-> Just because you can use `ref` to get around the normal React data flow doesn't mean you should use it for everything. The React team identified [specific use cases where `ref` comes in handy](https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs) (like managing focus for accessibility). If your situation doesn't fall under one of those use cases, think carefully about whether there's another way to achieve your goal without using `ref`.
+<CalloutBox>
+
+**Don't overuse `ref`!**
+
+Just because you can use `ref` to get around the normal React data flow doesn't mean you should use it for everything. The React team identified [specific use cases where `ref` comes in handy](https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs) (like managing focus for accessibility). If your situation doesn't fall under one of those use cases, think carefully about whether there's another way to achieve your goal without using `ref`.
+
+</CalloutBox>
 
 The process for using `ref` looks like this:
 
@@ -143,7 +172,11 @@ Usually, you'll just pass in an initial value of `null`:
 const myRef = useRef(null)
 ```
 
-> If you're using class components, the syntax looks a little different. You can refer to the [official React docs about `ref`](https://reactjs.org/docs/refs-and-the-dom.html) for the details.
+<CalloutBox>
+
+If you're using class components, the syntax looks a little different. You can refer to the [official React docs about `ref`](https://reactjs.org/docs/refs-and-the-dom.html) for the details.
+
+</CalloutBox>
 
 Now you have a variable for the `ref` you created, which you can pass down to child components via props. (We'll take a closer look at how to do that when we start implementing focus management in the next section.)
 
@@ -175,7 +208,11 @@ Once that component mounts, React will update `myRef.current` to be the DOM elem
 Object { current: button }
 ```
 
-> Now that `myRef.current` is a focusable [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement), you can call its [`focus` method](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus), which will automatically move keyboard focus to that element.
+<CalloutBox>
+
+Now that `myRef.current` is a focusable [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement), you can call its [`focus` method](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus), which will automatically move keyboard focus to that element.
+
+</CalloutBox>
 
 ## The Solution
 
@@ -185,8 +222,8 @@ Now that we've got a basic understanding of how `ref` works, let's see how to us
 
 Let's start with a quick recap of the first acceptance criterion:
 
-**Given** the sidebar is closed \
-**When** I click on a button in a table cell \
+**Given** the sidebar is closed<br/>
+**When** I click on a button in a table cell<br/>
 **Then** the keyboard focus moves to the header inside the sidebar.
 
 Before we get too deep into the code, let's take a step back and think about the high-level overview of what we need to do:
@@ -201,10 +238,16 @@ With that big picture in mind, let's get into the code to implement this:
     ```javascript
     import { Fragment, useState, useRef } from 'react';
     ```
-    > In CodePen, this import looks a little different:
-    > ```javascript
-    > const { Fragment, useState, useRef } = React;
-    > ```
+
+    <CalloutBox>
+
+    In CodePen, this import looks a little different:
+    ```javascript
+    const { Fragment, useState, useRef } = React;
+    ```
+
+    </CalloutBox>
+
 1. Create `sidebarRef`. Which component should we create it in? We know that we eventually want to attach it to the `h1` in the Sidebar component. We also need to be able to call `sidebarRef.current.focus()` when the TableCell is clicked. Since the App component is a parent of Sidebar, and it's where `updateSidebar` (the function called from the TableCell click handler) is defined, let's create `sidebarRef` inside the App component.
     ```javascript
     const App = () => {
@@ -253,7 +296,13 @@ With that big picture in mind, let's get into the code to implement this:
     }
     ```
 1. Finally, go back to the `updateSidebar` function in the App component. Add a step to move focus to the element assigned to `sidebarRef`.
-    > Since `sidebarRef` is defined inside of App, you can access it inside of `updateSidebar`.
+
+    <CalloutBox>
+    
+    Since `sidebarRef` is defined inside of App, you can access it inside of `updateSidebar`.
+
+    </CalloutBox>
+
     ```javascript
     const App = () => {
       // ...
@@ -275,11 +324,15 @@ Here's [another CodePen](https://codepen.io/meganesu/pen/jOPMbGX) with all the c
   (<a href='https://codepen.io/meganesu'>@meganesu</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-> **Note:** For this focus management solution to work correctly, you need the sidebar to always be rendered in the DOM.
->
-> When I initially built this project, I used [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to only add the Sidebar component to the DOM if it was visible on the screen. But this caused problems with the focus management behavior.
->
-> The first time I clicked a TableCell button, the sidebar would open, but the keyboard focus wouldn't move. It turns out, this was because the Sidebar component wasn't mounted yet, which meant that `sidebarRef.current` wasn't assigned to anything. To get the focus to move into the sidebar, I had to click the TableCell button twice: once to open the sidebar and mount the component, and once to actually move focus once the component was mounted. Not ideal.
+<CalloutBox>
+
+**Note:** For this focus management solution to work correctly, you need the sidebar to always be rendered in the DOM.
+
+When I initially built this project, I used [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to only add the Sidebar component to the DOM if it was visible on the screen. But this caused problems with the focus management behavior.
+
+The first time I clicked a TableCell button, the sidebar would open, but the keyboard focus wouldn't move. It turns out, this was because the Sidebar component wasn't mounted yet, which meant that `sidebarRef.current` wasn't assigned to anything. To get the focus to move into the sidebar, I had to click the TableCell button twice: once to open the sidebar and mount the component, and once to actually move focus once the component was mounted. Not ideal.
+
+</CalloutBox>
 
 ### Part 2: Move Focus When the Sidebar Closes
 
@@ -287,8 +340,8 @@ You're halfway done! Hang in there, you're doing great.
 
 Let's take another look at our second acceptance criterion:
 
-**Given** the sidebar is open\
-**When** I click on the "Close sidebar" button\
+**Given** the sidebar is open<br/>
+**When** I click on the "Close sidebar" button<br/>
 **Then** the keyboard focus moves back to the table cell button.
 
 Like last time, let's take a step back and lay out a high-level overview of what we need to do:
@@ -347,7 +400,13 @@ Now let's implement this in code:
     }
     ```
 1. Now it's time to change `updateSidebar`. First, we can add the new `buttonRef` parameter. Then, we can set `lastCellClicked` to the `buttonRef` that's passed in.
-    > To summarize, this means that when a user clicks on a TableCell button and `updateSidebar` is called, `lastCellClicked` will be updated with the `ref` for the TableCell button that was clicked.
+
+    <CalloutBox>
+
+    To summarize, this means that when a user clicks on a TableCell button and `updateSidebar` is called, `lastCellClicked` will be updated with the `ref` for the TableCell button that was clicked.
+
+    </CalloutBox>
+
     ```javascript
     const App = () => {
       // ...
@@ -387,20 +446,24 @@ As with any new functionality, it's a good idea to write tests along the way, so
 
 One tip to keep in mind: you should test the side effects of your application, not the implementation. Instead of checking that a particular function was called, think about what behavior your end user expects and check that.
 
-> **Do yourself a favor!** 
->
-> If your tests are too closely tied to the exact implementation of your app, they become brittle. For example, imagine Future You decides to change the way you implemented a feature, without affecting the end result. You'll probably also end up needing to change your tests, even though your end users see the same behavior.
-> 
-> On the other hand, if your tests are checking for side effects - things you expect your code to have done by the time it finishes running - they'll be more flexible and less likely to fail due to refactoring.
+<CalloutBox>
+
+**Do yourself a favor!** 
+
+If your tests are too closely tied to the exact implementation of your app, they become brittle. For example, imagine Future You decides to change the way you implemented a feature, without affecting the end result. You'll probably also end up needing to change your tests, even though your end users see the same behavior.
+
+On the other hand, if your tests are checking for side effects - things you expect your code to have done by the time it finishes running - they'll be more flexible and less likely to fail due to refactoring.
+
+</CalloutBox>
 
 Let's take one last look at our acceptance criteria:
 
-1. **Given** the sidebar is closed\
-**When** I click on a button in a table cell\
+1. **Given** the sidebar is closed<br/>
+**When** I click on a button in a table cell<br/>
 **Then** the keyboard focus moves to the header inside the sidebar.
 
-1. **Given** the sidebar is open\
-**When** I click on the "Close sidebar" button\
+1. **Given** the sidebar is open<br/>
+**When** I click on the "Close sidebar" button<br/>
 **Then** the keyboard focus moves back to the table cell button.
 
 Both of these test scenarios have a similar structure:

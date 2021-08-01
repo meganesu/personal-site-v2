@@ -5,11 +5,17 @@ description: "localStorage and sessionStorage are two ways that web browsers sto
 tags: ["web dev", "illustrated", "javascript"]
 ---
 
+import CalloutBox from '../../src/components/callout-box'
+
 ![A sketchnote about localStorage and sessionStorage](./web-storage-sketchnote.png)
 
 Browsers have two built-in ways to store data: `sessionStorage` and `localStorage`.
 
-> ⚠️ Don't use either for sensitive information (passwords, credit cards, etc.), since both are vulerable to XSS attacks!
+<CalloutBox>
+
+⚠️ Don't use either for sensitive information (passwords, credit cards, etc.), since both are vulerable to XSS attacks!
+
+</CalloutBox>
 
 ## `sessionStorage`
 

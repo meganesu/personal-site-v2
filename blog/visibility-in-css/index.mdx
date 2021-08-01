@@ -5,6 +5,8 @@ description: There are multiple ways to toggle visibility in CSS. This diagram h
 tags: ["accessibility", "css", "illustrated"]
 ---
 
+import CalloutBox from '../../src/components/callout-box'
+
 ## Introduction
 
 There are multiple ways to toggle visiblity in CSS. Personally, I didn't really understand why you'd choose one approach over another until I took [Marcy Sutton's](https://marcysutton.com/) Frontend Masters course: [Accessibility in JavaScript Applications](https://frontendmasters.com/courses/javascript-accessibility/).
@@ -22,7 +24,11 @@ I drew up this diagram to show which CSS approach to use, depending on your answ
 
 ![A digitally drawn table with four quadrants. The columns are labeled: "Visible in Accessibility Tree? Yes, No." The rows are labeled: "Preserves Space? Yes, No." The contents in each quadrant are described below.](./visibility-in-css.png)
 
-> **Note:** The class names aren't important, they're just wrappers around the actual CSS properties. You could apply these styles using whatever CSS selector you want.
+<CalloutBox>
+
+**Note:** The class names aren't important, they're just wrappers around the actual CSS properties. You could apply these styles using whatever CSS selector you want.
+
+</CalloutBox>
 
 ## Case 1: Visible in Accessibility Tree & Preserves Space
 
