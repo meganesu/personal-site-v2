@@ -5,6 +5,8 @@ description: "RSS feeds are a low-maintenance way to help your readers stay up-t
 tags: ["javascript", "rss", "gatsby"]
 ---
 
+import CalloutBox from '../../src/components/callout-box'
+
 ## Introduction
 
 As a content creator, you want to make it easy for your readers to stay updated on your latest content. By adding an [RSS feed](https://www.rssboard.org/rss-specification) to your site, readers can get automatic updates whenever you post a new article, video, or photo of your dog.
@@ -34,8 +36,11 @@ The two main RSS elements are:
 * `<channel>` - Contains information about your overall site, like the URL where it's hosted. Each RSS feed contains a single `<channel>` element, which itself contains one or more `<item>` child elements.
 * `<item>` - Contains information about a single unit of content on your site, like a specific blog post or video. You'll have multiple `<item>` elements - one for each piece of content on your site.
 
-> Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
+<CalloutBox>
 
+Looking for more details about the structure of an RSS feed? Here's the formal [RSS specification](https://www.rssboard.org/rss-specification).
+
+</CalloutBox>
 
 ## Prerequisites
 
@@ -67,11 +72,14 @@ To get the site up and running locally:
 1. In a web browser, navigate to `localhost:8000`. You should see something like this:
    ![A blog landing page. The title says "My Blog Posts", and links to three posts are listed: "My First Post," "Another Great Post," and "Yet Another Post."](./blog-landing-page.png)
 
-> A few notes on the starter code, if you're curious how it works:
->
-> * It uses [Gatsby's File System Route API](https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/) to programatically generate new pages for each blog post. The template for each page is in the `src/pages/{MarkdownRemark.frontmatter__title}.js` file.
-> * It also uses the [`gatsbyPath` field](https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/#routing-and-linking) from the File System Route API to generate slugs for each blog post page that's created.
+<CalloutBox>
 
+A few notes on the starter code, if you're curious how it works:
+
+* It uses [Gatsby's File System Route API](https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/) to programatically generate new pages for each blog post. The template for each page is in the `src/pages/{MarkdownRemark.frontmatter__title}.js` file.
+* It also uses the [`gatsbyPath` field](https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/#routing-and-linking) from the File System Route API to generate slugs for each blog post page that's created.
+
+</CalloutBox>
 
 ## Adding an RSS Feed
 
@@ -83,7 +91,11 @@ The high-level process for adding an RSS feed to your Gatsby site looks like thi
 * **[Step 3](#step-3-build-and-serve-your-site-locally-to-test-the-rss-feed):** Build and serve your site locally to test the RSS feed.
 * **[Step 4](#step-4-optional-add-a-link-to-your-rss-feed-to-your-site):** (Optional) Add a link to your RSS feed to your site.
 
-> To skip ahead and see the finished product, check out the [`solution` branch](https://github.com/meganesu/gatsby-blog-with-rss-feed-example/tree/solution) of the starter code repo.
+<CalloutBox>
+
+To skip ahead and see the finished product, check out the [`solution` branch](https://github.com/meganesu/gatsby-blog-with-rss-feed-example/tree/solution) of the starter code repo.
+
+</CalloutBox>
 
 ### Prerequisite: Confirm that you have `siteMetadata`
 
@@ -206,7 +218,11 @@ And the query to pull in your blog data for your feed will look like this:
 `
 ```
 
-> If you're new to GraphQL, you can start up your site in develop mode (with `npm run develop`) and use the GraphiQL explorer at `localhost:8000/___graphql` to see what queries and data fields you have available to you.
+<CalloutBox>
+
+If you're new to GraphQL, you can start up your site in develop mode (with `npm run develop`) and use the GraphiQL explorer at `localhost:8000/___graphql` to see what queries and data fields you have available to you.
+
+</CalloutBox>
 
 #### Configuring `serialize`
 
@@ -222,7 +238,11 @@ For this project, your `serialize` function will set the following properties fo
 * `date` - The publish date for this piece of content.
     * This will show up as a `<pubDate>` element in the `<item>` element generated for the RSS feed.
 
-> To see the full list of all the additional item options you could pass in, refer to the [`rss` package documentation](https://www.npmjs.com/package/rss#itemoptions). The `rss` package is what `gatsby-plugin-feed` uses under the hood.
+<CalloutBox>
+
+To see the full list of all the additional item options you could pass in, refer to the [`rss` package documentation](https://www.npmjs.com/package/rss#itemoptions). The `rss` package is what `gatsby-plugin-feed` uses under the hood.
+
+</CalloutBox>
 
 `serialize` receives all the data from the combined `options.query` and `feed.query` response. You can destructure this data and use it in your configuration for each `<item>` element. For example, the function below will create an `<item>` element with the `title`, `description`, and `date` data from `node.frontmatter`, and it also adds a `url` and `guid` property by combining data from the `site` and `allMarkdownRemark` queries.
 
@@ -355,7 +375,11 @@ Use Gatsby's `<Link>` component to add a link to your RSS feed somewhere on your
 
 If your prod build is still running from Step 3, you'll need to kill the server (with `ctrl + c` or by closing the terminal window) and rerun the build/serve command to see your changes. (Production builds don't have hot reloading, so you need to restart the server for your changes to be picked up.)
 
-> You could also test the link using the development server (by running `npm run develop`), but since the RSS feed doesn't get generated for dev builds, you'll get a 404 when you actually click on the link.
+<CalloutBox>
+
+You could also test the link using the development server (by running `npm run develop`), but since the RSS feed doesn't get generated for dev builds, you'll get a 404 when you actually click on the link.
+
+</CalloutBox>
 
 And you're done! The next time you deploy your site, you should be able to visit `<your-domain>/rss.xml` (or whatever you configured `output` to be) and see your own RSS feed.
 

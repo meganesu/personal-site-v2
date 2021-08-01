@@ -6,6 +6,8 @@ description: "What do good documentation and Paper Mario have in common? Scaffol
 tags: ["education", "documentation"]
 ---
 
+import CalloutBox from '../../src/components/callout-box'
+
 ## Introduction
 
 A few weeks ago, I started playing [*Paper Mario: The Origami King*](https://papermario.nintendo.com/). It's the latest game in the *Paper Mario* franchise, available on the Nintendo Switch.
@@ -71,10 +73,14 @@ By gradually introducing one new mechanic at a time, the tutorial writers give p
 
 Does this mean that players' first few battles are sub-optimal? Sure. But they're just getting started, so it's okay. Eventually, players will have access to the full suite of battle mechanics and be ready to kick some origami butt. And more importantly, because they're only learning one new thing at a time, they won't feel overwhelmed and quit partway in.
 
-> #### How to Apply This to Your Documentation
->
-> * **Break up complicated topics into smaller chunks.** If you find yourself trying to explain a bunch of concepts all at once, try to tease them apart into a series of shorter docs (or even just separate sections of the same doc).
-> * **Be intentional about the order in which you introduce new ideas.** Each step in the sequence should help readers build or accomplish something. (Players can still win a battle even if all they have is jump and hammer attacks!)
+<CalloutBox>
+
+#### How to Apply This to Your Documentation
+
+* **Break up complicated topics into smaller chunks.** If you find yourself trying to explain a bunch of concepts all at once, try to tease them apart into a series of shorter docs (or even just separate sections of the same doc).
+* **Be intentional about the order in which you introduce new ideas.** Each step in the sequence should help readers build or accomplish something. (Players can still win a battle even if all they have is jump and hammer attacks!)
+
+</CalloutBox>
 
 ### Boss Battles: Only Introduce It When You Need It
 
@@ -86,10 +92,14 @@ Imagine if Olivia explained the boss battle mechanics in the first encounter of 
 
 It's fine to tease the "advanced" boss battle mechanic in the trailer, to hook people's attention or give them a sneak peek of what's to come. But in the actual game, the developers don't explain all the nitty-gritty details until they're sure players have a solid grasp of the basics first.
 
-> #### How to Apply This to Your Documentation
->
-> * **Keep your [Expert Blind Spot](https://thevaluable.dev/expert-blind-spot-software-development/) in check.** It's hard to learn new things. Humans can only keep roughly four pieces of information in their brain's working memory at the same time, but learning a new technology frequently requires juggling many more than four concepts. As the documentation writer, it's your responsibility to protect your readers from unnecessary mental load as they get up to speed with your docs. That means putting yourself back into the shoes of a complete beginner. What implicit information do you know as a writer that your readers might not know yet? Where can you add those details so that they are easily discoverable?
-> * **Separate the main idea from the edge cases.** I've noticed that sometimes docs jump deep into the weeds of implementation before establishing a big picture for readers. But comprehensiveness comes at the expense of clarity. Is it obvious to a newcomer that those edge cases are an "advanced" feature? Or is going into detail just muddying up their understanding of the basic idea? Yes, it's important to tell folks about edge cases somewhere. But your readers need to have a clear understanding of the main idea first. Try using headers and labels to clearly mark advanced topics that can be skipped by beginners. Better yet, pull edge cases out into their own "Troubleshooting" doc, and add a callout at the top to highlight prerequisite knowledge for beginners: "Looking for an introduction to X? Here's a link to the overview doc!" (Think of it like a side quest.)
+<CalloutBox>
+
+#### How to Apply This to Your Documentation
+
+* **Keep your [Expert Blind Spot](https://thevaluable.dev/expert-blind-spot-software-development/) in check.** It's hard to learn new things. Humans can only keep roughly four pieces of information in their brain's working memory at the same time, but learning a new technology frequently requires juggling many more than four concepts. As the documentation writer, it's your responsibility to protect your readers from unnecessary mental load as they get up to speed with your docs. That means putting yourself back into the shoes of a complete beginner. What implicit information do you know as a writer that your readers might not know yet? Where can you add those details so that they are easily discoverable?
+* **Separate the main idea from the edge cases.** I've noticed that sometimes docs jump deep into the weeds of implementation before establishing a big picture for readers. But comprehensiveness comes at the expense of clarity. Is it obvious to a newcomer that those edge cases are an "advanced" feature? Or is going into detail just muddying up their understanding of the basic idea? Yes, it's important to tell folks about edge cases somewhere. But your readers need to have a clear understanding of the main idea first. Try using headers and labels to clearly mark advanced topics that can be skipped by beginners. Better yet, pull edge cases out into their own "Troubleshooting" doc, and add a callout at the top to highlight prerequisite knowledge for beginners: "Looking for an introduction to X? Here's a link to the overview doc!" (Think of it like a side quest.)
+
+</CalloutBox>
 
 ### The Battle Lab: Provide Opportunities for Practice
 
@@ -97,11 +107,15 @@ One of the hidden gems of *The Origami King* is the Battle Lab. It's a special b
 
 I love the Battle Lab because it's a perfect example of scaffolding. Advanced users who already feel comfortable with the battle mechanics probably won't spend much time there. But beginners (or people who just can't seem to figure out the ring puzzles, like myself) can spend as much time as they want in a low-risk environment, gradually improving the skills they need to be successful in the game.
 
-> #### How to Apply This to Your Documentation
->
-> * **Add checks for understanding to help readers test themselves.** Consider adding a few short prompts to the end of each doc. These could be open-ended questions ("Why is it important to do X?"), or they could be sample exercises that require the reader to put some content into practice ("How would you write an API call to accomplish Y?"). The checks should be tied to the main idea you want readers to take away from that doc. By testing themselves on what they just read, readers can check if they understood the material or if they need to go back and reread something.
->     * Checks for understanding are a good place to collect metrics! Track readers' answers to each question. If lots of folks get a particular question wrong, you might need to investigate where they're getting stuck and make improvements to your doc.
-> * **Provide a sandbox where readers can practice applying new ideas.** Consider creating a sandbox mode or an example project that users can explore to practice a new topic. You could either give them some starter code with a prompt for new features to add, or you could give them a completed code example showing how the final product works. (Or both!) In either case, be sure to provide text prompts to guide their exploration and highlight the important bits.
+<CalloutBox>
+
+#### How to Apply This to Your Documentation
+
+* **Add checks for understanding to help readers test themselves.** Consider adding a few short prompts to the end of each doc. These could be open-ended questions ("Why is it important to do X?"), or they could be sample exercises that require the reader to put some content into practice ("How would you write an API call to accomplish Y?"). The checks should be tied to the main idea you want readers to take away from that doc. By testing themselves on what they just read, readers can check if they understood the material or if they need to go back and reread something.
+    * Checks for understanding are a good place to collect metrics! Track readers' answers to each question. If lots of folks get a particular question wrong, you might need to investigate where they're getting stuck and make improvements to your doc.
+* **Provide a sandbox where readers can practice applying new ideas.** Consider creating a sandbox mode or an example project that users can explore to practice a new topic. You could either give them some starter code with a prompt for new features to add, or you could give them a completed code example showing how the final product works. (Or both!) In either case, be sure to provide text prompts to guide their exploration and highlight the important bits.
+
+</CalloutBox>
 
 ## Conclusion
 
