@@ -1,5 +1,5 @@
 import React from "react"
-import Head from "../head"
+import SEO from "../seo"
 import SkipLink from "../skip-link"
 import Header from "../header"
 import Footer from "../footer"
@@ -18,7 +18,9 @@ const Layout = ({ children, pageContext, pageTitle }) => {
 
   return (
     <div className={containerStyles}>
-      <Head title={title} />
+      <SEO
+        title={title}
+      />
       <SkipLink link="#main-content">Skip to main content</SkipLink>
       <Header />
       <div className={mainWrapperStyles}>
