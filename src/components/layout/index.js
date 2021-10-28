@@ -13,13 +13,24 @@ import {
   main as mainStyles,
 } from "./styles.module.css"
 
-const Layout = ({ children, pageContext, pageTitle }) => {
-  const title = pageContext?.frontmatter?.title || pageTitle || "Megan Sullivan"
+const Layout = (props) => {
+  const {
+    children,
+    pageContext,
+    location,
+  } = props
+
+  const title = pageContext?.frontmatter?.title || props.title
+  const description = pageContext?.frontmatter?.description || props.description
+  const image = pageContext?.frontmatter?.image || props.image || false
 
   return (
     <div className={containerStyles}>
       <SEO
         title={title}
+        description={description}
+        image={image}
+        path={location.pathname}
       />
       <SkipLink link="#main-content">Skip to main content</SkipLink>
       <Header />
