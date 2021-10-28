@@ -3,6 +3,8 @@ module.exports = {
     title: `Megan Sullivan's Personal Website`,
     siteUrl: `https://meganesulli.com`,
     description: `The personal website for Megan Sullivan, a software developer and educator.`,
+    image: `images/meganesulli-default-social-card.png`,
+    favicon: `images/favicon.png`
   },
   plugins: [
     "gatsby-plugin-sharp",
