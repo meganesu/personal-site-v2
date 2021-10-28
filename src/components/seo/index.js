@@ -42,7 +42,7 @@ const SEO = (props) => {
       {image && <meta property="og:image" content={image} />}
 
       {/* Twitter */}
-      <meta name="twitter:card" content="summmary_large_image" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}
