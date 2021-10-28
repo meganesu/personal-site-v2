@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../../components/layout/"
 import {
   postList as postListStyles,
@@ -7,25 +7,7 @@ import {
 } from "./index.module.css"
 import PostFilterList from "../../components/post-filter-list"
 
-const Blog = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-        nodes {
-          frontmatter {
-            title
-            date(formatString: "MMMM Do, YYYY")
-            description
-            tags
-          }
-          excerpt
-          slug
-          timeToRead
-        }
-      }
-    }
-  `)
-
+const Blog = ({data, location}) => {
   const allPosts = data.allMdx.nodes
 
   const uniquePostTags = new Set()
@@ -62,7 +44,11 @@ const Blog = () => {
   }
 
   return (
-    <Layout pageTitle="Blog | Megan Sullivan">
+    <Layout
+      title="Blog | Megan Sullivan"
+      description="A list of my latest blog posts"
+      location={location}
+    >
       <h1>Blog</h1>
       <PostFilterList
         filters={Array.from(uniquePostTags).sort()}
@@ -89,5 +75,23 @@ const Blog = () => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+      nodes {
+        frontmatter {
+          title
+          date(formatString: "MMMM Do, YYYY")
+          description
+          tags
+        }
+        excerpt
+        slug
+        timeToRead
+      }
+    }
+  }
+`
 
 export default Blog

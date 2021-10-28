@@ -14,6 +14,7 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM Do, YYYY")
+        description
       }
       body
       timeToRead
@@ -21,21 +22,25 @@ export const query = graphql`
   }
 `
 
-const BlogPost = (props) => (
-  <Layout
-    pageTitle={`${props.data.mdx.frontmatter.title} | Megan Sullivan`}
-  >
-    <h1 className={titleStyles}>
-      {props.data.mdx.frontmatter.title}
-    </h1>
-    <p className={dateStyles}>{props.data.mdx.frontmatter.date}</p>
-    <p
-      className={timeToReadStyles}
-    >{`(${props.data.mdx.timeToRead}-minute read)`}</p>
-    <MDXRenderer>
-      {props.data.mdx.body}
-    </MDXRenderer>
-  </Layout>
-)
+const BlogPost = ({data, location}) => {
+  return (
+    <Layout
+      title={`${data.mdx.frontmatter.title} | Megan Sullivan`}
+      description={data.mdx.frontmatter.description}
+      location={location}
+    >
+      <h1 className={titleStyles}>
+        {data.mdx.frontmatter.title}
+      </h1>
+      <p className={dateStyles}>{data.mdx.frontmatter.date}</p>
+      <p
+        className={timeToReadStyles}
+      >{`(${data.mdx.timeToRead}-minute read)`}</p>
+      <MDXRenderer>
+        {data.mdx.body}
+      </MDXRenderer>
+    </Layout>
+  )
+}
 
 export default BlogPost
