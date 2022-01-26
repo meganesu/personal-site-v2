@@ -1,259 +1,283 @@
 ---
-title: "Docs for Everyone: How to make your documentation work for both newcomers and power users"
+title: "Docs for Everyone!"
 date: "2021-11-04"
-description: "5 tips for how to build a documentation site that works for both newcomers and power users."
+description: "5 tips for building a high-quality documentation site that works for both newcomers and power users."
 tags: ["documentation"]
 ---
 
-import YouTubeEmbed from './src/components/youtube-embed/'
+import CalloutBox from '../../src/components/callout-box'
+import Collapsible from '../../src/components/collapsible'
+import YouTubeEmbed from '../../src/components/youtube-embed'
 
-Hi there, and thanks for coming to my talk, Docs for Everyone!
+<CalloutBox>
+This article is adapted from a talk I gave at GatsbyCamp Fall 2021, which you can watch below.
+</CalloutBox>
 
-My name is Megan Sullivan, and I’m a senior software engineer at Gatsby, where I’ve been mainly focused on our documentation. My latest big project was rewriting the official Gatsby Tutorial to improve the overall learning experience.
+<YouTubeEmbed src="https://www.youtube.com/embed/HnBNbG2Csv8" />
 
-In my life before being a developer, I was a teacher and curriculum writer.
+In my life before being a developer, I was a teacher and curriculum writer. And one of the best feelings as an educator was helping learners who felt confused or overwhelmed gain confidence in their abilities to create cool things.
 
-And one thing I really loved about being an educator was working with learners who were new to a technology, and helping them move from a place where they felt really confused or overwhelmed and to a place where they felt confident in their abilities to create cool things.
+Similarly, one of things I love about documentation is that it lets you have that same impact of helping people deepen their skills. But with documentation, you have that impact at a much larger scale than is possible through 1:1 interactions.
 
-Similarly, now that I work on documentation, one of the things I love about my job is having that same impact of helping people grow their skills, but at a much larger scale than was possible through 1:1 interactions.
+<CalloutBox>
 
-Just to put some numbers on it, earlier this year, I taught an online Intro to Gatsby workshop that had around 1000 participants. Then after the workshop, I rewrote that same curriculum as online documentation (in the format of the new Gatsby Tutorial), which now gets around 4000 views every day. So with that one set of new docs, I’m able to reach as many students as if I taught four live workshops a day every day.
+**Want numbers?** Last March, I taught an Intro to Gatsby workshop that had around 1000 participants. After the workshop, I rewrote that same curriculum as online documentation (in the form of the new [Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/)), which was getting around 4000 views a day.
 
-But one of the hard things about scaling your documentation is that as the size of your audience grows, there’s a wider and wider variety of people you’re trying to write for.
+With that one set of new docs, I’m able to reach as many students as if I taught four live workshops *every day*.
 
-So the list of bare-bones API references that worked well for your team when it was just a few internal engineers isn’t going to cut it when you have new users who are trying to figure out how to use your product for the first time.
+</CalloutBox>
 
-So this talk is going to be about trying to answer the question of: “How do you build one documentation site that works for all your users?”
+But as you scale your documentation and your audience grows, there’s a wider and wider variety of people you’re trying to write for. The bare-bones API reference that worked when your team was just a few internal engineers isn’t going to cut it when you have new users trying to use your product for the first time.
 
-I’m mainly going to be looking at this through the lens of experience level. So how can you create a documentation site that works for newcomers to your product as well as your existing power users.
+So how do you build one documentation site that works for all your users? In this article, I outline my top 5 techniques for creating high quality documentation that serves as many users as possible:
 
+1. [Expose the architecture](#tip-1-expose-the-architecture)
+2. [Set the stage](#tip-2-set-the-stage)
+3. [Let readers choose](#tip-3-let-readers-choose)
+4. [Check for understanding](#tip-4-check-for-understanding)
+5. [Get user feedback](#tip-5-get-user-feedback)
 
-I’ve got a list of my top 5 tips for creating high quality documentation that works for as many users as possible, and I’ll spend the rest of this talk walking through each of these recommendations.
+<CalloutBox>
 
-1. Expose the architecture
-2. Set the stage
-3. Let readers choose
-4. Check for understanding
-5. Get user feedback
+**Note:** I’ll mainly look at this challenge through the lens of experience level. In other words, how can you create a documentation site that works for newcomers to your product as well as your existing power users.
+
+</CalloutBox>
 
 ## Tip #1: Expose the architecture
 
-This first tip is to expose the architecture of your documentation to your users, which means helping them see the big picture of what kinds of information is included in your docs and where to find it.
-
-
-A big part of this comes down to the information architecture of how your docs are organized.
+In order for your users to make the most of your documentation, they need to understand the big picture of what kinds of information is included in your docs and where to find it. A major factor in that comes down to the **information architecture** of how your docs are organized.
 
 Imagine you’re a user showing up to your product’s docs site for the first time. It might not be obvious to you where to find the information you’re looking for, or even what kinds of information is available to you.
 
 As a documentarian, it’s your job to provide new users with a clear map and signposts that they can use to navigate the content of your docs.
 
-One example of an information architecture that you can use to organize your content is the Diátaxis framework by Daniele Procida, which is what the Gatsby docs structure is based on.
+### Define the architecture
 
-The Diátaxis framework splits up documentation into four different categories, based on the reader’s current goal. For example, someone who is trying to use Gatsby for the first time is going to need very different information from a professional developer who is working on fixing a bug for a client site.
+One example of an information architecture that you can use to organize your documentation is the [Diátaxis framework](https://diataxis.fr/) by Daniele Procida. (This is what the [Gatsby docs structure](https://www.gatsbyjs.com/blog/announcing-new-gatsby-docs-site/) is based on).
 
-To briefly explain each of these categories, you’ve got:
+The Diátaxis framework splits up documentation into four different categories:
 
-Tutorials, which hold the reader’s hand through their first experience with your product. These are specifically tailored for newcomers who may not know anything about your product or how it works.
-Next you’ve got How-To Guides, which are more practical step-by-step guides to help readers accomplish a specific task. (Kind of like a recipe you would use for cooking.)
-Then you have Reference, which describes the technical details of how your product works (like an API spec or a user manual).
-And finally there’s Explanation, which explores more big-picture concepts and helps readers deepen their understanding of a topic. In the Gatsby docs, we call these “Conceptual Guides”. And one example is a guide comparing different content management systems that you could choose for your Gatsby site.
+- **Tutorials**: Hold the reader’s hand through their first experience with your product. These are specifically tailored for newcomers who may not know anything about your product or how it works.
+- **How-To Guides**: Practical step-by-step guides to help readers accomplish a specific task. (Kind of like a recipe you would use for cooking.)
+- **Reference**: Describes the technical details of how your product works (like an API spec or a user manual).
+- **Explanation**: Explores more big-picture concepts and helps readers deepen their understanding of a topic. (Gatsby calls these docs “Conceptual Guides”.)
 
-The thing that I really like about this documentation framework is how it prioritizes the user’s goal. That way, it’s easier for users to discover the resources that they need when they need them.
+![The four documentation types, charted into four quadrants. One axis: goes from "practical steps" to "theoretical knowledge". The other axis goes from "serve our study" to "serve our work". Detailed description below](./diataxis-quadrants.png)
 
----
+<Collapsible summary={<em>Expand for detailed image description</em>}>
 
-Daniele Procida
-(dan-YELL-uh PRO-chee-duh) (YouTube)
+The four documentation types can be charted into four quadrants, based on their content type and intended use case.
 
-Thinking about how to organize your docs. Instead of grouping content by subject matter, consider grouping them by use case. What is the reader going to try to accomplish with that doc?
+- Tutorials are learning-oriented. They include practical steps that are meant to serve our study (when we're in learning mode).
+- How-To Guides are task-oriented. They also contain practical steps, but they're focused more on serving our work (when we're actively trying to get something done).
+- Explanation is understanding-oriented. It's more theoretical knowledge, meant to serve our study.
+- Reference is information-oriented. It's theoretical knowledge that can serve our work.
 
-The goal here is to put yourself into the reader’s state of mind. Someone who is trying to learn about Gatsby for the first time is going to want very different information from a developer consultant who is at work trying to fix a bug on a client site.
+</Collapsible>
 
-By using the Diataxis framework, you’re making sure each of your users has the right tools that they need to solve their current problem at hand.
+The key thing about the Diátaxis framework is that it categorizes documentation based on the reader’s current goal. Someone using your product for the first time is going to need very different information from a professional actively working on fixing a bug for a client site. By organizing your docs in a way that centers your reader's end goal, you make it easier for them to discover the resource that they need when they need it.
 
-Copy the copy from Docs site, explaining the four categories.
-Give an example of a title of each type of doc.
+### Expose the architecture to your readers
 
-Explain docs reorg.
+It’s not enough to just sort all of your docs into organized categories. Once you have a structure in place, let your readers know what it is! This is where the idea of **exposing the architecture** comes into play.
 
-So once you’ve decided how to structure your documentation, you still need to let your users know what structure you decided on. And this is where the idea of exposing the architecture comes in.
+For example, after we reorganized the Gatsby docs to use the Diátaxis framework, we adjusted the site's design to reflect the new information architecture.
 
-This is a screenshot of what our Gatsby docs look like, after we reorganized things last year to fit the Diátaxis framework. So on the landing page, we tell readers what different types of documentation they’ll find on our site, and when each type is most useful. We also list the four doc types in the navigation menu at the top of the page and in the sidebar, so that we can keep highlighting our docs structure for readers. Ultimately, it all comes back to helping readers find what they’re looking for more easily.
+- On the docs home page, we tell readers what different types of documentation they’ll find on our site, and when each type is most useful.
+- We also list the four doc types in the navigation menu at the top of the page and in the sidebar, so that we can keep reinforcing our docs structure in the reader's mind.
 
----
+![The home page for the Gatsby docs. The documentation types are highlighted in the navigation bar at the top of the page, the sidebar, and the body of the landing page.](./expose-the-architecture-gatsby-docs.png)
 
-But it’s not enough to just sort all of your docs into these categories. You still have to let your users know 
-Once you have a structure in place, let users know what it is! Make sure it’s top of mind and consistently used throughout your site.
+Ultimately, it all comes back to helping readers find what they’re looking for more easily.
 
-Heading structure
-Sidebar
-Landing pages
+<CalloutBox>
 
-This principle also applies to within individual docs. Use consistent heading structures for certain doc types, so that users know what to expect and can use their pattern-matching skills.
+**Tip:** The "expose the architecture" principle can also be applied within individual docs! Use headings to break down the content within a doc. Within a particular doc type, use a consistent heading structure so that users know what to expect and can use their pattern-matching skills to parse information more quickly.
 
+</CalloutBox>
 
-Goal: How do you figure out how to structure your docs? (Big picture)
-
----
 
 ## Tip #2: Set the stage
 
-So now that you have the overall structure of your docs in place, it’s time to zoom in and focus on the actual content within each doc. Which brings us to tip #2: set the stage.
+Now that your overall docs structure is in place, it’s time to zoom in and focus on the content within each doc. That brings us to tip #2: **set the stage**. In other words, help your users understand what you’re talking about before jumping into the weeds of explaining a new topic.
 
-So now that you have the overall structure of your docs in place, it’s time to zoom in and focus on the actual content within each doc. Which brings us to tip #2: set the stage.
+When I was a curriculum writer, my team had three things that we always checked for in each lesson that we designed: **context**, **relevance**, and **application**.
 
-Setting the stage is all about helping your users understand what you’re talking about before jumping into the weeds of explaining a new topic.
+- **Context**: Explain what you’re talking about, so that all your readers start with the same baseline understanding. This is where you define key terms and concepts, link to any prerequisite background knowledge you expect readers to have, and explain how the main idea of this doc ties fits into the overall structure of your product ecosystem.
+- **Relevance**: Why should readers care about this topic? What problem does it help solve? Are there specific use cases when they might choose to use this feature over another one?
+- **Application**: Walk readers through how to use the feature in their work.
 
----
-
-At this point, your reader has found a doc that they think might have the information they’re looking for, they’ve clicked on it, and they’re just starting to look it over. But you don’t know 
-
-At this point, your reader is has found a doc that they think might have the information they’re looking for, they’ve clicked on it, and they’re just starting to look it over. At this point, your job is to set the stage so that readers can quickly tell whether at the point where they’ve clicked on a doc, and they’re just starting to look over it. By setting the stage, I mean that you want to clearly lay out what 
-
-So a user has looked through your docs site, clicked on a doc, and now what? 
-
-So when a reader lands on one of your docs, the first thing you should do is get them up to speed on what you’re talking about and whythey should be able to quickly get up to speed on what the topic is
-
-This means making sure that each of your docs helps users get on the same page about what a topic is before getting too deep into the details.
-
-Your first job is to help them set their expectations for what that doc is going to be about
-
----
-
-Tip #2 is to set the stage.
-
-Now that your docs are clearly organized, let’s zoom in to look at the actual content within each doc. How do you make sure the content inside each doc helps readers achieve their goal?
-
-So you’ve helped readers find the
-
-“HMW help readers understand what’s possible with our product?”
-
-
----
-
-![INSERT ALT](./context-relevance-application.png)
-
-When I was a curriculum writer, my team had three things that we always checked for in each lesson that we designed: context, relevance, and application.
-
-Context is about explaining what you’re talking about, so that all your readers start with the same baseline understanding. This is where you define key terms and concepts, link to any prerequisite background knowledge you expect readers to have, and explain how the main idea of this doc ties fits into the overall structure of your product ecosystem.
-
-Once readers know what you’re talking about, you can move on to relevance, which is why they should care about this topic. What problem does it help solve? Are there specific use cases when you might choose to use this feature over another one?
-
-Then, after you’ve convinced your readers that this topic is worth learning about, you can move on to the application piece - walking them through how to use that feature in their work.
+![Context: What are you talking about? Relevance: Why should I care about that? Application: You've convinced me! Now how do I do it?](./context-relevance-application.png)
 
 Most docs already do a good job of the application piece, but the context and relevance pieces are especially important, because those are what help readers develop their mental model of how all the pieces of your product fit together.
 
----
+### An example
 
-To help you get a better sense of what each of those three pieces looks like in practice, let’s look at an example of what this looks like in Part 3 of the new Gatsby Tutorial, which is all about plugins.
+Let’s see what context, relevance, and application look like in practice. Here's how I used them in [Part 3 of the new Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-3/), which is all about plugins:
 
----
+- **Context**: What are plugins? Plugins are npm packages that let you add pre-built functionality to your Gatsby site.
+- **Relevance**: Why do we care about plugins? Because plugins let you add new features to your site more quickly than if you were to write them yourself from scratch.
+- **Application**: How do we add a plugin to our site? First, we install it with npm. Then, we configure it in our `gatsby-config.js` file. Finally, we use whatever unique plugin features are relevant in our site.
 
-So first, there’s the context. What are plugins? Plugins are npm packages that let you add pre-built functionality to your Gatsby site.
+In your actual docs, you'd go into much more detail than this, but hopefully that's enough to give you an idea of what you're going for.
 
-Next up, relevance. Why do we care about plugins? Because plugins let you add new features to your site more quickly than if you were to write them yourself from scratch.
-
-Okay, cool. Sounds great. Now for the application: how do we add a plugin to our site? First, we install it with npm. Then, we configure it in our gatsby-config.js file. Finally, we use whatever unique plugin features are relevant in our site.
-
-Obviously, your actual docs would have much more detail than this. But having these three pieces nailed down early on in your writing process can help you stay focused and make sure your final doc will help all readers, regardless of how much previous experience they have with your product.
-
----
+Having these three pieces nailed down early on in your writing process can help you stay focused and make sure your final doc will help all readers, regardless of how much previous experience they have with your product.
 
 ## Tip #3: Let readers choose
 
-So now let’s move on to step #3: let readers choose.
+This next tip is about giving readers multiple ways to consume information on your docs site, so that they can choose the option that works best for them.
 
-This is about giving readers multiple ways to consume information on your docs site, so that they can choose the option that works best for them. 
+<CalloutBox>
 
----
+**Note:** In education, this technique is called [**differentiation**](https://www.edglossary.org/differentiation/).
 
-There are a few different facets to what I mean, but ultimately they both come down to the idea of differentiation, which is a term used widely in education 
+</CalloutBox>
 
-Provide multiple ways of consuming the information.
+We'll look at two different ways you can give readers options: providing multiple forms of engagement, and letting users opt into additional details.
 
-In addition to text descriptions, use diagrams (with appropriate alt text) and videos.
-Use Collapsible and callout box components to help readers opt into/out of additional information.
-
-
----
 
 ### Multiple forms of engagement
 
-So for example, in the new Gatsby Tutorial, in addition to the standard text explanations, we also include a variety of other ways that readers can engage with the main ideas.
+By explaining the same concepts in multiple ways, you increase the chances that readers will find one option that resonates with their preferred learning style. And that means they’ll ultimately leave with a better understanding of the overall topic
 
-One way we do that is by including diagrams to help readers visualize processes, like this one that shows how data flows through Gatsby’s GraphQL data layer.
+In the new Gatsby Tutorial, in addition to the standard text explanations, we also include a variety of other ways that readers can engage with the main ideas:
 
-We also use analogies to help map Gatsby-specific concepts that readers might not be familiar with onto everyday things that they’ve probably encountered in their own lives. For instance, this illustration explains the difference between the StaticImage and GatsbyImage components using the analogy of asking for directions to a specific street address (like 400 Main Street) versus asking for directions to a generic location (like “the best coffee shop in town”).
+* Diagrams
+* Analogies
+* Video
 
-Each part of the Tutorial also includes an embedded YouTube video where a colleague and I walk through the content for that part, in case readers would rather follow along with someone as they work through the material.
+#### Diagrams
 
-And the reason that we use multiple forms of engagement (to explain the same concept in multiple ways) is to increase the chances that a reader will resonate with one of the explanations, which means they’ll ultimately leave with a better understanding of the overall topic
+Diagrams can help readers visualize processes, like this one that shows how data flows through Gatsby’s GraphQL data layer.
 
+![A diagram with lots of labeled circles and arrows, showing how data flows from data sources to Gatsby's GraphQL data layer to the site's React components](./diagram-data-layer-with-nodes.png)
 
---
-
- is in the hopes that people will be able to find the version that works best for them and ultimately have a better understanding of the overall concepts. By providing multiple forms of engagement, you increase the odds that your reader will resonate with one of the explanations.
-
----
-
-The important thing to note here is that we
-
-Providing the same information in multiple ways means that everyone can find the thing that works best for them.
-
-Livestreams, analogies, and diagrams don’t replace the text. They complement each other. Each of these formats still require text to set the context and explain why this image or code block is relevant.
+Diagrams are especially useful for complex technical systems or architectures with several moving parts.
 
 
----
+#### Analogies
 
-### Opt into additional details
+Analogies help map product-specific concepts that readers might not be familiar with onto everyday things that they’ve probably encountered in their own lives. 
+
+For instance, this illustration explains the difference between the `StaticImage` and `GatsbyImage` components using the analogy of asking for directions to a specific street address (like 400 Main Street) versus asking for directions to a generic location (like “the best coffee shop in town”).
+
+![An illustration of two identical town maps. One, labeled StaticImage, has a single marker for an address, "400 Main Street". The other, labeled GatsbyImage, has three different markers each labeled, "coffee shop".](./analogy-staticimage-vs-gatsbyimage-towns.png)
+
+<CalloutBox>
+
+**Want to learn more?** [Maggie Appleton](https://maggieappleton.com/) has an excellent talk called [Drawing the Invisible](https://www.youtube.com/watch?v=MQGe9zxlRdk), which is about visual metaphors and how they can make technical concepts easier to learn. (Ever wondered how React is like a potato plant? Check out this talk!)
+
+</CalloutBox>
+
+#### Video
+
+Some readers would rather follow along with someone as they work through the material. In that case, it can help to embed videos into your docs, showing someone walking through all the steps.
+
+Each part of the Gatsby Tutorial includes an embedded YouTube video like the one below, where a colleague and I walk through the content for that part.
+
+<YouTubeEmbed src="https://www.youtube.com/embed/RnaM4Rt05vY?t=244" />
+
+
+<CalloutBox>
+
+**Note:** Livestreams, analogies, and diagrams don’t *replace* the text in your doc. They complement each other. Each of these formats still require text to set the context and explain why this image or resource is relevant.
+
+</CalloutBox>
+
+
+### Opting into additional details
 
 Another way you can provide readers choices is by making it easy for them to opt into or out of additional levels of detail.
 
-In the new Gatsby Tutorial, we do this by making use of MDX’s ability to use React components inside of Markdown files. So we have two different components that clearly separate extra optional content from the main flow of the document.
+In the new Gatsby Tutorial, we do this by making use of MDX’s ability to use React components inside of Markdown files. We have two different components that clearly separate extra optional content from the main flow of the document: announcements and collapsible sections.
 
-The first one is this blue Announcement box, which sometimes includes Syntax Hints for JavaScript or React newcomers who might not be familiar with a particular piece of syntax. Other times it has Pro Tips which go into more detail about things that aren’t required for readers to know but that they might find interesting.
+For both components, the goal is to clearly indicate to users what content is required (the main steps of the Tutorial) and what is supplementary and can be skipped. That way, readers can tailor their experience through the doc to match the level of detail they’re interested in.
 
-The second component we use is this purple Collapsible box, which uses the details and summary HTML elements under the hood, and lets you hide content behind an expandable dropdown. In the Tutorial, we use this to hide background information that might be helpful for React or GraphQL newcomers but that isn’t strictly necessary reading for people who want to just follow along with the steps of the Tutorial. This would also be a good component to use if you wanted to document common error messages that users might encounter. So you could have the error name in the summary tag, and then users could click to expand for more information on what the error is and how to fix it.
+#### Announcements
 
-For both of these components, the goal is to clearly indicate to users what content is required (the main steps of the Tutorial) and what is supplementary and can be skipped. That way, readers can tailor their experience through the doc to match the level of detail they’re interested in.
+In the Gatsby Tutorial, blue announcement boxes like the one shown below add extra information that stands out visually from the normal flow of the document.
 
----
+![A blue callout box stands out from the rest of the page content with the following tip: "Curious what source plugins are in the Plugin Library? You can identify source plugins by their name: they typically start with gatsby-source-"](./announcement-component.png)
 
-The new Tutorial takes advantage of the power of MDX by using some new React components.
+Sometimes these callouts include **Syntax Hints** for JavaScript or React newcomers who might not be familiar with a particular piece of syntax. Other times they have **Pro Tips** which go into more detail about things that aren’t required for readers to know but that they might find interesting.
 
-Announcement (from gatsby-interface)
-Highlight extra notes, to make it easier to opt into additional details (or skip over them if you’re not interested).
-Collapsible (new, from mdx-aliases folder in mansion)
-Cover key concepts in more detail, for people who might need additional background information.
+<CalloutBox>
 
-For both of these, the goal is to clearly indicate to users what content is required (the main steps of the Tutorial) and what is supplementary and can be skipped.
+**Tip:** Adding consistent labels to your callouts is another way to expose the architecture of your docs to readers!
 
-Also good for including error messages! Include common errors and explain what’s broken and how to fix it.
+When readers are familiar with the types of callouts they'll see in your docs, they'll be able to parse through new docs more quickly. ([Our brains are hard-wired for pattern matching!](https://personalmba.com/pattern-matching/))
 
----
+</CalloutBox>
+
+When you wrap this optional content in a visually distinct container, it helps readers who want to skip that content quickly see where to start reading again.
+
+#### Collapsible Sections
+
+The second component used in the Gatsby Tutorial is a purple collapsible box, which lets you hide content behind an expandable dropdown. (Under the hood, it's using the `details` and `summary` HTML elements.)
+
+![A collapsible component. When collapsed, only the title is visible: "Key React Concept: Writing a React component". When expanded, it also shows much more text, explaining the steps for creating a React component.](./collapsible-component.png)
+
+We use this to hide background information that might be helpful for React or GraphQL newcomers but that isn’t strictly necessary reading for people who want to just follow along with the steps of the Tutorial.
+
+This would also be a good component to use if you wanted to document common error messages that users might encounter. For example, you could have the error name in the summary tag, and then users could click to expand for more information on what the error is and how to fix it.
+
+
 
 ## Tip #4: Check for understanding
 
-Tip #4 is to check for understanding.
+Once your users have found the doc they’re looking for and they’ve read the content, how do you know whether they "get" it? By adding in checks for understanding, you can use to make sure that your readers leave your docs understanding the things you were hoping they’d learn.
 
-So once your users have found the doc they’re looking for, they’ve read the content, this is something you can use to make sure that your readers are leaving that doc understanding the things you were hoping they’d learn.
+Checks for understanding are built-in opportunities for your readers to self-assess whether or not they understood the material in the doc.
 
-So in the new Gatsby Tutorial, each part is book-ended by a list of learning objectives at the beginning (which outline what readers should be able to do by the time they finish reading the doc)...
+<CalloutBox>
 
-...and lists of questions and key takeaways at the end that readers can use to reflect on whether or not they achieved the expected learning objectives. 
+**Note:** Depending on what information architecture you decided on for your docs, checks for understanding may make more sense in some types than others.
 
-These bulleted lists are a super low-lift option, but you could also do something more interactive, like having a CodePen that lets readers practice the skills they learned.
+For example, if you're using the Diátaxis framework, checks for understanding may make more sense in a Tutorial or Explanation doc than in a Reference doc.
 
-But regardless of the format, by providing opportunities for readers to self-assess how well they understood the material, you’re giving them a chance to strengthen their memories of the key ideas covered in your doc, which will make it easier for them to remember in the future.
+</CalloutBox>
 
----
+In the new Gatsby Tutorial, each part is book-ended by the following:
+
+- (At the beginning) A list of **learning objectives**, which outline what readers should be able to do by the time they finish reading the doc.
+- (At the end) Separate lists for **questions** (like a mini quiz) and **key takeaways**, to help readers reflect on whether or not they achieved the expected learning objectives.
+
+<Collapsible summary="Want an example?">
+
+Here are some concrete examples of these lists, from [Part 4 of the Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-4/).
+
+**Lesson Objectives:**
+
+> By the end of this part of the Tutorial, you will be able to:
+> 
+> - Use GraphiQL to explore the data in the data layer and build your own GraphQL queries.
+> - Use the useStaticQuery hook to pull data into a “building-block” component.
+> - Use the gatsby-source-filesystem plugin to pull data into your site from your computer’s filesystem.
+> - Create a page query to pull data into a page component.
+
+**Summary Questions:**
+
+> - How do you get data into the data layer?
+> - How can you see what data is in the data layer?
+> - How do you get data out of the data layer?
+> - What are the differences between a page query and useStaticQuery? How would you decide which one to use?
+
+**Key Takeaways:**
+
+> - Source plugins pull data from their original location into the Gatsby GraphQL data layer.
+> - You can use the GraphiQL endpoint (`localhost:8000/___graphql`) to explore the data in the data layer and design GraphQL queries.
+> - You can write GraphQL queries to pull data out of the data layer and into your React components.
+>     - To pull data into a “building block” component, use the useStaticQuery hook.
+>     - To pull data into a page component, use a page query.
+
+</Collapsible>
+
+These bulleted lists are a super low-lift option. But you could also do something more interactive, like having a CodePen or custom-built component to let readers practice the skills they learned. [Apollo](https://www.apollographql.com/) (where I work now!) has a learning platform called [Odyssey](https://odyssey.apollographql.com/) that uses different kinds of interactive checks for understanding, including multiple-choice questions, fill-in-the-blank paragraphs, and embedded code challenges.
+
+Regardless of the format, by providing opportunities for readers to self-assess how well they understood the material, you’re giving them a chance to strengthen their memories of the key ideas covered in your doc, which will make it easier for them to remember in the future.
+
 
 ## Tip #5: Get user feedback
-
-The last tip I’m going to talk about today is getting user feedback.
-
-
----
 
 By hearing from actual users of your product, you’ll be able to understand whether your docs actually help people solve the problems you hoped they’d be able to solve.
 
