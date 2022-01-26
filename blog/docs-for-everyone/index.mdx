@@ -53,7 +53,7 @@ As a documentarian, it’s your job to provide new users with a clear map and si
 
 ### Define the architecture
 
-One example of an information architecture that you can use to organize your documentation is the [Diátaxis framework](https://diataxis.fr/) by Daniele Procida. (This is what the [Gatsby docs structure](https://www.gatsbyjs.com/blog/announcing-new-gatsby-docs-site/) is based on).
+One example of an information architecture that you can use to organize your documentation is the [Diátaxis framework](https://diataxis.fr/) by [Daniele Procida](https://twitter.com/evildmp). (This is what the Gatsby docs structure is based on).
 
 The Diátaxis framework splits up documentation into four different categories:
 
@@ -81,7 +81,7 @@ The key thing about the Diátaxis framework is that it categorizes documentation
 
 It’s not enough to just sort all of your docs into organized categories. Once you have a structure in place, let your readers know what it is! This is where the idea of **exposing the architecture** comes into play.
 
-For example, after we reorganized the Gatsby docs to use the Diátaxis framework, we adjusted the site's design to reflect the new information architecture.
+For example, after [we reorganized the Gatsby docs](https://www.gatsbyjs.com/blog/announcing-new-gatsby-docs-site/) to use the Diátaxis framework, we adjusted the site's design to reflect the new information architecture:
 
 - On the docs home page, we tell readers what different types of documentation they’ll find on our site, and when each type is most useful.
 - We also list the four doc types in the navigation menu at the top of the page and in the sidebar, so that we can keep reinforcing our docs structure in the reader's mind.
@@ -279,51 +279,36 @@ Regardless of the format, by providing opportunities for readers to self-assess 
 
 ## Tip #5: Get user feedback
 
-By hearing from actual users of your product, you’ll be able to understand whether your docs actually help people solve the problems you hoped they’d be able to solve.
+Once you’ve gotten all your docs in place, and you’re happy with how they’re organized and the content that’s in them, the only way you can know whether your docs experience is good or not is by hearing from actual users!
 
-Provide a way for users to give feedback on the quality of your documentation.
+For the Gatsby docs, we have a feedback widget at the bottom of every page, which lets readers rate whether the current doc was great, fine, or bad. It also has a space for them to write in a comment, if they want to tell us a bit more about their experience.
 
-This helps you see what resources are really resonating, which boosts team morale. It’s also a good way to catch typos and things.
+![A feedback modal. "Was this doc helpful to you?" Users can select "poor", "fine", or "great", and there's an optional text area where they can type comments.](./gatsby-feedback-widget.png)
 
-Caveat: If you gather feedback, make sure to actually make improvements based on suggestions! It’s encouraging for users who see that their comments actually have an impact on the project.
+All of those feedback responses get stored in a database, which is connected to a Gatsby site that pulls all the ratings and comments into a table. From there, we can look at overall trends and average ratings, to see which docs people really like and which ones need to be improved.
 
----
+But ultimately, what’s more interesting to me is reading through all the comments that people leave.
 
-Once you’ve gotten all your docs in place, and you’re happy with how they’re organized and the content that’s in them, the only way you can know whether your docs experience is good or not is by talking to actual users!
+### Positive comments validate assumptions
 
-For the Gatsby docs, we have this feedback widget at the bottom of every page, which lets readers rate whether the current doc was great, fine, or bad, and it also has a space for them to write in a comment, if they want to tell us a bit more about their experience.
+Some of the comments are really positive, which is great for morale! But more importantly positive feedback helps us validate our assumptions about which things we thought would resonate with users.
 
-And so all of those feedback responses get stored in a database, and then we have a Gatsby site that pulls all of that response data into a table, so we can see overall trends. We can look at average ratings, to see which docs people really like and which ones need to be improved. But ultimately what’s more interesting to me is reading through all the comments that people leave.
-
-### Positive comments validate assumptions.
-
-Some of the comments are really positive, which is great for morale, but more importantly helps us validate our assumptions about which things we thought would resonate with users. For example, when I was rewriting the Gatsby Tutorial, one of the things I wanted to make sure to preserve was how the old Tutorial was approachable for readers without any prior React or GraphQL experience. And by reading through the comments on the new Tutorial, it’s been reassuring to see that several people have called out the fact that the new content doesn’t make assumptions about what people already know or use a ton of jargon.
-
---
+For example, when I was rewriting the Gatsby Tutorial, one of the things I wanted to make sure to preserve was how the old Tutorial was approachable for readers without any prior React or GraphQL experience. And by reading through the comments on the new Tutorial, it’s been reassuring to see that several people have called out the fact that the new content doesn’t make assumptions about what people already know or use a ton of jargon.
 
 ### Constructive comments lead to incremental improvements
 
-But not all the reviews are positive, and that can be a good thing! By addressing constructive comments and listening to user suggestions, you can make incremental improvements that gradually help make your docs experience better for your future users.
+But not all reviews are positive, and that can be a good thing! By addressing *constructive* comments and listening to user suggestions, you can make incremental improvements that gradually help make your docs experience better for your future users.
 
-For example, we got one comment from a reader suggesting we add a “continue” button to the bottom of each page of the Tutorial, which was an easy fix to improve the reader experience. And multiple readers wrote in that they were confused about a particular thing related to CSS modules, so I added in an additional Syntax Hint to explain what was going on under the hood.
+For example, the Gatsby Tutorial received one comment from a reader suggesting we add a “continue” button to the bottom of each page of the Tutorial, which was an easy fix to improve the reader experience. Other readers wrote in that they were confused about a particular aspect of CSS modules, so I added in an additional Syntax Hint announcement to explain what was going on under the hood. (And now we don't get comments on that anymore!)
 
-Addressing these constructive comments is also a good way to show your users that you care about their experience, and that you’re actually listening to their feedback.
+Addressing constructive comments is also a good way to show your users that you care about their experience, and that you’re actually listening to their feedback. This helps build trust with the people in your community, which is always a good thing!
 
----
-
-The most important thing with 
-
-Current process: Manually checking the table for feedback.
-
-Next steps: Surfacing these comments. Slack firehose? Dashboard?
-
----
 
 ## Wrap It Up
 
-So, to recap what we’ve covered today:
+To recap what we’ve covered:
 
-It’s hard to make one docs site that works for everyone. But some ways you can improve your docs experience are:
+It’s hard to make one docs site that works for everyone. But there are concrete steps you can take to improve your docs experience!
 
 1. **Expose the architecture**, to help users understand the big picture of how your docs are structured.
 2. **Set the stage** by making sure each doc provides context, relevance, and application.
@@ -331,8 +316,21 @@ It’s hard to make one docs site that works for everyone. But some ways you can
 4. **Check for understanding** by providing opportunities for self-assessment, through questions that align to each doc’s learning objectives.
 5. **Get user feedback** so that you can validate your assumptions and continue making incremental improvements.
 
----
-
 I hope that you learned at least one new technique that you can use to improve your docs experience for your users.
 
-If you’re interested in following me online, I’m on Twitter @meganesulli.
+Have other tips that I didn't cover? I'd love to hear about them! You can reach me on Twitter: [@meganesulli](https://twitter.com/meganesulli).
+
+## Resources
+
+Linked in this post:
+
+- [The official Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/)
+- [Diátaxis documentation framework](https://diataxis.fr/)
+- [Differentiation in education](https://www.edglossary.org/differentiation/)
+- [Drawing the Invisible: How to Explain React through Visual Metaphors](https://www.youtube.com/watch?v=MQGe9zxlRdk): Maggie Appleton's talk for Women of React 2020
+- [What is "Pattern Matching"?](https://personalmba.com/pattern-matching/)
+- [Apollo Odyssey](https://odyssey.apollographql.com/)
+
+Additional resources:
+
+- [Docs for Developers: An Engineer's Field Guide to Technical Writing](https://link.springer.com/book/10.1007/978-1-4842-7217-6) (by Jared Bhatti, Zachary Sarah Corleissen, Jen Lambourne, David Nunez, and Heidi Waterhouse): A great book for anyone looking to improve their documentation skills.
