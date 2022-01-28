@@ -1,0 +1,18 @@
+.skip-link {
+  color: var(--blue);
+  opacity: 0;
+  border-bottom: none; /* remove default link underline */
+
+  position: absolute;
+  margin-left: -1em;
+}
+
+.skip-link:hover,
+.skip-link:focus {
+  opacity: 1;
+  border-bottom: none; /* remove default link underline */
+}
+
+.skip-link::before {
+  content: "⬅";
+}

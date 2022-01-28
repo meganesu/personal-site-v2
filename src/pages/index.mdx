@@ -6,11 +6,17 @@ description: "Megan Sullivan is a software developer and educator who is passion
 import { Link } from "gatsby"
 import { OutboundLink } from "gatsby-plugin-google-analytics"
 
+import RouteTargetHeading from '../components/route-target-heading'
 import CallToActionBox from '../components/call-to-action'
 
 import { wave as waveStyles } from "./index.module.css"
 
-# <span class={waveStyles}>👋</span> Hey there, I'm Megan!
+<RouteTargetHeading
+  level={1}
+  targetId="navigation"
+>
+  <span class={waveStyles}>👋</span> Hey there, I'm Megan!
+</RouteTargetHeading>
 
 I'm a software developer and educator who's passionate about helping people use tech for good.
 
