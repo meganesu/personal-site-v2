@@ -1,6 +1,5 @@
 import React from "react"
 import SEO from "../seo"
-import SkipLink from "../skip-link"
 import Header from "../header"
 import Footer from "../footer"
 import "typeface-dancing-script"
@@ -32,10 +31,9 @@ const Layout = (props) => {
         image={image}
         path={location.pathname}
       />
-      <SkipLink link="#main-content">Skip to main content</SkipLink>
       <Header />
       <div className={mainWrapperStyles}>
-        <main className={mainStyles} id="main-content" tabIndex={-1}>
+        <main className={mainStyles} id="main-content">
           {children}
         </main>
         <Footer />
