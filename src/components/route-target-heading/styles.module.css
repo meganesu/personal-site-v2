@@ -4,7 +4,7 @@
   border-bottom: none; /* remove default link underline */
 
   position: absolute;
-  margin-left: -1em;
+  transform: translateX(-125%);
 }
 
 .skip-link:hover,
