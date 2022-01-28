@@ -7,7 +7,7 @@ import {
 } from "./styles.module.css"
 
 const NavBar = () => (
-  <nav>
+  <nav id="navigation">
     <ul className={navBarStyles}>
       <li>
         <Link to="/" activeClassName={activeLinkStyles}>
