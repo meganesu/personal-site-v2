@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../../components/layout/"
+import RouteTargetHeading from "../../components/route-target-heading"
 import {
   postList as postListStyles,
   post as postStyles,
@@ -49,7 +50,12 @@ const Blog = ({data, location}) => {
       description="A list of my latest blog posts"
       location={location}
     >
-      <h1>Blog</h1>
+      <RouteTargetHeading
+        level={1}
+        targetId="navigation"
+      >
+        Blog
+      </RouteTargetHeading>
       <PostFilterList
         filters={Array.from(uniquePostTags).sort()}
         color="orange"

@@ -4,11 +4,14 @@ import { skipLink as skipLinkStyles } from './styles.module.css'
 const RouteTargetHeading = ({
   level = 1,
   targetId,
+  className = '',
   children
 }) => {
   const Heading = `h${level}`
   return (
-    <Heading>
+    <Heading
+      className={className}
+    >
       <a
         id="skip-link"
         className={skipLinkStyles}
