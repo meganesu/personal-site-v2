@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../../components/layout"
+import RouteTargetHeading from "../../components/route-target-heading"
 import {
   title as titleStyles,
   date as dateStyles,
@@ -29,9 +30,13 @@ const BlogPost = ({data, location}) => {
       description={data.mdx.frontmatter.description}
       location={location}
     >
-      <h1 className={titleStyles}>
+      <RouteTargetHeading
+        level={1}
+        targetId="navigation"
+        className={titleStyles}
+      >
         {data.mdx.frontmatter.title}
-      </h1>
+      </RouteTargetHeading>
       <p className={dateStyles}>{data.mdx.frontmatter.date}</p>
       <p
         className={timeToReadStyles}
