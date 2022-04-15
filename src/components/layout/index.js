@@ -1,6 +1,5 @@
 import React from "react"
-import Head from "../head"
-import SkipLink from "../skip-link"
+import SEO from "../seo"
 import Header from "../header"
 import Footer from "../footer"
 import "typeface-dancing-script"
@@ -13,16 +12,28 @@ import {
   main as mainStyles,
 } from "./styles.module.css"
 
-const Layout = ({ children, pageContext, pageTitle }) => {
-  const title = pageContext?.frontmatter?.title || pageTitle || "Megan Sullivan"
+const Layout = (props) => {
+  const {
+    children,
+    pageContext,
+    location,
+  } = props
+
+  const title = pageContext?.frontmatter?.title || props.title
+  const description = pageContext?.frontmatter?.description || props.description
+  const image = pageContext?.frontmatter?.image || props.image || false
 
   return (
     <div className={containerStyles}>
-      <Head title={title} />
-      <SkipLink link="#main-content">Skip to main content</SkipLink>
+      <SEO
+        title={title}
+        description={description}
+        image={image}
+        path={location.pathname}
+      />
       <Header />
       <div className={mainWrapperStyles}>
-        <main className={mainStyles} id="main-content" tabIndex={-1}>
+        <main className={mainStyles} id="main-content">
           {children}
         </main>
         <Footer />

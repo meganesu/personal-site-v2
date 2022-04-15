@@ -41,7 +41,22 @@ a:hover, a:focus {
 .header-anchor,
 .header-anchor:focus,
 .header-anchor:hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  padding-right: 4px;
+
   border-bottom: unset;
+}
+
+.header-anchor {
+  opacity: 0;
+}
+
+.header-anchor:focus,
+.header-anchor:hover {
+  opacity: unset;
 }
 
 strong {
@@ -50,6 +65,13 @@ strong {
 
 blockquote {
   background-color: var(--light-blue);
-  border-left: 0.5rem solid var(--blue);
-  padding: 0.25rem 0.5rem;
+  padding: 1.5rem;
+  font-size: 1.3rem;
+}
+
+blockquote :first-child {
+  margin-top: 0;
+}
+blockquote :last-child {
+  margin-bottom: 0;
 }

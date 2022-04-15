@@ -1,0 +1,45 @@
+.details {
+  background-color: var(--light-orange);
+  border-left: 0.5rem solid var(--orange);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.details :last-child {
+  margin-bottom: 0;
+}
+
+.summary {
+  display: list-item;
+}
+
+.summary :first-child {
+  display: inline;
+}
+
+/* .details {
+  background-color: var(--light-orange);
+  margin-bottom: 1.5rem;
+  border-left: 0.5rem solid var(--orange);
+}
+
+.summary {
+  display: list-item;
+  padding: 1rem;
+}
+
+.summary :first-child {
+  display: inline;
+}
+
+.children {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.children :first-child {
+  margin-top: 0;
+}
+
+.children :last-child {
+  margin-bottom: 0;
+} */
