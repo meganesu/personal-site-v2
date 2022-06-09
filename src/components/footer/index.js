@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import KoFiButton from "../ko-fi-button"
 
 import {
   footer as footerStyles,
@@ -18,6 +19,9 @@ const Footer = () => (
       </li>
       <li>
         <Link to="/rss.xml">RSS</Link>
+      </li>
+      <li>
+        <KoFiButton/>
       </li>
     </ul>
   </footer>

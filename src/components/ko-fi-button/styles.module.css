@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.ko-fi-logo {
+  height: 1rem;
+  padding-right: 0.5rem;
+}
+
+.chip {
+  border-radius: 1rem;
+  padding: 0.25rem 0.75rem;
+  font-family: inherit;
+  font-size: inherit;
+  border: solid 4px transparent;
+  background-color: var(--light-blue);
+}
+
+.chip:hover, .chip:focus {
+  border: solid 4px var(--blue);
+  outline: none;
+}
+
+.chip:active {
+  background-color: var(--blue);
+}
