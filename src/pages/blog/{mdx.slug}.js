@@ -5,6 +5,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import CalloutBox from '../../components/callout-box'
 import Collapsible from '../../components/collapsible'
+import YouTubeEmbed from '../../components/youtube-embed'
 
 import Layout from "../../components/layout"
 import RouteTargetHeading from "../../components/route-target-heading"
@@ -18,6 +19,7 @@ import {
 const mdxComponents = {
   CalloutBox,
   Collapsible,
+  YouTubeEmbed,
 }
 
 export const query = graphql`
