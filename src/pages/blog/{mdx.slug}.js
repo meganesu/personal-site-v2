@@ -1,13 +1,24 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+
+import CalloutBox from '../../components/callout-box'
+import Collapsible from '../../components/collapsible'
+
 import Layout from "../../components/layout"
 import RouteTargetHeading from "../../components/route-target-heading"
+
 import {
   title as titleStyles,
   date as dateStyles,
   timeToRead as timeToReadStyles,
 } from "./{mdx.slug}.module.css"
+
+const mdxComponents = {
+  CalloutBox,
+  Collapsible,
+}
 
 export const query = graphql`
   query($id: String!) {
@@ -41,9 +52,11 @@ const BlogPost = ({data, location}) => {
       <p
         className={timeToReadStyles}
       >{`(${data.mdx.timeToRead}-minute read)`}</p>
-      <MDXRenderer>
-        {data.mdx.body}
-      </MDXRenderer>
+      <MDXProvider components={mdxComponents}>
+        <MDXRenderer>
+          {data.mdx.body}
+        </MDXRenderer>
+      </MDXProvider>
     </Layout>
   )
 }
