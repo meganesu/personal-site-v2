@@ -25,12 +25,6 @@ module.exports = {
             }
           },
           {
-            resolve: "gatsby-remark-prismjs",
-            options: {
-              classPrefix: "language-",
-            }
-          },
-          {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 800,

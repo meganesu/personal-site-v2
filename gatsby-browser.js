@@ -1,5 +1,3 @@
-require("./src/prismjs-override.css")
-
 exports.onRouteUpdate = ({location, prevLocation}) => {
   if (prevLocation) {
     const skipLink = document.querySelector("#skip-link")
