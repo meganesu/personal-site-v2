@@ -5,6 +5,7 @@
   --orange: #fea700;
   --light-orange: #fff8ea;
   --gray: #434343;
+  --light-gray: #bbbbbb;
 }
 
 body {
@@ -97,4 +98,14 @@ blockquote :first-child {
 }
 blockquote :last-child {
   margin-bottom: 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th, td {
+  border: 1px solid var(--light-gray);
+  padding: 8px;
 }
