@@ -5,7 +5,11 @@ import { container as containerStyles, koFiLogo as koFiLogoStyles, chip as chipS
 const KoFiButton = () => {
   return (
     <OutboundLink href="https://ko-fi.com/meganesulli" className={`${chipStyles} ${containerStyles}`}>
-        <img src="https://storage.ko-fi.com/cdn/cup-border.png" className={koFiLogoStyles } />
+        <img
+          src="https://storage.ko-fi.com/cdn/cup-border.png"
+          className={koFiLogoStyles }
+          alt="Ko-fi logo"
+        />
         Support me
     </OutboundLink>
   )
