@@ -7,6 +7,7 @@ module.exports = {
     favicon: `images/favicon.png`
   },
   plugins: [
+    "gatsby-plugin-netlify",
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-image",
