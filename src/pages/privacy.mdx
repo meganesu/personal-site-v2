@@ -3,21 +3,20 @@ title: Privacy | Megan Sullivan
 description: An overview of how I'm collecting and using user data for this site
 ---
 
-import { OutboundLink } from "gatsby-plugin-google-analytics"
-import RouteTargetHeading from '../components/route-target-heading'
+import { OutboundLink } from "gatsby-plugin-google-gtag"
+import RouteTargetHeading from "../components/route-target-heading"
 
-<RouteTargetHeading
-  level={1}
-  targetId="navigation"
->
+<RouteTargetHeading level={1} targetId="navigation">
   Privacy Policy
 </RouteTargetHeading>
 
-Since this is a relatively new site, and I'm not sure anyone is even looking at it, I'm using Google Analytics to collect data about visitors (that's you!). Here's a list of some data that's being collected and how I'm using it:
+I'm currently using Google Analytics to collect data about visitors to this site (that's you!). Eventually I'd love to move away from using Google and rolling my own simple analytics solution, but I haven't figured out quite how to do that yet.
 
-* What pages you're visiting. I use this data to understand which of my posts are more popular, so that I can keep making content that's useful to you.
-* Whether you're on a desktop or mobile device. I use this data so that I can make sure my site has a good user experience on whatever platform you might be using.
-* How you got to my site. I use this data to understand how to better promote my content so that I can get it to you more effectively.
+So in the meantime, here's a list of some data that's being collected and how I'm using it:
+
+- What pages you're visiting. I use this data to understand which of my posts are more popular, so that I can keep making content that's useful to you.
+- Whether you're on a desktop or mobile device. I use this data so that I can make sure my site has a good user experience on whatever platform you might be using.
+- How you got to my site. I use this data to understand how to better promote my content so that I can get it to you more effectively.
 
 ## Want a more comprehensive list of what data Google Analytics tracks?
 
@@ -25,16 +24,7 @@ Check out this article: <OutboundLink href="http://www.google.com/policies/priva
 
 ## Don't want me to collect this info about you?
 
-You can click the button below to opt out of Google Analytics tracking. (This will only disable tracking for this particular site. If you want to opt out of Google Analytics across sites, look into something like this [opt-out browser add-on](https://tools.google.com/dlpage/gaoptout).)
-
-<button
-  onClick={(e) => {
-    window['ga-disable-UA-159656850-1'] = true;
-    e.target.innerText="You are no longer being tracked!"
-  }}
->
-  Opt out of Google Analytics tracking!
-</button>
+If you want to opt out of Google Analytics across sites, look into something like this [opt-out browser add-on](https://tools.google.com/dlpage/gaoptout).)
 
 ## Have a different privacy-focused analytics platform that you prefer?
 
