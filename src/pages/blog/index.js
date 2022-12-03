@@ -82,22 +82,20 @@ const Blog = ({data, location}) => {
   )
 }
 
-export const query = graphql`
-  query {
-    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-      nodes {
-        frontmatter {
-          title
-          date(formatString: "MMMM Do, YYYY")
-          description
-          tags
-        }
-        excerpt
-        slug
-        timeToRead
+export const query = graphql`{
+  allMdx(sort: {frontmatter: {date: DESC}}) {
+    nodes {
+      frontmatter {
+        title
+        date(formatString: "MMMM Do, YYYY")
+        description
+        tags
       }
+      excerpt
+      slug
+      timeToRead
     }
   }
-`
+}`
 
 export default Blog

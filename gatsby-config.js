@@ -71,22 +71,18 @@ module.exports = {
                 })
               })
             },
-            query: `
-              {
-                allMdx(
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                ) {
-                  nodes {
-                    slug
-                    frontmatter {
-                      title
-                      date
-                      description
-                    }
+            query: `{
+              allMdx(sort: {frontmatter: {date: DESC}}) {
+                nodes {
+                  slug
+                  frontmatter {
+                    title
+                    date
+                    description
                   }
                 }
               }
-            `,
+            }`,
           },
         ],
       },
