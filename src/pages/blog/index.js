@@ -69,11 +69,11 @@ const Blog = ({data, location}) => {
         {postsToDisplay.map((node) => (
           <li className={postStyles}>
             <h2>
-              <Link to={`/blog/${node.slug}`}>
+              <Link to={`/blog${node.fields.slug}`}>
                 {node.frontmatter.title}
               </Link>
             </h2>
-            <p>{`${node.frontmatter.date} | ${node.timeToRead}-minute read`}</p>
+            <p>{`${node.frontmatter.date} | ${node.fields.timeToRead.minutes}-minute read`}</p>
             <p>{node.frontmatter.description || node.excerpt}</p>
           </li>
         ))}
@@ -82,20 +82,31 @@ const Blog = ({data, location}) => {
   )
 }
 
-export const query = graphql`{
-  allMdx(sort: {frontmatter: {date: DESC}}) {
-    nodes {
-      frontmatter {
-        title
-        date(formatString: "MMMM Do, YYYY")
-        description
-        tags
+export const query = graphql`
+  {
+    allMdx(
+      sort: { frontmatter: { date: DESC } }
+      filter: {
+        internal: { contentFilePath: { regex: "/personal-site-v2/blog//" } }
       }
-      excerpt
-      slug
-      timeToRead
+    ) {
+      nodes {
+        frontmatter {
+          title
+          date(formatString: "MMMM Do, YYYY")
+          description
+          tags
+        }
+        excerpt
+        fields {
+          slug
+          timeToRead {
+            minutes
+          }
+        }
+      }
     }
   }
-}`
+`
 
 export default Blog

@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Layout from "../../components/layout"
 import RouteTargetHeading from "../../components/route-target-heading"
@@ -10,23 +9,26 @@ import {
   title as titleStyles,
   date as dateStyles,
   timeToRead as timeToReadStyles,
-} from "./{mdx.slug}.module.css"
+} from "./{mdx.fields__slug}.module.css"
 
 export const query = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
         date(formatString: "MMMM Do, YYYY")
         description
       }
-      body
-      timeToRead
+      fields {
+        timeToRead {
+          minutes
+        }
+      }
     }
   }
 `
 
-const BlogPost = ({data, location}) => {
+const BlogPost = ({ data, location, children }) => {
   return (
     <Layout
       title={`${data.mdx.frontmatter.title} | Megan Sullivan`}
@@ -43,12 +45,8 @@ const BlogPost = ({data, location}) => {
       <p className={dateStyles}>{data.mdx.frontmatter.date}</p>
       <p
         className={timeToReadStyles}
-      >{`(${data.mdx.timeToRead}-minute read)`}</p>
-      <MDXProvider>
-        <MDXRenderer>
-          {data.mdx.body}
-        </MDXRenderer>
-      </MDXProvider>
+      >{`(${data.mdx.fields.timeToRead.minutes}-minute read)`}</p>
+      <MDXProvider>{children}</MDXProvider>
     </Layout>
   )
 }
