@@ -13,6 +13,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.19",
     "@mdx-js/react": "^2.1.5",
+    "@sindresorhus/slugify": "^1.1.2",
     "gatsby": "^5.2.0",
     "gatsby-plugin-feed": "^5.2.0",
     "gatsby-plugin-google-gtag": "^5.2.0",
@@ -29,11 +30,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "reading-time": "^1.5.0",
+    "remark-gfm": "^1.0.0",
     "typeface-dancing-script": "^1.1.13",
     "typeface-quicksand": "^1.1.13",
     "typeface-ribeye-marrow": "^1.1.13"
   },
   "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-plugin-mdx": "^2.0.5",
     "prettier": "^2.8.0"
   },
   "keywords": [
@@ -44,6 +49,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint:content": "eslint . --ext md,mdx",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
