@@ -18,8 +18,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout"),
+        mdxOptions: {
+          remarkPlugins: [require("remark-gfm")],
         },
         gatsbyRemarkPlugins: [
           {
@@ -73,15 +73,17 @@ module.exports = {
             serialize: ({ query: { site, allMdx } }) => {
               return allMdx.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
-                  url: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
-                  guid: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
+                  url: `${site.siteMetadata.siteUrl}/blog/${node.fields.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/blog/${node.fields.slug}`,
                 })
               })
             },
             query: `{
               allMdx(sort: {frontmatter: {date: DESC}}) {
                 nodes {
-                  slug
+                  fields {
+                    slug
+                  }
                   frontmatter {
                     title
                     date
