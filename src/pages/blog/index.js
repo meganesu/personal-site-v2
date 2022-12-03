@@ -8,12 +8,12 @@ import {
 } from "./index.module.css"
 import PostFilterList from "../../components/post-filter-list"
 
-const Blog = ({data, location}) => {
+const Blog = ({ data, location }) => {
   const allPosts = data.allMdx.nodes
 
   const uniquePostTags = new Set()
-  allPosts.forEach(node => {
-    node.frontmatter.tags.forEach(tag => {
+  allPosts.forEach((node) => {
+    node.frontmatter.tags.forEach((tag) => {
       uniquePostTags.add(tag)
     })
   })
@@ -21,27 +21,27 @@ const Blog = ({data, location}) => {
   const [selectedPostTags, setSelectedPostTags] = useState(new Set())
   const [postsToDisplay, setPostsToDisplay] = useState(allPosts)
 
-  const addFilter = () => filterName => {
+  const addFilter = () => (filterName) => {
     const newFilterList = selectedPostTags.add(filterName)
     setSelectedPostTags(newFilterList)
     setPostsToDisplay(allPosts.filter(shouldPostDisplay))
   }
 
-  const removeFilter = () => filterName => {
+  const removeFilter = () => (filterName) => {
     const newFilterList = selectedPostTags
     newFilterList.delete(filterName)
     setSelectedPostTags(newFilterList)
     setPostsToDisplay(allPosts.filter(shouldPostDisplay))
   }
 
-  const shouldPostDisplay = node => {
+  const shouldPostDisplay = (node) => {
     // When no filters are selected, show all posts
     if (selectedPostTags.size === 0) {
       return true
     }
 
     // Check if one of the node's tags is in the set of selected filters
-    return node.frontmatter.tags.some(tag => selectedPostTags.has(tag))
+    return node.frontmatter.tags.some((tag) => selectedPostTags.has(tag))
   }
 
   return (
@@ -50,10 +50,7 @@ const Blog = ({data, location}) => {
       description="A list of my latest blog posts"
       location={location}
     >
-      <RouteTargetHeading
-        level={1}
-        targetId="navigation"
-      >
+      <RouteTargetHeading level={1} targetId="navigation">
         Blog
       </RouteTargetHeading>
       <PostFilterList
@@ -63,7 +60,8 @@ const Blog = ({data, location}) => {
         onRemove={removeFilter(selectedPostTags, setSelectedPostTags)}
       />
       <p aria-live="polite" aria-atomic="true">
-        {postsToDisplay.length} {postsToDisplay.length === 1 ? "post" : "posts"} found
+        {postsToDisplay.length} {postsToDisplay.length === 1 ? "post" : "posts"}{" "}
+        found
       </p>
       <ol className={postListStyles}>
         {postsToDisplay.map((node) => (
