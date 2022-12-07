@@ -85,7 +85,12 @@ export const query = graphql`
     allMdx(
       sort: { frontmatter: { date: DESC } }
       filter: {
-        internal: { contentFilePath: { regex: "/personal-site-v2/blog//" } }
+        internal: {
+          # Example contentFilePath values:
+          # For local development: /Users/megansullivan/Documents/personal-projects/personal-site-v2/blog/managing-focus-with-react-and-jest/index.mdx
+          # On Netlify: /opt/build/repo/blog/why-use-graphql-sketchnote/index.mdx
+          contentFilePath: { regex: "/(personal-site-v2|build/repo)/blog//" }
+        }
       }
     ) {
       nodes {
