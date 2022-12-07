@@ -5,11 +5,6 @@ exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === "Mdx") {
-    console.log(
-      "Creating MDX node. node.internal.contentFilePath:",
-      node.internal.contentFilePath
-    )
-
     createNodeField({
       node,
       name: "timeToRead",
