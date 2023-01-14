@@ -71,7 +71,7 @@ const Blog = ({ data, location }) => {
                 {node.frontmatter.title}
               </Link>
             </h2>
-            <p>{`${node.frontmatter.date} | ${node.fields.timeToRead.minutes}-minute read`}</p>
+            <p>{`${node.frontmatter.date} | ${node.fields.timeToRead.minutesRoundedUp}-minute read`}</p>
             <p>{node.frontmatter.description || node.excerpt}</p>
           </li>
         ))}
@@ -104,7 +104,7 @@ export const query = graphql`
         fields {
           slug
           timeToRead {
-            minutes
+            minutesRoundedUp
           }
         }
       }
