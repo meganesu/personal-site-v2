@@ -21,7 +21,7 @@ export const query = graphql`
       }
       fields {
         timeToRead {
-          minutes
+          minutesRoundedUp
         }
       }
     }
@@ -45,7 +45,7 @@ const BlogPost = ({ data, location, children }) => {
       <p className={dateStyles}>{data.mdx.frontmatter.date}</p>
       <p
         className={timeToReadStyles}
-      >{`(${data.mdx.fields.timeToRead.minutes}-minute read)`}</p>
+      >{`(${data.mdx.fields.timeToRead.minutesRoundedUp}-minute read)`}</p>
       <MDXProvider>{children}</MDXProvider>
     </Layout>
   )
