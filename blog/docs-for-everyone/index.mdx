@@ -84,7 +84,9 @@ For example, after [we reorganized the Gatsby docs](https://www.gatsbyjs.com/blo
 - On the docs home page, we tell readers what different types of documentation they’ll find on our site, and when each type is most useful.
 - We also list the four doc types in the navigation menu at the top of the page and in the sidebar, so that we can keep reinforcing our docs structure in the reader's mind.
 
-![The home page for the Gatsby docs. The documentation types are highlighted in the navigation bar at the top of the page, the sidebar, and the body of the landing page.](./expose-the-architecture-gatsby-docs.png)
+<BrowserWindow>
+  ![The home page for the Gatsby docs. The documentation types are highlighted in the navigation bar at the top of the page, the sidebar, and the body of the landing page.](./expose-the-architecture-gatsby-docs.png)
+</BrowserWindow>
 
 Ultimately, it all comes back to helping readers find what they’re looking for more easily.
 
@@ -195,7 +197,9 @@ For both components, the goal is to clearly indicate to users what content is re
 
 In the Gatsby Tutorial, blue announcement boxes like the one shown below add extra information that stands out visually from the normal flow of the document.
 
-![A blue callout box stands out from the rest of the page content with the following tip: "Curious what source plugins are in the Plugin Library? You can identify source plugins by their name: they typically start with gatsby-source-"](./announcement-component.png)
+<BrowserWindow>
+  ![A blue callout box stands out from the rest of the page content with the following tip: "Curious what source plugins are in the Plugin Library? You can identify source plugins by their name: they typically start with gatsby-source-"](./announcement-component.png)
+</BrowserWindow>
 
 Sometimes these callouts include **Syntax Hints** for JavaScript or React newcomers who might not be familiar with a particular piece of syntax. Other times they have **Pro Tips** which go into more detail about things that aren’t required for readers to know but that they might find interesting.
 
@@ -213,12 +217,13 @@ When you wrap this optional content in a visually distinct container, it helps r
 
 The second component used in the Gatsby Tutorial is a purple collapsible box, which lets you hide content behind an expandable dropdown. (Under the hood, it's using the `details` and `summary` HTML elements.)
 
-![A collapsible component. When collapsed, only the title is visible: "Key React Concept: Writing a React component". When expanded, it also shows much more text, explaining the steps for creating a React component.](./collapsible-component.png)
+<BrowserWindow>
+  ![A collapsible component. When collapsed, only the title is visible: "Key React Concept: Writing a React component". When expanded, it also shows much more text, explaining the steps for creating a React component.](./collapsible-component.png)
+</BrowserWindow>
 
 We use this to hide background information that might be helpful for React or GraphQL newcomers but that isn’t strictly necessary reading for people who want to just follow along with the steps of the Tutorial.
 
 This would also be a good component to use if you wanted to document common error messages that users might encounter. For example, you could have the error name in the summary tag, and then users could click to expand for more information on what the error is and how to fix it.
-
 
 
 ## Tip #4: Check for understanding
@@ -281,7 +286,9 @@ Once you’ve gotten all your docs in place, and you’re happy with how they’
 
 For the Gatsby docs, we have a feedback widget at the bottom of every page, which lets readers rate whether the current doc was great, fine, or bad. It also has a space for them to write in a comment, if they want to tell us a bit more about their experience.
 
-![A feedback modal. "Was this doc helpful to you?" Users can select "poor", "fine", or "great", and there's an optional text area where they can type comments.](./gatsby-feedback-widget.png)
+<BrowserWindow>
+  ![A feedback modal. "Was this doc helpful to you?" Users can select "poor", "fine", or "great", and there's an optional text area where they can type comments.](./gatsby-feedback-widget.png)
+</BrowserWindow>
 
 All of those feedback responses get stored in a database, which is connected to a Gatsby site that pulls all the ratings and comments into a table. From there, we can look at overall trends and average ratings, to see which docs people really like and which ones need to be improved.
 
