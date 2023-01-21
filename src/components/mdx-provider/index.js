@@ -13,7 +13,7 @@ const components = {
   CalloutBox,
   Collapsible,
   YouTubeEmbed,
-  inlineCode: props => <InlineCode {...props} />,
+  code: props => <InlineCode {...props} />,
   pre: props => <CodeBlock {...props} />,
 }
 
