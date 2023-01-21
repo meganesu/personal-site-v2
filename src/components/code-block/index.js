@@ -18,11 +18,11 @@ const CodeBlock = (props) => {
   const className = props.children.props.className || ""
   const language = className.replace(/language-/, "")
 
-  const fileTitle = props.children.props.title || ""
+  const fileTitle = props.title || ""
 
   return (
     <div className={containerStyles}>
-      {fileTitle && (
+      {fileTitle != "" && (
         <div className={fileTitleStyles}>
           <span aria-label="file">📄</span> {fileTitle}
         </div>
