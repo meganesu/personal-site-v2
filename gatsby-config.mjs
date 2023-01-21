@@ -1,8 +1,17 @@
-require("dotenv").config({
+import dotenv from "dotenv"
+dotenv.config({
   path: `.env`,
 })
 
-module.exports = {
+import remarkGfm from "remark-gfm"
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default {
   siteMetadata: {
     title: `Megan Sullivan's Personal Website`,
     siteUrl: `https://meganesulli.com`,
@@ -19,7 +28,10 @@ module.exports = {
       resolve: "gatsby-plugin-mdx",
       options: {
         mdxOptions: {
-          remarkPlugins: [require("remark-gfm")],
+          remarkPlugins: [
+            remarkGfm,
+            // remarkMdxCodeMeta,
+          ],
         },
         gatsbyRemarkPlugins: [
           {
