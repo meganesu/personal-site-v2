@@ -1,0 +1,43 @@
+.screenshot-wrapper {
+  border: solid 0.25rem #ddd;
+  border-top: none;
+
+  margin: 1rem 0;
+}
+
+.screenshot-menubar {
+  height: 2.5rem;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  
+  color: #555;
+}
+
+.circle {
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: #0b0;
+}
+
+.screenshot-navbar {
+  background-color: white;
+  margin: auto;
+  min-width: 50%;
+  padding: 0.25rem 1rem;
+  border-radius: 0.3rem;
+}
