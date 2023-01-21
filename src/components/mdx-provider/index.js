@@ -1,6 +1,7 @@
 import React from 'react'
 import { MDXProvider } from "@mdx-js/react"
 
+import BrowserWindow from '../browser-window'
 import CalloutBox from '../callout-box'
 import CodeBlock from '../code-block'
 import Collapsible from '../collapsible'
@@ -8,6 +9,7 @@ import InlineCode from '../inline-code'
 import YouTubeEmbed from '../youtube-embed'
 
 const components = {
+  BrowserWindow,
   CalloutBox,
   Collapsible,
   YouTubeEmbed,
