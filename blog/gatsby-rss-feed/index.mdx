@@ -111,7 +111,7 @@ This data will be added to the `<channel>` element in your RSS feed.
 
 The starter code shows what this looks like in context:
 
-```javascript title=gatsby-config.js
+```javascript title="gatsby-config.js"
 module.exports = {
   siteMetadata: {
     title: "My Personal Blog",
@@ -138,7 +138,7 @@ This will add the plugin to your `package.json` file as a dependency and add it 
 
 To make your Gatsby site actually use the plugin, you need to add it to the `plugins` array in your `gatsby-config.js` file. (You can add it before or after the existing plugins; it doesn't matter.)
 
-```javascript title=gatsby-config.js
+```javascript title="gatsby-config.js"
 module.exports = {
   siteMetadata: { /* ... */ },
   plugins: [
@@ -259,7 +259,7 @@ To see the full list of all the additional item options you could pass in, refer
 
 After adding all the plugin options to your `gatsby-config.js` file, the configuration for `gatsby-plugin-feed` should look like this:
 
-```javascript title=gatsby-config.js
+```javascript title="gatsby-config.js"
 {
   resolve: "gatsby-plugin-feed",
   options: {

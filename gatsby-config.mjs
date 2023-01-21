@@ -30,7 +30,7 @@ export default {
         mdxOptions: {
           remarkPlugins: [
             remarkGfm,
-            // remarkMdxCodeMeta,
+            remarkMdxCodeMeta,
           ],
         },
         gatsbyRemarkPlugins: [
