@@ -97,11 +97,11 @@ const MailingListSignupForm = () => {
       >
         <div>
           <label for="name">First name</label>
-          <input type="text" name="first-name" id="name" />
+          <input type="text" name="first-name" id="name" required />
         </div>
         <div>
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" required />
         </div>
         <input type="submit" value="Submit" />
       </form>
