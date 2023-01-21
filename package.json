@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.1.19",
     "@mdx-js/react": "^2.1.5",
     "@sindresorhus/slugify": "^1.1.2",
-    "gatsby": "^5.2.0",
+    "gatsby": "^5.4.2",
     "gatsby-plugin-feed": "^5.2.0",
     "gatsby-plugin-google-gtag": "^5.2.0",
     "gatsby-plugin-image": "^3.2.0",
@@ -31,7 +31,8 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "reading-time": "^1.5.0",
-    "remark-gfm": "^1.0.0",
+    "remark-gfm": "^3.0.0",
+    "remark-mdx-code-meta": "^2.0.0",
     "typeface-dancing-script": "^1.1.13",
     "typeface-quicksand": "^1.1.13",
     "typeface-ribeye-marrow": "^1.1.13"
