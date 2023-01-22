@@ -1,14 +1,27 @@
 import React from "react"
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 
-// You have to write data-testid
-const Title = () => <h1 data-testid="hero-title">Gatsby is awesome!</h1>
+import CodeBlock from "."
+
+// const Title = () => (
+//   <div>This is my title!</div>
+// )
 
 test("Displays the correct title", () => {
-  const { getByTestId } = render(<Title />)
-  // Assertion
-  expect(getByTestId("hero-title")).toHaveTextContent("Gatsby is awesome!")
-  // --> Test will pass
+  render(
+    <CodeBlock>
+      ```js title="my-test-file.js"
+      const test = "hey there!";
+      ```
+    </CodeBlock>
+  )
+
+  // render(<Title />)
+
+  // const element = screen.getByText("This is my title!")
+  const element = screen.getByText("my-test-file.js")
+
+  expect(element).toBeDefined()
 })
 
 describe('CodeBlock component', () => {
@@ -17,7 +30,7 @@ describe('CodeBlock component', () => {
   });
 
   it('renders with file title', () => {
-    console.log('running a test')
+    
   });
 
   it('renders with language tag', () => {
