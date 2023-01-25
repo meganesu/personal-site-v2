@@ -3,6 +3,7 @@
   padding: 1rem;
   border-left: 0.5rem solid var(--blue);
   margin: 1rem 3rem;
+  overflow-wrap: break-word;
 }
 
 .container :first-child {
