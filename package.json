@@ -61,8 +61,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "build:test": "./utils/build-test.sh",
+    "test": "npm run build:test && jest",
+    "test:watch": "npm run build:test && jest --watch"
   },
   "repository": {
     "type": "git",
