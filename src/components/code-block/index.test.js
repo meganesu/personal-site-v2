@@ -8,13 +8,11 @@ import remarkMdxCodeMeta from '../../../vendor/remark-mdx-code-meta';
 import CodeBlock from "."
 
 describe('CodeBlock component', () => {
-  it('renders', () => {
+  let MdxContent;
 
-  });
-
-  it('renders with file title', () => {
+  beforeAll(async () => {
     const mdFencedCodeBlock = `
-      \`\`\`js title="my-test-file.js"
+      \`\`\`javascript title="my-test-file.js"
       const test = "hey there!"
       \`\`\`
     `
@@ -28,8 +26,10 @@ describe('CodeBlock component', () => {
       }
     )
 
-    const MdxContent = mdxModule.default
+    MdxContent = mdxModule.default
+  });
 
+  it('renders with file title', () => {
     render(
       <MdxContent components={{pre: CodeBlock}} />
     )
@@ -40,6 +40,12 @@ describe('CodeBlock component', () => {
   });
 
   it('renders with language tag', () => {
+    render(
+      <MdxContent components={{pre: CodeBlock}} />
+    )
 
+    const element = screen.getByText("javascript")
+
+    expect(element).toBeDefined()
   });
 });
