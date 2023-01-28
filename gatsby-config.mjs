@@ -85,13 +85,23 @@ export default {
             serialize: ({ query: { site, allMdx } }) => {
               return allMdx.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
-                  url: `${site.siteMetadata.siteUrl}/blog/${node.fields.slug}`,
-                  guid: `${site.siteMetadata.siteUrl}/blog/${node.fields.slug}`,
+                  url: `${site.siteMetadata.siteUrl}/blog${node.fields.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/blog${node.fields.slug}`,
                 })
               })
             },
             query: `{
-              allMdx(sort: {frontmatter: {date: DESC}}) {
+              allMdx(
+                sort: { frontmatter: { date: DESC } }
+                filter: {
+                  internal: {
+                    # Example contentFilePath values:
+                    # For local development: /Users/megansullivan/Documents/personal-projects/personal-site-v2/blog/managing-focus-with-react-and-jest/index.mdx
+                    # On Netlify: /opt/build/repo/blog/why-use-graphql-sketchnote/index.mdx
+                    contentFilePath: { regex: "/(personal-site-v2|build/repo)/blog//" }
+                  }
+                }
+              ) {
                 nodes {
                   fields {
                     slug
