@@ -80,7 +80,6 @@ export const createPages = async ({ graphql, actions, reporter }) => {
   // Create pages for each MDX file
   const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
   result.data.allMdx.nodes.forEach(node => {
-    console.log('NODE:', { node })
     const slug = node.fields.slug
 
     createPage({
