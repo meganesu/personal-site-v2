@@ -1,8 +1,17 @@
-require("dotenv").config({
+import dotenv from "dotenv"
+dotenv.config({
   path: `.env`,
 })
 
-module.exports = {
+import remarkGfm from "remark-gfm"
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default {
   siteMetadata: {
     title: `Megan Sullivan's Personal Website`,
     siteUrl: `https://meganesulli.com`,
@@ -19,7 +28,10 @@ module.exports = {
       resolve: "gatsby-plugin-mdx",
       options: {
         mdxOptions: {
-          remarkPlugins: [require("remark-gfm")],
+          remarkPlugins: [
+            remarkGfm,
+            remarkMdxCodeMeta,
+          ],
         },
         gatsbyRemarkPlugins: [
           {
@@ -73,13 +85,23 @@ module.exports = {
             serialize: ({ query: { site, allMdx } }) => {
               return allMdx.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
-                  url: `${site.siteMetadata.siteUrl}/blog/${node.fields.slug}`,
-                  guid: `${site.siteMetadata.siteUrl}/blog/${node.fields.slug}`,
+                  url: `${site.siteMetadata.siteUrl}/blog${node.fields.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/blog${node.fields.slug}`,
                 })
               })
             },
             query: `{
-              allMdx(sort: {frontmatter: {date: DESC}}) {
+              allMdx(
+                sort: { frontmatter: { date: DESC } }
+                filter: {
+                  internal: {
+                    # Example contentFilePath values:
+                    # For local development: /Users/megansullivan/Documents/personal-projects/personal-site-v2/blog/managing-focus-with-react-and-jest/index.mdx
+                    # On Netlify: /opt/build/repo/blog/why-use-graphql-sketchnote/index.mdx
+                    contentFilePath: { regex: "/(personal-site-v2|build/repo)/blog//" }
+                  }
+                }
+              ) {
                 nodes {
                   fields {
                     slug

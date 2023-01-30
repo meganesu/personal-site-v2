@@ -1,0 +1,46 @@
+.screenshot-wrapper {
+  border: solid 0.25rem #ddd;
+  border-top: none;
+
+  margin: 1rem 0;
+}
+
+.screenshot-menubar {
+  min-height: 2.5rem;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  
+  color: #555;
+}
+
+.circle {
+  height: 0.75rem;
+  width: 0.75rem;
+  flex: 0 0 auto; /* always stay the same size - don't grow or shrink */
+  border-radius: 50%;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: #0b0;
+}
+
+.screenshot-navbar {
+  background-color: white;
+  margin: 0.25rem auto;
+  padding: 0.25rem 1rem;
+  min-width: 50%;
+  max-width: 80%;
+  border-radius: 0.3rem;
+  overflow-wrap: break-word;
+}

@@ -123,7 +123,7 @@ Let's get to it!
     touch ~/zshrc/personal-zsh-theme.sh
     ```
 1. Move your existing personal zsh theme settings out of `~/.zshrc` and into the `~/zshrc/personal-prompt.sh` file. Here's what mine looks like:
-    ```shell title=~/zshrc/personal-zsh-theme.sh
+    ```shell title="~/zshrc/personal-zsh-theme.sh"
     # Path to your oh-my-zsh installation.
     export ZSH="/Users/megansullivan/.oh-my-zsh"
 
@@ -147,7 +147,7 @@ Let's get to it!
     touch ~/zshrc/screencast-zsh-theme.sh
     ```
 1. Put your zsh theme settings for screencasting in the new `~/zshrc/screencast-zsh-theme.sh` file. At Apollo we use the [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for screencasts, so here's what my teach theme looks like:
-    ```shell title=~/zshrc/screencast-zsh-theme.sh
+    ```shell title="~/zshrc/screencast-zsh-theme.sh"
     # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
     # Initialization code that may require console input (password prompts, [y/n]
     # confirmations, etc.) must go above this block; everything else may go below.
@@ -186,7 +186,7 @@ Let's get to it!
     touch ~/zshrc/teach.sh
     ```
 1. Add the following to `~/zshrc/teach.sh`:
-    ```shell title=~/zshrc/teach.sh
+    ```shell title="~/zshrc/teach.sh"
     # read the CURRENT_PROMPT_THEME file, and load the corresponding shell theme
     cat ~/zshrc/CURRENT_PROMPT_THEME | while read line; do
       if [[ $line = "personal" ]]
@@ -225,7 +225,7 @@ Let's get to it!
     }
     ```
 1. Add the following line somewhere in your `~/.zshrc` file (the exact position doesn't matter):
-    ```shell title=~/.zshrc
+    ```shell title="~/.zshrc"
     source ~/zshrc/teach.sh
     ```
 1. Manually reload your `~/.zshrc` file by running the following from the command line:

@@ -1,15 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../../components/layout"
-import RouteTargetHeading from "../../components/route-target-heading"
-import MDXProvider from "../../components/mdx-provider"
+import Layout from "../components/layout"
+import RouteTargetHeading from "../components/route-target-heading"
+import MDXProvider from "../components/mdx-provider"
 
 import {
   title as titleStyles,
   date as dateStyles,
   timeToRead as timeToReadStyles,
-} from "./{mdx.fields__slug}.module.css"
+} from "./blog-post.module.css"
 
 export const query = graphql`
   query ($id: String!) {
