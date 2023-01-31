@@ -1,0 +1,47 @@
+.form-field-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.25rem;
+  min-width: 25ch;
+}
+
+.form-field > label {
+  font-weight: bold;
+}
+
+.form-field > input {
+  font-family: inherit;
+  border: 1px solid var(--light-gray);
+  padding: 0.5rem;
+}
+
+.form-field > input:focus {
+  outline: 0.25rem solid var(--orange);
+  border: 1px solid white;
+}
+
+.submit {
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  
+  background-color: var(--navy);
+  color: white;
+  font-weight: bold;
+}
+
+.submit:focus {
+  outline: none;
+  background-color: var(--orange);
+  color: black;
+  font-weight: bolder;
+}
