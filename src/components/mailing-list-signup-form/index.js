@@ -72,7 +72,7 @@ const MailingListSignupForm = () => {
                 type="text"
                 name="preferred-name"
                 id="name"
-                {...register("first_name")}
+                {...register("preferred_name")}
               />
             </div>
             <div className={formFieldStyles}>
