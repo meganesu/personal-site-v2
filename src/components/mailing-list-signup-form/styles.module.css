@@ -33,7 +33,7 @@
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 1rem;
-  
+
   background-color: var(--navy);
   color: white;
   font-weight: bold;
@@ -44,4 +44,13 @@
   background-color: var(--orange);
   color: black;
   font-weight: bolder;
+}
+
+.success-message {
+  font-weight: bold;
+}
+
+.error-message {
+  font-weight: bold;
+  color: crimson;
 }
