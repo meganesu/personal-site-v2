@@ -21,7 +21,7 @@ const MailingListSignupForm = () => {
   const [error, setError] = useState(false)
 
   const onSubmit = (data) => {
-    console.log("DATA IN ONSUBMIT", data)
+    console.log("Submitted form with data:", data)
     fetch(`/api/email-signup`, {
       method: `POST`,
       body: JSON.stringify(data),
@@ -31,7 +31,7 @@ const MailingListSignupForm = () => {
     })
       .then((res) => res.json())
       .then((body) => {
-        console.log(`response from API:`, body)
+        console.log(`Response from /api/email-signup:`, body)
         if (body.status === 200) {
           setSuccess(true)
         }
