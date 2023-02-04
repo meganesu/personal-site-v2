@@ -29,12 +29,19 @@
   border: 1px solid white;
 }
 
+.submit-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .submit {
   font-size: 1rem; /* for Safari */
   font-family: inherit;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 1rem;
+  margin: 0; /* clears mystery 2px margin after pressing submit in Safari */
+  margin-right: 1rem;
 
   background-color: var(--navy);
   color: white;
@@ -56,4 +63,5 @@
 .error-message {
   font-weight: bold;
   color: crimson;
+  margin: 0;
 }

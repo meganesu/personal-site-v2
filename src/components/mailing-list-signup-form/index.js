@@ -6,6 +6,7 @@ import CallToActionBox from "../call-to-action"
 import {
   formFieldWrapper as formFieldWrapperStyles,
   formField as formFieldStyles,
+  submitWrapper as submitWrapperStyles,
   submit as submitStyles,
   successMessage as successMessageStyles,
   errorMessage as errorMessageStyles,
@@ -22,6 +23,7 @@ const MailingListSignupForm = () => {
   const [successMessage, setSuccessMessage] = useState('')
 
   const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const onSubmit = (data) => {
     console.log("Submitted form with data:", data)
@@ -42,6 +44,7 @@ const MailingListSignupForm = () => {
         }
         else {
           setError(true)
+          setErrorMessage("Oops, something's wrong on my end. Please try again later.")
           console.log("Error from /api/email-signup:", body)
         }
       })
@@ -56,11 +59,6 @@ const MailingListSignupForm = () => {
       </p>
       { !success && (
         <form onSubmit={handleSubmit(onSubmit)}>
-          { error && (
-            <p className={errorMessageStyles}>
-              Oops, something's wrong on my end. Please try again later.
-            </p>
-          )}
           <div className={formFieldWrapperStyles}>
             <div className={formFieldStyles}>
               <label htmlFor="name">Preferred name</label>
@@ -83,7 +81,12 @@ const MailingListSignupForm = () => {
               />
             </div>
           </div>
-          <input className={submitStyles} type="submit" value="Submit" />
+          <div className={submitWrapperStyles}>
+            <input className={submitStyles} type="submit" value="Submit" />
+            <p className={errorMessageStyles} role="alert">
+              {errorMessage}
+            </p>
+          </div>
         </form>
       )}
       <p className={successMessageStyles} tabIndex={-1} ref={successMessageRef}>
