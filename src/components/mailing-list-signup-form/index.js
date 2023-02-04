@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 import CallToActionBox from "../call-to-action"
@@ -18,6 +18,9 @@ const MailingListSignupForm = () => {
   } = useForm()
 
   const [success, setSuccess] = useState(false)
+  const successMessageRef = useRef(null)
+  const [successMessage, setSuccessMessage] = useState('')
+
   const [error, setError] = useState(false)
 
   const onSubmit = (data) => {
@@ -34,6 +37,8 @@ const MailingListSignupForm = () => {
         console.log(`Response from /api/email-signup:`, body)
         if (body.status === 200) {
           setSuccess(true)
+          setSuccessMessage("Thanks for subscribing! Check your inbox for a confirmation email.")
+          successMessageRef.current.focus()
         }
         else {
           setError(true)
@@ -49,11 +54,7 @@ const MailingListSignupForm = () => {
         Subscribe to get email updates about new content! (No spam. Unsubscribe
         at any time.)
       </p>
-      {success ? (
-        <p className={successMessageStyles}>
-          Thanks for subscribing! Check your inbox for a confirmation email.
-        </p>
-      ) : (
+      { !success && (
         <form onSubmit={handleSubmit(onSubmit)}>
           { error && (
             <p className={errorMessageStyles}>
@@ -85,6 +86,9 @@ const MailingListSignupForm = () => {
           <input className={submitStyles} type="submit" value="Submit" />
         </form>
       )}
+      <p className={successMessageStyles} tabIndex={-1} ref={successMessageRef}>
+        {successMessage}
+      </p>
     </CallToActionBox>
   )
 }

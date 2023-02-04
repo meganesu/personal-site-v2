@@ -50,6 +50,7 @@
 
 .success-message {
   font-weight: bold;
+  outline: none;
 }
 
 .error-message {
