@@ -1,3 +1,5 @@
+import fetch from "node-fetch"
+
 export default async (req, res) => {
   console.log(`submitted form:`, req.body)
 
