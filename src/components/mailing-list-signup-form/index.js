@@ -77,6 +77,7 @@ const MailingListSignupForm = () => {
                 name="email"
                 id="email"
                 required
+                onInvalid={e => e.target.setCustomValidity('Please enter a valid email address')}
                 {...register("email")}
               />
             </div>
