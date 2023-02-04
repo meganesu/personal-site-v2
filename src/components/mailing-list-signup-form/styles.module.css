@@ -18,6 +18,7 @@
 }
 
 .form-field > input {
+  font-size: 1rem; /* for Safari */
   font-family: inherit;
   border: 1px solid var(--light-gray);
   padding: 0.5rem;
@@ -29,6 +30,7 @@
 }
 
 .submit {
+  font-size: 1rem; /* for Safari */
   font-family: inherit;
   padding: 0.5rem 1rem;
   border: none;
