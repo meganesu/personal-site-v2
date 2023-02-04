@@ -15,7 +15,6 @@ const MailingListSignupForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm()
 
   const [success, setSuccess] = useState(false)
@@ -41,10 +40,6 @@ const MailingListSignupForm = () => {
           console.log("Error from /api/email-signup:", body)
         }
       })
-  }
-
-  if (Object.keys(errors).length !== 0) {
-    console.log("ERRORS:", errors)
   }
 
   return (
@@ -82,7 +77,7 @@ const MailingListSignupForm = () => {
                 name="email"
                 id="email"
                 required
-                {...register("email", { required: true })}
+                {...register("email")}
               />
             </div>
           </div>
