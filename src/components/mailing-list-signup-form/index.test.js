@@ -3,8 +3,6 @@ import {
   render,
   screen,
   cleanup,
-  findByRole,
-  findByText,
 } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
