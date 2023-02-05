@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, cleanup } from '@testing-library/react'
+import { render, screen, cleanup, findByRole, findByText } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import MailingListSignupForm from "."
@@ -114,12 +114,115 @@ describe("MailingListSignupForm component", () => {
     cleanup() // clears component loaded by render
   })
 
-  // When user leaves email field empty, then shouldn't call serverless function & should display form validation error message in UI ("Email is required")
-  describe.skip("when user submits with an empty email", () => {})
+  it("when user submits with an empty email, it doesn't call /api/email-signup and displays a form validation error", async () => {
+    // ARRANGE
+    // mock fetch call to serverless function
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve({ status: 200 })
+    }));
 
-  // When user enters an email, but it doesn't match a valid email pattern (`something@something.something`), then shouldn't call serverless function & should display form validation error message in UI ("Please enter valid email (pattern hint)")
-  describe.skip("when user submits with an invalid email", () => {})
+    const user = userEvent.setup()
+    render(<MailingListSignupForm/>)
+
+    // ACT
+    // Click submit
+    await user.click(screen.getByRole("button", {name: "Submit"}))
+
+    // ASSERT
+
+    // it calls /api/email-signup
+    expect(global.fetch.mock.calls).toEqual([])
+
+    // it doesn't remove the form from the DOM
+    expect(screen.getByRole('textbox', {name: "Preferred name"})).toBeInTheDocument()
+    expect(screen.getByRole('textbox', {name: "Email"})).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Submit"})).toBeInTheDocument()
+
+    // it displays a form validation error for the email field
+    expect(screen.getByRole('textbox', {name: "Email"})).toBeInvalid()
+    
+    // CLEAN UP
+    global.fetch.mockClear();
+    delete global.fetch;
+    
+    cleanup() // clears component loaded by render
+  })
+
+  it("when user submits with an invalid email, it doesn't call /api/email-signup and displays a form validation error", async () => {
+    // ARRANGE
+    // mock fetch call to serverless function
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve({ status: 200 })
+    }));
+
+    const user = userEvent.setup()
+    render(<MailingListSignupForm/>)
+
+    // ACT
+
+    // Enter invalid email pattern
+    await user.click(screen.getByRole("textbox", {name: "Email"}))
+    await user.keyboard('this is not an email address')
+
+    // Click submit
+    await user.click(screen.getByRole("button", {name: "Submit"}))
+
+    // ASSERT
+
+    // it calls /api/email-signup
+    expect(global.fetch.mock.calls).toEqual([])
+
+    // it doesn't remove the form from the DOM
+    expect(screen.getByRole('textbox', {name: "Preferred name"})).toBeInTheDocument()
+    expect(screen.getByRole('textbox', {name: "Email"})).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Submit"})).toBeInTheDocument()
+
+    // it displays a form validation error for the email field
+    expect(screen.getByRole('textbox', {name: "Email"})).toBeInvalid()
+    
+    // CLEAN UP
+    global.fetch.mockClear();
+    delete global.fetch;
+    
+    cleanup() // clears component loaded by render
+  })
 
   // When ConvertKit API responds with an error, UI updates to say "Something went wrong. (It's me, not you.) Please try again later!" (& send an error alert to Google Analytics?)
-  describe.skip("when serverless function responds with an error", () => {})
+  it("when /api/email-signup responds with an error, it displays an error message", async () => {
+    // ARRANGE
+    // mock fetch call to serverless function
+    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve({ status: 500 })
+    }));
+
+    const user = userEvent.setup()
+    render(<MailingListSignupForm/>)
+
+    // ACT
+
+    // Enter an email
+    await user.click(screen.getByRole("textbox", {name: "Email"}))
+    await user.keyboard('hello@meganesulli.com')
+
+    // Click submit
+    await user.click(screen.getByRole("button", {name: "Submit"}))
+
+    await screen.findByText(/Oops/)
+
+    // ASSERT
+
+    // it doesn't remove the form from the DOM
+    expect(screen.getByRole('textbox', {name: "Preferred name"})).toBeInTheDocument()
+    expect(screen.getByRole('textbox', {name: "Email"})).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Submit"})).toBeInTheDocument()
+
+    // it displays an error message
+    expect(screen.getByRole("alert")).toBeInTheDocument()
+    
+    // CLEAN UP
+    global.fetch.mockClear();
+    delete global.fetch;
+    
+    cleanup() // clears component loaded by render
+  })
 })
