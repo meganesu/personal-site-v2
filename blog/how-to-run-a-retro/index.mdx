@@ -7,12 +7,33 @@ tags: ["meetings", "feedback"]
 
 ## Introduction
 
+Businesses want teams to work together effectively so that they can produce value quickly. But it's not enough to just "always be shipping". Sometimes you need to take a beat, step back as a team, and reflect on your processes. ["Go slow to go fast."](https://www.huffpost.com/entry/why-going-slow-will-make-you-go-faster_b_7062064) That's where retrospectives come in.
+
+A retrospective (or retro, for short) is a type of meeting where teammates reflect back on how they worked together over a period of time. Typically, retros are run at the end of an Agile sprint, usually every 2-4 weeks. In a retro, the team looks back on their accomplishments and brainstorms ways to make work more efficient and enjoyable in future sprints.
+
 <CalloutBox>
+  **Sprint Retrospective at a glance:**
+
   - **Goal:** To make process improvements by discussing what went well this sprint and what can be improved.
   - **Duration:** 1 hour
-  - **Frequency:** Once per sprint, ideally every 2-3 weeks. That way, challenges can be addressed quickly, while there's still time for the team to pivot and make adjustments.
-  - **Participants:** Team individual contributors (ICs) & manager(s)
+  - **Frequency:** Once per sprint (ideally every 2-3 weeks)
+  - **Participants:** All individual contributors (ICs) & manager(s) on the team
 </CalloutBox>
+
+### Why do we need retros?
+
+When you work on a team for a while, sometimes there's friction. Building software is hard, both from the technology side and the people side. There's a lot to balance—clashing personalities, different working preferences, team norms and expectations. But it's not always easy to bring up those issues when you're in the middle of the day-to-day grind. Sprint retrospectives provide a consistent safe space where teammates can bring up the challenges they're facing and find ways to work through them together.
+
+### Do we *really* need a retro at the end of every sprint?
+
+Retros work best when you have them on a regular basis. That way, challenges can be addressed quickly, while there's still time for the team to pivot and make adjustments.
+
+Think of it like navigation assistance when you're driving. You *could* wait until you're hopelessly lost before looking up directions to your final destination. But by that point, it's going to take a lot more effort to get you back on track. On the other hand, if you're using Google Maps from the get-go, you'll get notified as soon as you start heading in the wrong direction, and it'll be much easier to course correct.
+
+![A doodle diagram showing two line charts, where the X axis is "time" and the Y axis is "effort required to get back on track". The top diagram is labeled, "One End-of-Project Retrospective", and it shows an orange line that gradually gets higher and higher on the Y axis, before it suddenly drops back down to intersect with the X axis (at an X value labeled "Retro"). The bottom diagram is labeled, "Periodic Sprint Retrospectives", and it shows a similar line that gradually increases up the Y axis. But the bottom diagram has four "Retro" labels equally spaced along the X axis, which each cause the line to drop back to Y=0. As a result, the Y value of the bottom graph never reaches the same magnitude as the top graph.](./diagram-postmortem-vs-retros.png)
+
+In this post, I'll walk you through everything you need to know to facilitate your first sprint retrospective.
+
 
 ## Before the meeting
 
@@ -20,9 +41,9 @@ To make sure everything runs smoothly on the day of your retro, it's important t
 
 ### Choose a retro framework to use
 
-The retro framework you choose directly impacts the kinds of topics the team will discuss during the retro.
+The retro framework you choose directly impacts the kinds of topics the team will discuss during the meeting.
 
-Some common structures include:
+Some popular options are:
 - **Start, Stop, Continue:** What should we to start, stop, and continue doing as a team?
 - **Liked, Learned, Lacked:** What did you like or learn this sprint? What was missing?
 - **Anchors and Engines:** What slows us down as a team? What helps us gain momentum?
@@ -31,7 +52,7 @@ Some common structures include:
   Check out [Fun Retrospectives](https://www.funretrospectives.com/category/retrospective/) for more example reflection frameworks.
 </CalloutBox>
 
-How do you decide which framework to pick? If you get the sense that there's something the team wants or needs to talk about, you can find (or create!) a framework that leads naturally to that kind of conversation. Otherwise, pick whichever framework strikes your fancy. (You can always mix it up and choose a different one for the next retro.)
+How do you decide which framework to pick? If you get the sense that there's something the team wants or needs to talk about, you can find (or create!) categories that lead naturally to that kind of conversation. Otherwise, pick whichever framework strikes your fancy. (You can always mix it up and choose a different one for the next retro.)
 
 <CalloutBox>
   **Tip:** If your team tends to feel nervous sharing constructive feedback, try renaming those categories to something like "Wished for" or "What could be improved?" (which sound a bit gentler than "Stop" or "Disliked").
@@ -47,19 +68,21 @@ Personally, I prefer to use a virtual retro board instead of a physical whiteboa
   **Platform options for building a virtual retro board:**
 
   (Ordered from least to most structured.)
-  - [FigJam](https://www.figma.com/figjam/)
-  - [Trello](https://trello.com/)
-  - [EasyRetro](https://easyretro.io)
-  - [Parabol](https://www.parabol.co/)
+  - [FigJam](https://www.figma.com/figjam/): Super flexible, and feels the most like a whiteboard.
+  - [Trello](https://trello.com/): Kanban boards with columns, with optional add-ons for features like card voting.
+  - [EasyRetro](https://easyretro.io): Kanban-style boards specifically for retros, with some built-in features like voting and sorting cards.
+  - [Parabol](https://www.parabol.co/): Does much of the heavy lifting of facilitating for you. Applies a pre-defined structure to your retro agenda.
 </CalloutBox>
 
 To set up your retro board:
 
-1. Add a column for each of the categories included in your retro framework.
+1. Add a column for each of the categories from your retro framework.
 2. Add additional columns for "Shoutouts" (where teammates can thank and celebrate each other) and "Action Items" (where you'll track next steps that come out of the retro conversation).
 3. Include a link to the board in the calendar invite for your meeting.
 
-TODO: ADD PICTURE OF RETRO BOARD COLUMNS
+<BrowserWindow>
+  ![A screenshot of an empty retro board in FigJam. It has separate sections labeled, "Shoutouts", "Continue: What's going well?", "Stop: What needs improvement?", "Start: Ideas to try", and "Action items".](./board-1-setup.png)
+</BrowserWindow>
 
 ### Assign a notetaker for the retro
 
@@ -95,11 +118,21 @@ Now that everyone is in the right headspace, it's time for folks to add all thei
 
 1. Set a timer for 7 minutes. Silently, each teammate simultaneously adds their thoughts to each topic on the retro board. Teammates write each thought on a separate card or sticky note. They can write as many cards as it takes to cover everything that's on their mind.
 
-TODO: INSERT PHOTO OF BOARD AT THIS STAGE (WITH UNSORTED STICKIES)
+<BrowserWindow>
+  ![A screenshot of the same FigJam retro board, but filled with colorful sticky notes in all the sections except Action Items. Some example notes: "I like that we're doing more pairing," "It feels like we've been spending a lot more time in meetings lately," "What if we start doing weekly mob code sessions to share context within the team?"](./board-2-braindump.png)
+</BrowserWindow>
 
 2. When the timer goes off (or when everyone's done writing), take another 2-3 minutes as a group to read over the cards silently, and group them into related topics. Draw boundaries around the related cards, and add a concise label to summarize the topic (like "too many meetings" or "unclear team priorities").
 
-TODO: INSERT PHOTO OF BOARD AT THIS STAGE (WITH GROUPS)
+<BrowserWindow>
+  ![A screenshot of the same FigJam retro board from before, but with the sticky notes reorganized to group related cards. Someone used the pen tool to draw a circle around the related cards, and they added a text label like "Meetings" or "Project deadlines".](./board-3-sort.png)
+</BrowserWindow>
+
+<CalloutBox>
+  **Note:** Retrospectives are about process, not progress. When identifying areas for improvement, focus more on *how* you're working together, as opposed to *what* work still needs to be done. (There are other types of meetings for those tactical progress conversations, like sprint planning and standups.)
+
+  For example, let's say the team didn't finish all the tickets assigned for the sprint. Instead of writing a card like, "We still need to do tickets X, Y, and Z," encourage teammates to dig deeper and think about what may have gotten in the way of completing that work. For example, "We added new tickets to the sprint halfway through the week, which meant our workload estimations were off."
+</CalloutBox>
 
 ### Step 3: Vote (1 minute)
 
@@ -108,7 +141,9 @@ Once all participants have had a chance to read the cards to themselves, it's ti
 1. Each teammate gets a total of 5 votes, which they distribute among the different topics. (You're allowed to vote for the same topic multiple times.) 
 2. Once all the votes have been tallied, you'll have a prioritized list of topics to discuss in the next step.
 
-TODO: INSERT IMAGE OF THE BOARD AT THIS STAGE (VOTES, RANKED TOPICS)
+<BrowserWindow>
+  ![A screenshot of the same FigJam retro board from before, but with stamps (hearts, stars, thumbs up, and +1's) added to vote for which topics each person wants to discuss.](./board-4-votes.png)
+</BrowserWindow>
 
 <CalloutBox>
   **Note:** The goal of the voting exercise is to rank which topics the team wants to talk about as a group. This means that some cards or topics (with the least votes) won't be verbally addressed during the meeting. But that's okay, because everyone had a chance to read them all in the previous step.
@@ -123,6 +158,10 @@ As a group, discuss each topic on the board. Start with the one with the most vo
 1. To kick off the conversation, **restate the topic** (or read the card aloud) and then ask the group, "Does anyone want to share some more context on that?" Often, the person who wrote the card may speak up to add some more detail, or another teammate may be inspired to share their experience.
 2. Guide the conversation by **asking follow-up questions** like, "What do you mean by [something they said]?" or "Can you share an example?" or even just "Will you say more about that?" If the discussion starts to drift to another topic, refocus the group by saying something like, "Before we get to that, was there anything else anyone wanted to add about [the previous topic]?"
 3. Once the group has a shared understanding of the current topic, shift the discussion to **action items**. You can say something like, "What action items could we take that would help address [the topic]?" The notetaker tracks action items as they're identified and adds them to the Action Items section of the board.
+
+<BrowserWindow>
+  ![A screenshot of the same FigJam retro board from before, but with new sticky notes under the "Action Items" section. Some example cards: "Set a timer during standup to keep updates from running over 1 minute per person", "Follow up with Shili to see if we can get a summary of the feedback from user interviews", "Make a meetings audit doc, and send out a link so people can add comments"](./board-5-action-items.png)
+</BrowserWindow>
 
 Typically, you'll have more topics than you can cover in the allotted amount of time, but that's okay. If those undiscussed topics are still important, odds are they'll show up again in a future retro.
 
@@ -145,6 +184,10 @@ Now it's time to wrap things up:
 1. Review the tasks in the Action Items column, and make sure each one is assigned to an individual owner.
     - The assigned owner doesn't necessarily have to be the one who will actually complete the task. But they're the one responsible for following up on it and making sure the team doesn't forget about it.
 
+<BrowserWindow>
+  ![A screenshot of the same FigJam retro board from before, but with a single name assigned to each of the cards in the action items section.](./board-6-assign-owners.png)
+</BrowserWindow>
+
 2. If you have a facilitator rotation, assign the facilitator (and notetaker) for the next retro, so that they know to start preparing.
 
 3. (Optional) I like to end things on a high note by sharing "[warm fuzzies](https://en.wikipedia.org/wiki/Claude_Steiner#A_Warm_Fuzzy_Tale)". Each teammate takes a moment to share a shoutout with someone else on the team. If everyone is comfortable with it, share these shoutouts in a public team channel so that others have visibility into their awesome work! Or if they'd prefer private praise, send it to them in a direct message.
@@ -156,8 +199,12 @@ Shortly after the retro, **send a Slack or email summary** of the action items a
 
 And that's all there is to it! Congratulations on facilitating your first sprint retrospective!
 
+
 ## Wrap it up
 
+Sprint retrospectives are my favorite kind of meeting. They're a chance to reflect back on your work as a team and celebrate your accomplishments. A chance to talk about challenging experiences and find ways to ease that friction in the future. A chance to connect with teammates and say, "This was how I felt over the last few weeks. Did you feel that too?"
+
+Sometimes they can lead to tough conversations. But if you can create a safe space where your team feels comfortable opening up and being vulnerable, it can lead to transformational changes.
 
 
 ## Resources
@@ -165,4 +212,4 @@ And that's all there is to it! Congratulations on facilitating your first sprint
 - [Fun Retrospectives](https://www.funretrospectives.com/): List of several different retro frameworks you can use to structure your retro board. Includes different formats for different kinds of reflections. Choose whatever one fits the kind of conversation you think your team needs to have.
 - [Agile Retrospective Resource Wiki](https://retrospectivewiki.org/): A collection of sample agendas and tips for running retros. 
 - [How to run a great retrospective](https://leaddev.com/communication-relationships/how-run-great-retrospective): LeadDev Blog post by Nickolas Means.
-- [Team Meetings That Don't Suck - Avoid Retrospectives Antipatterns](https://www.youtube.com/watch?v=ApAkqxHZq6o): GOTO Conference talk by Aino Vonge Corry, author of a book called [Retrospectives Antipatterns](https://metadeveloper.com/retrospective-antipatterns/).
+- [Team Meetings That Don't Suck - Avoid Retrospectives Antipatterns](https://www.youtube.com/watch?v=ApAkqxHZq6o): GOTO Conference talk by Aino Vonge Corry, author of [Retrospectives Antipatterns](https://metadeveloper.com/retrospective-antipatterns/).
