@@ -13,3 +13,20 @@
 .social-links li:not(:last-child) {
   margin-right: 2em;
 }
+
+.link {
+  display: inline-block;
+  height: fit-content;
+}
+
+.link:hover, .link:focus {
+  border: none;
+}
+
+.link:focus .icon, .icon:hover {
+  color: orange;
+}
+
+.icon {
+  color: white;
+}
