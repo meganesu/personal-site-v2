@@ -3,7 +3,7 @@ import React from "react"
 import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGithub, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { faGithub, faTwitter, faMastodon, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
 import {
   socialLinks as socialLinksStyles,
@@ -20,6 +20,15 @@ const SocialLinks = () => (
         className={linkStyles}
       >
         <FontAwesomeIcon icon={faGithub} size="2x" className={iconStyles} />
+      </OutboundLink>
+    </li>
+    <li>
+      <OutboundLink
+        href="https://hachyderm.io/@meganesulli"
+        aria-label="Megan's Mastodon profile"
+        className={linkStyles}
+      >
+        <FontAwesomeIcon icon={faMastodon} size="2x" className={iconStyles} />
       </OutboundLink>
     </li>
     <li>
