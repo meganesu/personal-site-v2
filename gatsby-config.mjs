@@ -45,6 +45,7 @@ export default {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 800,
+              linkImagesToOriginal: false,
             },
           },
         ],
