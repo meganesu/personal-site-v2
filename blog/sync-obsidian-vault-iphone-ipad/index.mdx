@@ -1,0 +1,157 @@
+---
+title: "Syncing your Obsidian Vault on iPhone/iPad with GitHub, Working Copy, and Apple Shortcuts"
+date: "2023-02-11"
+description: "TODO"
+tags: ["obsidian"]
+---
+
+## Introduction
+
+[Obsidian](https://obsidian.md/) is my favorite note-taking app. Since I started using it in 2021, I've been stuffing my vault full of notes, ideas, and reminders.
+
+At first, I was only using Obsidian on my MacBook. But I quickly realized that I needed a way to capture my thoughts while I was on the go, without waiting to get back to my computer. Luckily, there's an Obsidian app that works on both iOS and iPad. But how do you connect the Obsidian app to an existing vault?
+
+The Obsidian team offers a product called [Obsidian Sync](https://obsidian.md/sync), which is a monthly or annual subscription that you can use to sync your vaults across devices. If you're not comfortable with [Git](https://git-scm.com/), Obsidian Sync is a great way to get the same functionality while also supporting the Obsidian creators!
+
+But for developers (or folks who would rather avoid paying for another monthly subscription), you can achieve a similar result using a GitHub repo, an app called Working Copy, and the built-in Shortcuts app on your Apple device.
+
+In this post, I'll show you how to synchronize your Obsidian vault across Apple devices so that you can easily take notes wherever you are.
+
+<CalloutBox>
+  **Note:** This tutorial is not completely free. It requires a one-time purchase of the pro version of [Working Copy](https://workingcopyapp.com/) (which costs $19.99 USD, as of February 2023).  (But personally, I'd rather pay a one-time fee than a monthly subscription.)
+</CalloutBox>
+
+## Prerequisites
+
+Before you begin this tutorial, you should have the following materials:
+
+- An Apple device (iPhone or iPad)
+- The following applications downloaded onto your Apple device:
+  - [Obsidian](https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442)
+  - [Working Copy](https://apps.apple.com/us/app/working-copy-git-client/id896694807)
+  - [Shortcuts](https://apps.apple.com/us/app/shortcuts/id915249334) (as of iOS/iPadOS 13+, this comes pre-installed as a default app on your device)
+- An existing Obsidian vault, backed up to a [GitHub](https://github.com/) repository
+	- On my MacBook, I use the [obsidian-git](https://github.com/denolehov/obsidian-git) plugin, which I've configured to back up my vault every 30 minutes.
+
+<CalloutBox>
+  **Version notes:**
+  Here are the versions I used when I was setting this up on my own personal devices:
+  
+  On my iPhone 12 Pro:
+  - iOS 14.8
+  - Obsidian 1.0.4
+  - Working Copy 4.9.1
+
+  On my iPad Pro (11-inch):
+  - iPadOS 15.6.1
+  - Obsidian 1.4.1
+  - Working Copy 5.3.3
+</CalloutBox>
+
+
+## The Big Picture
+
+First things first, let's take a step back and look at the big picture of the setup you'll be building:
+
+![A diagram of the systems involved in this architecture. On top, there's the GitHub logo, with a desktop computer and an iPhone/iPad below it. Bidirectional arrows connect the GitHub logo to each of the devices.](./architecture-systems.png)
+
+Your GitHub repo will be the source of truth for your vault. You'll want to make sure any changes you make to your local Obsidian vault get pushed to GitHub so that they can be accessed from your other devices.
+
+Now let's zoom in a bit and take a closer look at the tools we'll use to enable this setup:
+
+![A diagram that builds on the one above, showing the different pieces in each system. Detailed description below.](./architecture-applications.png)
+
+<Collapsible summary={<em>Expand for detailed image description</em>}>
+	GitHub:
+	- Has a repo called "my-vault"
+
+	Desktop:
+	- Stores files in a local copy of the "my-vault" repo
+	- Uses the Obsidian application, with the Obsidian Git plugin
+
+	iPhone/iPad:
+	- Stores files in a local copy of the "my-vault" repo
+	- Uses the Obsidian, Working Copy, and Shortcuts applications
+</Collapsible>
+
+<CalloutBox>
+	**Note:** This tutorial assumes that you already have the GitHub and Desktop pieces set up.
+	
+	Need help getting started? Check out this post by Obsidian Rocks: [Backing up Your Obsidian Vault on Github (for free!)](https://obsidian.rocks/backing-up-your-obsidian-vault-on-github-for-free/)
+</CalloutBox>
+
+For the rest of this post, we'll focus on how to set up the iPhone/iPad applications.
+
+## Requirements
+
+In order to keep your Obsidian vault synchronized with your iPhone or iPad, you'll need to handle the two following scenarios:
+
+1. **Pull** changes from the remote vault repo on GitHub into the local vault on your device.
+	- This syncs any changes you've made to your notes from another device.
+2. **Push** changes from the local vault on your device into the remote vault repo on GitHub.
+	- This makes changes from your iPhone/iPad available on other devices.
+
+![A pair of diagrams, illustrating the two scenarios. Scenario 1 shows an arrow pointing from the GitHub logo to the iPhone/iPad. Scenario 2 shows an arrow pointing from the iPhone/iPad to the GitHub logo.](./scenarios.png)
+
+Let's get started!
+
+## 1) Connect your local Obsidian vault to the GitHub repo
+
+## 2) Pull changes from GitHub into your local vault
+
+## 3) Push changes from your local vault to GitHub
+
+## Wrap It Up
+
+---
+
+Here's a quick sneak peak of the requirements for what you'll build in this tutorial:
+
+GIVEN there are updates on the remote GitHub repo that aren't in my local Obsidian vault,
+WHEN I open the Obsidian app on my Apple device,
+THEN the changes from the remote repo are pulled into my local vault.
+
+GIVEN there are local changes to my Obsidian vault that aren't on the remote GitHub repo,
+WHEN I close the Obsidian app on my Apple device,
+THEN the local changes are committed and pushed to GitHub.
+
+
+## Process
+
+Part 1: Connect local Obsidian vault to existing remote repo
+
+INSERT ARCHITECTURE DIAGRAM OF THIS STAGE. MAKING A LOCAL IPHONE COPY OF YOUR VAULT FROM GITHUB, AND CONNECTING IT TO OBSIDIAN.
+
+- Download apps from App Store:
+	- Obsidian
+	- Working Copy
+- Open Working Copy & upgrade to Pro version (at time of writing, this costs $20). The Pro version unlocks the ability to push to a remote repo.
+- In Obsidian, create a new empty vault
+- In Working Copy:
+	- Sign into your GitHub account, and clone your existing Obsidian vault repo from GitHub.
+	- Turn on Sync to File (check what this setting is called in the new version), and select the Obsidian vault folder you just created.
+		- Check in the Obsidian app that your existing files from the remote repo have been pulled into the vault on your new device.
+	- Optional: If you want to keep different Obsidian settings between devices, create a duplicate of the .obsidian directory and rename it .obsidian.mobile. Then in the Obsidian app, go to Settings -> About. Scroll down to Advanced, and set "Override config folder" to .obsidian.mobile. This will prevent your mobile and desktop settings from clashing. (But it also means that if you want to make changes to your settings on all devices, you'll have to change them on each one separately.)
+
+Part 2: Automatically sync local repo with remote repo (automatic updates)
+
+INSERT ARCHITECTURE DIAGRAM OF THIS STAGE. PART 1: WHEN MAKING UPDATES ON MOBILE DEVICE, PUSH THEM TO THE VAULT WHEN CLOSING THE APP. PART 2: WHEN MAKING CHANGES ON DESKTOP, PULL THEM INTO MOBILE VAULT WHEN OPENING THE APP.
+
+- Next step is to set up automations that will keep your vault in sync with the remote repo. In Shortcuts:
+	- Create a new Shortcut that uses Working Copy to pull changes from the remote repo.
+	- Create another new Shortcut that uses Working Copy to commit changes to your local vault and then push them to the remote repo.
+		- Create a new variable with device details (Device Type)
+		- Commit changes, passing device variable into commit message
+			- Make sure you adjust the "What to Commit" setting to be "modified" instead of "staging".
+		- Push changes to remote repo
+	- You can check that your Shortcuts are working by tapping on them in the "My Shortcuts" grid. (To make changes to your Shortcut, click on the three dots in the grid item.)
+	- Create a new automation that runs whenever the Obsidian app is opened. In that automation, run the "Pull vault updates" shortcut you created.
+		- Turn off the setting to ask for permission (check for exact wording)
+	- Create a new automation that runs whenever the Obsidian app is closed. In that automation, run the "Push vault updates" shortcut you created.
+		- Turn off the setting to ask for permission
+- In Obsidian:
+	- It should be working! When you open the Obsidian app, you should see a badge notification telling you that an automation is running (check for exact wording)
+	- The first time your automation runs, you may need to confirm that you give permission for Working Copy to make changes. (Check for exact wording.)
+*
+
+
