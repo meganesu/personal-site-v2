@@ -103,19 +103,19 @@ First things first, you'll need to create a new empty Obsidian vault on your iPh
 1. Open the **Obsidian** app on your device. Select "Create new vault".
 
 	<IPadScreen>
-		![](1-1-obsidian-home.png)
+		![](1-01-obsidian-home.png)
 	</IPadScreen>
 
 2. Give your vault a name. (I call mine "Second Brain".) Leave the "Store in iCloud" setting turned off. Then click "Create".
 
 	<IPadScreen>
-		![](1-2-create-vault.png)
+		![](1-02-create-vault.png)
 	</IPadScreen>
 
 3. A new empty vault will be created on your device.
 
 	<IPadScreen>
-		![](1-3-empty-vault.png)
+		![](1-03-empty-vault.png)
 	</IPadScreen>
 
 Next, use Working Copy to connect your new vault to your existing vault repo on GitHub.
@@ -123,7 +123,7 @@ Next, use Working Copy to connect your new vault to your existing vault repo on 
 1. Open the **Working Copy** app on your device. The first time you load Working Copy, it should look something like this:
 
 	<IPadScreen>
-		![](1-4-working-copy-empty.png)
+		![](1-04-working-copy-empty.png)
 	</IPadScreen>
 
 <CalloutBox>
@@ -133,31 +133,31 @@ Next, use Working Copy to connect your new vault to your existing vault repo on 
 2. Click the "+" icon in the sidebar, then select "Clone repository".
 
 	<IPadScreen>
-		![](1-5-clone-repository.png)
+		![](1-05-clone-repository.png)
 	</IPadScreen>
 
 3. Open the "GitHub" tab, then click "Sign In".
 
 	<IPadScreen>
-		![](1-6-github-sign-in.png)
+		![](1-06-github-sign-in.png)
 	</IPadScreen>
 
 4. Enter your GitHub credentials to give Working Copy access to your repositories.
 
 	<IPadScreen>
-		![](1-7-github-credentials.png)
+		![](1-07-github-credentials.png)
 	</IPadScreen>
 
 5. Now, Working Copy should display a list of your GitHub repositories. Locate and click on the one for your existing Obsidian vault. (TODO: block out the other private repos)
 
 	<IPadScreen>
-		![](1-8-github-repos.png)
+		![](1-08-github-repos.png)
 	</IPadScreen>
 
 6. If you want, you can configure the settings for cloning the repo, but I kept the default settings. Then click "Clone". This will download a copy of your existing vault repo from GitHub to your device.
 
 	<IPadScreen>
-		![](1-9-clone-repo-settings.png)
+		![](1-09-clone-repo-settings.png)
 	</IPadScreen>
 
 7. When you're done, you should see the contents of your vault repo in Working Copy.
@@ -219,43 +219,43 @@ You'll do this work in two stages:
 1. Open the Shortcuts app. Click the "+" icon to create a new shortcut.
 
 	<IPadScreen>
-		![](2-shortcut-1-new.png)
+		![](2-shortcut-01-new.png)
 	</IPadScreen>
 
 2. Name your new shortcut "Pull Changes From Remote Obsidian Vault". 
 
 	<IPadScreen>
-		![](2-shortcut-2-name.png)
+		![](2-shortcut-02-name.png)
 	</IPadScreen>
 
 3. Use the search bar to find the Working Copy action to "Pull Repository".
 
 	<IPadScreen>
-		![](2-shortcut-3-search-for-pull-action.png)
+		![](2-shortcut-03-search-for-pull-action.png)
 	</IPadScreen>
 
 4. Select the action from the sidebar to add it to your shortcut.
 
 	<IPadScreen>
-		![](2-shortcut-4-add-pull-action.png)
+		![](2-shortcut-04-add-pull-action.png)
 	</IPadScreen>
 
 5. Tap on the "Repository" variable to fill in a value. Choose your vault repo from the list of Working Copy repos.
 
 	<IPadScreen>
-		![](2-shortcut-5-select-repo.png)
+		![](2-shortcut-05-select-repo.png)
 	</IPadScreen>
 
 6. Checkpoint: Your final shortcut should look like the one below. Click "Done" to save your changes.
 
 	<IPadScreen>
-		![](2-shortcut-6-final.png)
+		![](2-shortcut-06-final.png)
 	</IPadScreen>
 
 7. Now you have a shortcut that you can trigger by tapping it in the Shortcuts menu. (To make changes to your shortcut, click on the three dots in the grid item.)
 
 	<IPadScreen>
-		![](2-shortcut-7-all-shortcuts.png)
+		![](2-shortcut-07-all-shortcuts.png)
 	</IPadScreen>
 
 ### Automating the shortcut to run when the Obsidian app opens
@@ -265,55 +265,55 @@ Now that you can pull updates from GitHub into your local vault, it's time to se
 1. In the **Shortcuts** app, open the Automation page, and create a new personal automation.
 
 	<IPadScreen>
-		![](2-automate-1-create-personal-automation.png)
+		![](2-automate-01-create-personal-automation.png)
 	</IPadScreen>
 
 2. In the "New Automation" menu, you'll select the event that you want to trigger your automation. Scroll down and select "App".
 
 	<IPadScreen>
-		![](2-automate-2-choose-trigger.png)
+		![](2-automate-02-choose-trigger.png)
 	</IPadScreen>
 
 3. Choose "Obsidian" for the App, and make sure "Is Opened" is checked. Then click "Next".
 
 	<IPadScreen>
-		![](2-automate-3-trigger-settings.png)
+		![](2-automate-03-trigger-settings.png)
 	</IPadScreen>
 
 4. Now you'll set up the action you want to trigger when Obsidian is opened. Click the "Add Action" button.
 
 	<IPadScreen>
-		![](2-automate-4-empty-actions-list.png)
+		![](2-automate-04-empty-actions-list.png)
 	</IPadScreen>
 
 5. Use the search bar to find the "Run Shortcut" action. Click it to add it to your automation.
 
 	<IPadScreen>
-		![](2-automate-5-run-shortcut-action.png)
+		![](2-automate-05-run-shortcut-action.png)
 	</IPadScreen>
 
 6. Click the "Shortcut" variable to fill in a value. Select the "Pull Changes From Remote Obsidian Vault" shortcut you created earlier. Then click "Next".
 
 	<IPadScreen>
-		![](2-automate-6-select-shortcut.png)
+		![](2-automate-06-select-shortcut.png)
 	</IPadScreen>
 
 7. Review your automation settings. Turn off the "Ask Before Running" setting, so that you won't need to confirm the automation every time it runs.
 
 	<IPadScreen>
-		![](2-automate-7-ask-before-running.png)
+		![](2-automate-07-ask-before-running.png)
 	</IPadScreen>
 
 8. Turning off the "Ask Before Running" setting will require a second confirmation that you really don't want to ask before running the automation. Confirm by selecting "Don't Ask".
 
 	<IPadScreen>
-		![](2-automate-8-ask-before-running-confirmation.png)
+		![](2-automate-08-ask-before-running-confirmation.png)
 	</IPadScreen>
 
 9. Now you should see an additional setting, "Notify When Run". Turn that setting on, so that you'll get a notification whenever your automation is run. (This will help you confirm that the automation is actually working as expected. You can turn this setting off later if you'd prefer not to see a notification.)
 
 	<IPadScreen>
-		![](2-automate-9-notify-when-run.png)
+		![](2-automate-09-notify-when-run.png)
 	</IPadScreen>
 
 10. Click "Done" to save your changes. Your new automation should appear under "Personal" on the Automation page.
@@ -359,14 +359,14 @@ Like before, you'll do this work in two stages:
 1. In the **Shortcuts** app, navigate back to the "All Shortcuts" page. Click the "+" icon to create a new shortcut.
 
 	<IPadScreen>
-		![](3-shortcut-1-all-shortcuts.png)
+		![](3-shortcut-01-all-shortcuts.png)
 	</IPadScreen>
 
 
 2. Name your shortcut "Back Up Obsidian Vault".
 
 	<IPadScreen>
-		![](3-shortcut-2-name.png)
+		![](3-shortcut-02-name.png)
 	</IPadScreen>
 
 3. If you plan on running these shortcuts across multiple devices, it helps to specify in your commit message which device you're making changes from. (For example, I use the free iCloud tier to sync my Shortcuts across Apple devices, so this shortcut could run from either my iPad or my iPhone. Knowing which device a commit came from helps me troubleshoot if something goes wrong or I start getting merge conflicts.)
@@ -374,43 +374,43 @@ Like before, you'll do this work in two stages:
 	To set that up, use the search bar to find the Scripting action called "Set Variable".
 
 	<IPadScreen>
-		![](3-shortcut-3-search-set-variable.png)
+		![](3-shortcut-03-search-set-variable.png)
 	</IPadScreen>
 
 4. Choose the "Set Variable" action from the sidebar to add it to your shortcut.
 
 	<IPadScreen>
-		![](3-shortcut-4-set-variable.png)
+		![](3-shortcut-04-set-variable.png)
 	</IPadScreen>
 
 5. Give your variable a name by tapping on "Variable Name". You can call this whatever you want; I called mine "Device".
 
 	<IPadScreen>
-		![](3-shortcut-5-variable-name.png)
+		![](3-shortcut-05-variable-name.png)
 	</IPadScreen>
 
 6. Now set the value of your variable by tapping "Input" and choosing "Device Details".
 
 	<IPadScreen>
-		![](3-shortcut-6-variable-input.png)
+		![](3-shortcut-06-variable-input.png)
 	</IPadScreen>
 
 7. Checkpoint: This is what your action should look like so far:
 
 	<IPadScreen>
-		![](3-shortcut-7-checkpoint.png)
+		![](3-shortcut-07-checkpoint.png)
 	</IPadScreen>
 
 8. Tap on "Device Details", and scroll down to select "Device Type". When your shortcut runs, this value will be something like "iPhone" or "iPad", depending on what kind of device you're using.
 
 	<IPadScreen>
-		![](3-shortcut-8-device-type.png)
+		![](3-shortcut-08-device-type.png)
 	</IPadScreen>
 
 9. Use the search bar to find the Working Copy action called "Commit Repository".
 
 	<IPadScreen>
-		![](3-shortcut-9-search-commit-repo.png)
+		![](3-shortcut-09-search-commit-repo.png)
 	</IPadScreen>
 
 10. Tap the "Commit Repository" action to add it to your shortcut.
@@ -492,55 +492,55 @@ Now that your shortcut is set up, it's time to automate it! To make sure your la
 1. In the **Shortcuts** app, navigate to the "Automation" page. Click the "+" icon to create a new automation.
 
 	<IPadScreen>
-		![](3-automate-1-all-shortcuts.png)
+		![](3-automate-01-all-shortcuts.png)
 	</IPadScreen>
 
 2. Choose "Create Personal Automation".
 
 	<IPadScreen>
-		![](3-automate-2-create-personal-automation.png)
+		![](3-automate-02-create-personal-automation.png)
 	</IPadScreen>
 
 3. Next, choose what event you want to trigger your automation. Scroll down and select "App".
 
 	<IPadScreen>
-		![](3-automate-3-select-trigger.png)
+		![](3-automate-03-select-trigger.png)
 	</IPadScreen>
 
 4. For "App", choose Obsidian. Uncheck the "Is Opened" toggle, and check "Is Closed" instead. Then click "Next".
 
 	<IPadScreen>
-		![](3-automate-4-automation-settings.png)
+		![](3-automate-04-automation-settings.png)
 	</IPadScreen>
 
 5. Now it's time to specify what actions you want to run when your automation is triggered. Click the "Add Action" button.
 
 	<IPadScreen>
-		![](3-automate-5-add-action.png)
+		![](3-automate-05-add-action.png)
 	</IPadScreen>
 
 6. Use the search bar to find the "Run Shortcut" action. Tap the action to add it to your automation.
 
 	<IPadScreen>
-		![](3-automate-6-search-run-shortcut.png)
+		![](3-automate-06-search-run-shortcut.png)
 	</IPadScreen>
 
 7.  Tap the "Shortcut" variable to add in a value.
 
 	<IPadScreen>
-		![](3-automate-7-shortcut-variable.png)
+		![](3-automate-07-shortcut-variable.png)
 	</IPadScreen>
 
 8. Select your "Back Up Obsidian Vault" shortcut from the menu.
 
 	<IPadScreen>
-		![](3-automate-8-shortcut-selection-list.png)
+		![](3-automate-08-shortcut-selection-list.png)
 	</IPadScreen>
 
 9. Checkpoint: Your actions should look like this. Click "Next" to continue.
 
 	<IPadScreen>
-		![](3-automate-9-checkpoint.png)
+		![](3-automate-09-checkpoint.png)
 	</IPadScreen>
 
 10. Review your automation settings. Turn off the "Ask Before Running" setting, so that you won't need to confirm the automation every time it runs.
