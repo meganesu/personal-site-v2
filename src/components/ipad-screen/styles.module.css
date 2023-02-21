@@ -12,7 +12,7 @@
   border-radius: 0.5rem;
 }
 
-@media (width <= 500px) {
+@media (width <= 600px) {
   .screenshot-wrapper {
     border: solid 1rem black;
   }

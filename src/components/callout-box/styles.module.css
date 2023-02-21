@@ -6,6 +6,12 @@
   overflow-wrap: break-word;
 }
 
+@media (width <= 600px) {
+  .container {
+    margin: 1rem 0;
+  }
+}
+
 .container :first-child {
   margin-top: 0rem;
 }

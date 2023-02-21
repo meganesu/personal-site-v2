@@ -20,6 +20,12 @@
   flex-direction: column;
 }
 
+@media (width <= 600px) {
+  .main-wrapper {
+    padding: 1rem;
+  }
+}
+
 .main {
   width: 100%;
   max-width: 50rem;
