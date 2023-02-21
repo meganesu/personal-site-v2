@@ -1,0 +1,591 @@
+---
+title: "Sync your Obsidian Vault on iOS with GitHub, Working Copy, and Apple Shortcuts"
+date: "2023-02-20"
+description: "This tutorial explains how to connect your iPhone or iPad to an existing Obsidian vault, without a monthly subscription."
+tags: ["obsidian", "tooling"]
+---
+
+## Introduction
+
+[Obsidian](https://obsidian.md/) is my favorite note-taking app. Since I started using it in 2021, I've been stuffing my vault full of notes, ideas, and reminders.
+
+At first, I was only using Obsidian on my MacBook. But I quickly realized that I needed a way to capture my thoughts while I was on the go and away from my computer. Luckily, there's an Obsidian app that works on both iOS and iPad. But Obsidian works with local Markdown files. How do you connect multiple devices to the same Obsidian vault?
+
+The Obsidian team offers a product called [Obsidian Sync](https://obsidian.md/sync), which is a monthly or annual subscription that you can use to sync your vaults across devices. If you're not comfortable with [Git](https://git-scm.com/), Obsidian Sync is a great way to get the same functionality while also supporting the Obsidian creators!
+
+But for developers (or folks who would rather avoid paying for another monthly subscription), you can achieve a similar result using a GitHub repo, an app called Working Copy, and the built-in Shortcuts app on your Apple device.
+
+In this post, I'll show you how to synchronize your Obsidian vault across Apple devices so that you can easily take notes wherever you are.
+
+<CalloutBox>
+  **Note:** This tutorial is not completely free. It requires a one-time purchase of the pro version of [Working Copy](https://workingcopyapp.com/) (which costs $19.99 USD, as of February 2023).  (But personally, I'd rather pay a one-time fee than a monthly subscription.)
+</CalloutBox>
+
+## Prerequisites
+
+Before you begin this tutorial, you should have the following materials:
+
+- ✅ An existing Obsidian vault, backed up to a [GitHub](https://github.com/) repository
+	- On my MacBook, I use the [obsidian-git](https://github.com/denolehov/obsidian-git) plugin, which I've configured to back up my vault every 30 minutes.
+- ✅ An iPhone or iPad, with the following applications installed:
+- ✅ [Obsidian](https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442)
+- ✅ [Working Copy](https://apps.apple.com/us/app/working-copy-git-client/id896694807): a Git client for working with repositories from a mobile device
+	- You'll need to upgrade to the Pro version, which you can do from within the app.
+- ✅ [Shortcuts](https://apps.apple.com/us/app/shortcuts/id915249334): an Apple app for creating automations on your device
+	- (As of iOS/iPadOS 13+, the Shortcuts app comes pre-installed as a default app on your device.)
+
+<CalloutBox>
+  **Version notes:**
+  Here are the versions I used when I was setting this up on my own personal devices:
+  
+  On my iPhone 12 Pro:
+  - iOS 14.8
+  - Obsidian 1.0.4
+  - Working Copy 4.9.1
+
+  On my iPad Pro (11-inch):
+  - iPadOS 15.6.1
+  - Obsidian 1.4.1
+  - Working Copy 5.3.3
+</CalloutBox>
+
+
+## The Big Picture
+
+Let's take a step back to understand the overall setup you'll be building:
+
+![A diagram of the systems involved in this architecture. On top, there's the GitHub logo, with a desktop computer and an iPhone/iPad below it. Bidirectional arrows connect the GitHub logo to each of the devices.](./architecture-systems.png)
+
+Your GitHub repo will be the source of truth for your vault. You'll want to make sure any changes you make to your local Obsidian vault get pushed to GitHub so that they can be accessed from your other devices.
+
+Now let's zoom in a bit and take a closer look at the tools we'll use to enable this setup:
+
+![A diagram that builds on the one above, showing the different pieces in each system. Detailed description below.](./architecture-applications.png)
+
+<Collapsible summary={<em>Expand for detailed image description</em>}>
+	GitHub:
+	- Has a repo called "my-vault"
+
+	Desktop:
+	- Stores files in a local copy of the "my-vault" repo
+	- Uses the Obsidian application, with the Obsidian Git plugin
+
+	iPhone/iPad:
+	- Stores files in a local copy of the "my-vault" repo
+	- Uses the Obsidian, Working Copy, and Shortcuts applications
+</Collapsible>
+
+<CalloutBox>
+	**Note:** This tutorial assumes that you already have the GitHub and Desktop pieces set up.
+	
+	Need help getting started with that? Check out this post by Obsidian Rocks: [Backing up Your Obsidian Vault on Github (for free!)](https://obsidian.rocks/backing-up-your-obsidian-vault-on-github-for-free/)
+</CalloutBox>
+
+For the rest of this post, we'll focus on the iPhone/iPad setup.
+
+## Scenarios
+
+In order to keep your Obsidian vault synchronized with your iPhone or iPad, you'll need to handle the two following scenarios:
+
+1. **Pull** changes from the remote vault repo on GitHub into the local vault on your device.
+	- This syncs any changes you've made to your notes from another device.
+2. **Push** changes from the local vault on your device into the remote vault repo on GitHub.
+	- This makes changes from your iPhone/iPad available on other devices.
+
+![A pair of diagrams, illustrating the two scenarios. Scenario 1 shows an arrow pointing from the GitHub logo to the iPhone/iPad. Scenario 2 shows an arrow pointing from the iPhone/iPad to the GitHub logo.](./scenarios.png)
+
+Let's get started!
+
+## 1) Connect your local Obsidian vault to the GitHub repo
+
+First things first, you'll need to create a new empty Obsidian vault on your iPhone/iPad.
+
+1. Open the **Obsidian** app on your device. Select "Create new vault".
+
+	<IPadScreen>
+		![iPad screenshot of the Obsidian app home screen. A box is drawn around the "Create new vault" menu option.](1-01-obsidian-home.png)
+	</IPadScreen>
+
+2. Give your vault a name. (I call mine "Second Brain".) Leave the "Store in iCloud" setting turned off. Then click "Create".
+
+	<IPadScreen>
+		![iPad screenshot of the Obsidian app "Create new vault" form. "Vault name" is set to "Second Brain", "Store in iCloud" toggle is off.](1-02-create-vault.png)
+	</IPadScreen>
+
+3. A new empty vault will be created on your device.
+
+	<IPadScreen>
+		![iPad screenshot of a new empty vault in the Obsidian app.](1-03-empty-vault.png)
+	</IPadScreen>
+
+Next, use Working Copy to connect this new empty vault to your existing vault repo on GitHub.
+
+1. Open the **Working Copy** app on your device. The first time you load Working Copy, it will look something like this:
+
+	<IPadScreen>
+		![iPad screenshot of the Working Copy app's home screen. There's a "Repository" sidebar with a single repo called, "welcome to working copy". The main section of the screen says "No repository selected. You can create new Git repositories by initializing new ones or by cloning from remote."](1-04-working-copy-empty.png)
+	</IPadScreen>
+
+<CalloutBox>
+	**Note:** If you haven't yet, you'll need to upgrade to the Pro version of Working Copy. If you've already purchased the Pro version on another device (using the same Apple ID), you can restore your purchases and unlock the Pro version on your new device.
+</CalloutBox>
+
+2. Click the "+" icon in the sidebar, then select "Clone repository".
+
+	<IPadScreen>
+		![iPad screenshot of the Working Copy app, with a box drawn around the "+" icon in the left sidebar. Someone has pressed the "+" icon, which opened a selection menu. A box is drawn around the "Clone repository" menu option.](1-05-clone-repository.png)
+	</IPadScreen>
+
+3. Open the "GitHub" tab, then click "Sign In".
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy, in the "Clone repository" modal. The GitHub tab is highlighted, and a box is drawn around the "Sign In" link.](1-06-github-sign-in.png)
+	</IPadScreen>
+
+4. Enter your GitHub credentials to give Working Copy access to your repositories.
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy, in the GitHub authentication modal. There's a form to "Sign in to GitHub to continue to Working Copy", with fields to enter a username and password.](1-07-github-credentials.png)
+	</IPadScreen>
+
+5. Now, Working Copy should display a list of your GitHub repositories. Locate and click on the one for your existing Obsidian vault.
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy. The "Clone repository" modal has been updated to show a list of repositories from the user's GitHub account. A box is drawn around the repo called "second-brain".](1-08-github-repos.png)
+	</IPadScreen>
+
+6. If you want, you can configure the settings for cloning the repo, but I kept the default settings. Then click "Clone". This will download a copy of your existing vault repo from GitHub to your device.
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy. In the "Clone repository" modal, the URL tab is selected. "Protocol" is set to "ssh", "User" is set to "git", "Host" is set to "github.com", "Port" is empty, "Path" is set to "meganesu/second-brain.git", and "LFS" is set to "Auto".](1-09-clone-repo-settings.png)
+	</IPadScreen>
+
+7. When you're done, you should see the contents of your vault repo in Working Copy.
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy. The "second-brain" repo is selected in the sidebar, and the app now shows the files and commits for that repo.](1-10-repo-cloned.png)
+	</IPadScreen>
+
+8. Click the share icon (the up arrow coming out of a box) on the right, then select "Link Repository to Folder".
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy, inside the "second-brain" repo. The share icon has been clicked, which opened a menu of share options. The "Link Repository to Folder" menu option is highlighted.](1-11-link-repo-to-folder.png)
+	</IPadScreen>
+
+<CalloutBox>
+	**Note:** Finding this setting on the iPhone version of Working Copy looks a little different:
+	
+	1. Open the Repository "Status and Configuration" settings.
+	2. Click on the dropdown next to the name of the repo.
+	3. Select the "Link Repository to Directory" setting.
+</CalloutBox>
+
+9. Under the "On My iPad" folder, open the "Obsidian" directory, and then select the folder for the new vault you created earlier. Then click "Done". This tells Working Copy to store the local copy of your repo in your Obsidian vault folder.
+
+	<IPadScreen>
+		![iPad screenshot of Working Copy. There's a folder selection modal open. The "On My iPad" / "Obsidian" / "Second Brain" folder is selected.](1-12-ipad-files.png)
+	</IPadScreen>
+
+10. Back in Obsidian, validate that the files from your existing remote vault now appear in your new vault.
+
+	<IPadScreen>
+		![iPad screenshot of Obsidian. The Files sidebar is open, and now shows folders and files from the GitHub repo.](1-13-notes-in-obsidian.png)
+	</IPadScreen>
+
+<CalloutBox>
+	**Troubleshooting Tip:** After syncing your existing vault to a new device, you may need to update the settings in your `.obsidian` directory to:
+
+	- **Turn on your theme.** You can do this in the Obsidian app, under the "Settings" -> "Appearance".
+
+	- **Merge duplicate settings files.** In Working Copy, check to see if there are duplicate files, e.g. `app.json` and `app.json-2`. Consolidate by manually merging the settings into one file and removing the duplicate file.
+
+		<IPadScreen>
+			![iPad screenshot of Working Copy. In the ".obsidian" directory, there are duplicate files highlighted: "app.json" and "app.json-2", "appearance.json" and "appearance.json-2", "core-plugins.json" and "core-plugins.json-2". All the "-2" files are marked as "deleted".](troubleshooting-duplicate-files.png)
+		</IPadScreen>
+</CalloutBox>
+
+## 2) Pull changes from GitHub into your local vault
+
+Now that you've got your local vault set up, it's time to handle the first scenario from earlier: pulling changes from the remote vault repo into your local vault.
+
+![The Scenario 1 diagram from before. It shows an arrow pointing from the GitHub logo to an iPhone/iPad.](./scenario-1.png)
+
+You'll do this work in two stages:
+- Create a shortcut to pull changes.
+- Automate the shortcut to run when the Obsidian app opens.
+
+### Create a shortcut to pull changes
+
+1. Open the **Shortcuts** app, and navigate to the "All Shortcuts" page. Click the "+" icon to create a new shortcut.
+
+	<IPadScreen>
+		![iPad screenshot of the Shortcuts app. The "All Shortcuts" page is selected from the sidebar, and the "+" icon is highlighted.](2-shortcut-01-new.png)
+	</IPadScreen>
+
+2. Name your new shortcut "Pull Changes From Remote Obsidian Vault". 
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. On the screen for creating a new shortcut, the shortcut has been renamed to "Pull Changes From Remote Obsidian Vault".](2-shortcut-02-name.png)
+	</IPadScreen>
+
+3. Use the search bar to find the Working Copy action to "Pull Repository". Tap the action to add it to your shortcut.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the sidebar on the right, the user has entered "Working copy pull" into the search bar, which brings up actions for the Working Copy app. The "Pull Repository" action is highlighted.](2-shortcut-03-search-for-pull-action.png)
+	</IPadScreen>
+
+4. Checkpoint: So far, your shortcut should look like this:
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The new shortcut has one action, "Pull from \[Repository\] remote". The word "Repository" is clickable.](2-shortcut-04-add-pull-action.png)
+	</IPadScreen>
+
+5. Tap on the "Repository" placeholder to fill in a value. Choose your vault repo from the list of Working Copy repos.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user clicked on the "Repository" placeholder value, and a modal appeared, showing the repositories available in the Working Copy app. The "second-brain" repo is highlighted.](2-shortcut-05-select-repo.png)
+	</IPadScreen>
+
+6. Checkpoint: Your final shortcut should look like the one below. Click "Done" to save your changes.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The new shortcut is named "Pull Changes From Remote Obsidian Vault", and it contains one action: "Pull from second-brain remote".](2-shortcut-06-final.png)
+	</IPadScreen>
+
+7. Now you have a shortcut that you can trigger by tapping it in the Shortcuts menu. (To edit your shortcut, click on the three dots in the corner of the grid item.)
+
+	<IPadScreen>
+		![iPad screenshot of the Shortcuts "All Shortcuts" page. There's now a new shortcut box in the grid for the pull changes shortcut the user just created.](2-shortcut-07-all-shortcuts.png)
+	</IPadScreen>
+
+### Automate the shortcut to run when the Obsidian app opens
+
+Now that you can pull updates from GitHub into your local vault, it's time to set up an automation to run that shortcut automatically! To avoid merge conflicts, pull changes from the remote repo every time you open the Obsidian app on your device. Let's set that up:
+
+1. In the **Shortcuts** app, open the Automation page, and create a new personal automation.
+
+	<IPadScreen>
+		![iPad screenshot of the Shortcuts app. The "Automation" page is selected in the sidebar, and the "Create Personal Automation" button is highlighted.](2-automate-01-create-personal-automation.png)
+	</IPadScreen>
+
+2. In the "New Automation" menu, choose the event that you want to trigger your automation. Scroll down and select "App".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "App" menu item is highlighted. (The subtitle for the menu item says: "Ex. 'When "Weather" is opened or closed'".)](2-automate-02-choose-trigger.png)
+	</IPadScreen>
+
+3. Choose "Obsidian" for the App, and make sure "Is Opened" is checked. Then click "Next".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "App" setting has been changed to "Obsidian". The "Is Opened" box is checked, and the "Is Closed" box is unchecked.](2-automate-03-trigger-settings.png)
+	</IPadScreen>
+
+4. Now you'll set up the action you want to trigger when Obsidian is opened. Click the "Add Action" button.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, the "Add Action" button is highlighted.](2-automate-04-empty-actions-list.png)
+	</IPadScreen>
+
+5. Use the search bar to find the "Run Shortcut" action. Click it to add it to your automation.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, the user has typed "Shortcut" into the search bar. The search results show an option called "Run Shortcut", which is highlighted.](2-automate-05-run-shortcut-action.png)
+	</IPadScreen>
+
+6. Click the "Shortcut" placeholder to fill in a value. Select the "Pull Changes From Remote Obsidian Vault" shortcut you created earlier. Then click "Next".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, the list of actions now says "Run Pull Changes From Remote Obsidian Vault".](2-automate-06-select-shortcut.png)
+	</IPadScreen>
+
+7. Review your automation settings. Turn off the "Ask Before Running" setting, so that you won't need to confirm the automation every time it runs.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "Ask Before Running" toggle is highlighted.](2-automate-07-ask-before-running.png)
+	</IPadScreen>
+
+8. Turning off the "Ask Before Running" setting will require a second confirmation that you really don't want to ask before running the automation. Confirm by selecting "Don't Ask".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. A confirmation alert says, "Don't ask before running? Whenever this automation is triggered, it will perform actions on your behalf without asking first." The "Don't Ask" option is highlighted.](2-automate-08-ask-before-running-confirmation.png)
+	</IPadScreen>
+
+9. Now you should see an additional setting, "Notify When Run". Turn that setting on, so that you'll get a notification whenever your automation is run. (This will help you validate that the automation is working as expected. You can turn this setting off later if you'd prefer not to see a notification every time you open the app.)
+
+	Click "Done" to save your changes.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "Ask Before Running" toggle is turned off, and the "Notify When Run" toggle is turned on.](2-automate-09-notify-when-run.png)
+	</IPadScreen>
+
+10. Your new automation should appear under "Personal" on the Automation page.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The Automation page is selected from the sidebar, which shows one Personal automation called "When 'Obsidian' is opened".](2-automate-10-automation-page.png)
+	</IPadScreen>
+
+And that should do it! Test out your automation by opening the Obsidian app. You should see a notification telling you that your "Opened Obsidian" shortcut was run.
+
+<IPadScreen>
+  ![iPad screenshot of a note in Obsidian. There's an iPad notification at the top of the screen that says "Opened 'Obsidian'. Running your automation."](2-automate-11-opened-obsidian-notification.png)
+</IPadScreen>
+
+<CalloutBox>
+	**Troubleshooting Tip:**
+
+	The first time your automation runs, you may see a notification that says "Allow 'Update Obsidian Vault through Working Copy' to access 'Working Copy'?"
+
+	<IPadScreen>
+		![iPad screenshot of Obsidian. There's an iPad notification from Shortcuts that says "Allow 'Update Obsidian Vault through WOrking Copy' to access ... Tap to respond."](troubleshooting-allow-access-1.png)
+	</IPadScreen>
+
+	To confirm that you give permission for Working Copy to make changes to your Obsidian vault, tap the notification and select "Allow".
+
+	<IPadScreen>
+		![iPad screenshot of Obsidian. The iPad notification has been expanded to show confirmation options. The "Allow" option is highlighted.](troubleshooting-allow-access-2.png)
+	</IPadScreen>
+</CalloutBox>
+
+## 3) Push changes from your local vault to GitHub
+
+Now you're ready to tackle the second scenario: pushing changes from your local vault into the remote repo on GitHub.
+
+![The Scenario 2 diagram from before. An arrow points from an iPhone/iPad to the GitHub logo.](scenario-2.png)
+
+Like before, you'll do this work in two stages:
+- Create a shortcut to push local changes.
+- Automate the shortcut to run when the Obsidian app closes.
+
+### Create a shortcut to push local changes
+
+1. In the **Shortcuts** app, navigate back to the "All Shortcuts" page. Click the "+" icon to create a new shortcut.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The "All Shortcuts" page is selected in the sidebar, and the "+" icon to create a new shortcut is highlighted.](3-shortcut-01-all-shortcuts.png)
+	</IPadScreen>
+
+
+2. Name your shortcut "Back Up Obsidian Vault".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The new shortcut has been renamed to "Back Up Obsidian Vault".](3-shortcut-02-name.png)
+	</IPadScreen>
+
+3. If you plan on running these shortcuts across multiple devices, it helps to specify in your commit message which device you're making changes from. (For example, I use the free iCloud tier to sync my Shortcuts across Apple devices, so this shortcut could run from either my iPad or my iPhone. Knowing which device a commit came from helps me troubleshoot if something goes wrong or I start getting merge conflicts.)
+
+	To set that up, use the search bar to find the Scripting action called "Set Variable". Tap the action to add it to your shortcut.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user entered "Variable" into the search bar in the sidebar, which shows a search result called "Set Variable".](3-shortcut-03-search-set-variable.png)
+	</IPadScreen>
+
+4. Checkpoint: Now your shortcut should look like this:
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The new shortcut has a single action, called "Set variable \[Variable Name\] to \[Input\]". "Variable Name" and "Input" are both clickable placeholder values.](3-shortcut-04-set-variable.png)
+	</IPadScreen>
+
+5. Give your variable a name by tapping on "Variable Name". You can call this whatever you want; I called mine "Device".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user clicked on the "Variable Name" placeholder and typed "Device".](3-shortcut-05-variable-name.png)
+	</IPadScreen>
+
+6. Now set the value of your variable by tapping "Input" and choosing "Device Details".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user clicked on the "Input" placeholder, which opened a menu of options to choose from. The "Device Details" menu option is highlighted.](3-shortcut-06-variable-input.png)
+	</IPadScreen>
+
+7. Checkpoint: This is what your action should look like so far:
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The new action now has a single action that says, "Set variable Device to Device Details".](3-shortcut-07-checkpoint.png)
+	</IPadScreen>
+
+8. Tap on "Device Details", and scroll down to select "Device Type". When your shortcut runs, this value will be something like "iPhone" or "iPad", depending on what kind of device you're using.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user tapped on "Device Type", which opened a menu of more specific options to choose from. The "Device Type" option is checked.](3-shortcut-08-device-type.png)
+	</IPadScreen>
+
+9. Use the search bar to find the Working Copy action called "Commit Repository". Tap the action to add it to your shortcut.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the sidebar's search bar, the user entered "Working copy commit", which brings up a search result of a Working Copy action called "Commit Repository".](3-shortcut-09-search-commit-repo.png)
+	</IPadScreen>
+
+10. Checkpoint: Now your shortcut should look like this:
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. At the bottom of the actions list, there's a new action: "Commit \[Repository\] with \[Message\]". "Repository" and "Message" are clickable placeholder values.](3-shortcut-10-add-commit-action.png)
+	</IPadScreen>
+
+11. Tap "Repository" to fill in a value for which Working Copy repo you want to commit to. Choose your vault repo from the menu.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user clicked the "Repository" placeholder, which opened a modal showing the available repos from Working Copy. The "second-brain" repo is highlighted.](3-shortcut-11-choose-repository.png)
+	</IPadScreen>
+
+12. Next, tap "Message" to fill in what you want your commit message to be.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The "Message" placeholder in the Commit action is highlighted.](3-shortcut-12-select-message.png)
+	</IPadScreen>
+
+13. You can use the menu at the bottom of the screen to add the Device variable into your commit message. I set my commit message to: **"Vault autocommit on \<Device\>"** (which will end up being either "Vault autocommit on iPad" or "Vault autocommit on iPhone", depending on which device I'm using).
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The "Message" placeholder has been replaced with, "Vault autocommit on \[Device\]", where "Device" is the value of the Device variable. At the bottom of the screen, there's a menu where users can select a variable to insert into the message string.](3-shortcut-13-commit-message.png)
+	</IPadScreen>
+
+14. Click the arrow icon in the commit action to expand the advanced options menu.
+	- Set the "What to Commit" option to "modified".
+	- Turn off the "Fail when nothing to Commit" toggle.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user has clicked the arrow to show advanced options on the Commit action. "What to Commit" is set to "modified", and the "Fail when nothing to Commit" toggle is turned off.](3-shortcut-14-commit-options.png)
+	</IPadScreen>
+
+15. Use the search bar to find the Working Copy action called "Push Repository". Tap the action to add it to your shortcut.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the sidebar search box, the user typed "Working copy push", which shows one search result: a Working Copy action called "Push Repository".](3-shortcut-15-search-push-repo.png)
+	</IPadScreen>
+
+16. Checkpoint: Now your shortcut should look like this:
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The new shortcut's list of actions shows a new action at the bottom: "Push \[Repository\] to remote". The word "Repository" is a clickable placeholder.](3-shortcut-16-add-push-repo-action.png)
+	</IPadScreen>
+
+17. Tap "Repository" to fill in a value for which Working Copy repo to push to its remote. Select your vault repo from the menu.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user clicked the "Repository" placeholder, which opened a modal showing the available repositories from Working Copy. The "second-brain" repo is highlighted.](3-shortcut-17-select-repo.png)
+	</IPadScreen>
+
+18. Your final "Back Up Obsidian Vault" shortcut should look like this:
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The actions list for the new shortcut contains the following actions: "Set variable \[Device\] to \[Device Type\]." "Commit \[second-brain\] with \[Vault autocommit on Device\]." "Push \[second-brain\] to remote."](3-shortcut-18-final.png)
+	</IPadScreen>
+
+19. Click "Done" to save your new shortcut. You should now see it appear on the "All Shortcuts" page. Tap the shortcut to run it. (To edit your shortcut, click on the three dots in the corner of the grid item.)
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. On the "All Shortcuts" page, there's a new shortcut for backing up an Obsidian vault.](3-shortcut-19-all-shortcuts.png)
+	</IPadScreen>
+
+### Automate the shortcut to run when the Obsidian app closes
+
+Now that your shortcut is set up, it's time to automate it! To make sure your latest changes are always pushed up to the remote repo, run your shortcut every time you close the Obsidian app. Let's set that up next:
+
+1. In the **Shortcuts** app, navigate to the "Automation" page. Click the "+" icon to create a new automation.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. On the "Automation" page, the "+" icon to create a new automation is highlighted.](3-automate-01-automation-page.png)
+	</IPadScreen>
+
+2. Choose "Create Personal Automation".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "Create Personal Automation" button is highlighted.](3-automate-02-create-personal-automation.png)
+	</IPadScreen>
+
+3. Next, choose which event you want to trigger your automation. Scroll down and select "App".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "App" option is highlighted. (The menu item has a subtitle that says, "Ex. 'When "Weather" is opened or closed'".)](3-automate-03-select-trigger.png)
+	</IPadScreen>
+
+4. For "App", choose Obsidian. Uncheck the "Is Opened" toggle, and check "Is Closed" instead. Then click "Next".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, "App" is set to "Obsidian", the "Is Opened" box is unchecked, and the "Is Closed" box is checked.](3-automate-04-automation-settings.png)
+	</IPadScreen>
+
+5. Now it's time to specify what action you want to run when your automation is triggered. Click the "Add Action" button.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, the "Add Action" button is highlighted.](3-automate-05-add-action.png)
+	</IPadScreen>
+
+6. Use the search bar to find the "Run Shortcut" action. Tap the action to add it to your automation.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, the user has entered "Shortcut" in the search bar. The search result called "Run Shortcut" is highlighted.](3-automate-06-search-run-shortcut.png)
+	</IPadScreen>
+
+7.  Tap the "Shortcut" placeholder to add in a value.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, there's an action listed called "Run \[Shortcut\]", where "Shortcut" is a clickable placeholder.](3-automate-07-shortcut-variable.png)
+	</IPadScreen>
+
+8. Select your "Back Up Obsidian Vault" shortcut from the menu.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. The user clicked the "Shortcut" placeholder, which opened a menu of available shortcuts to run. The "Back Up Obsidian Vault" option is highlighted.](3-automate-08-shortcut-selection-list.png)
+	</IPadScreen>
+
+9. Checkpoint: Your actions should look like this. Click "Next" to continue.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "Actions" modal, there's a single action listed: "Run \[Back Up Obsidian Vault\]".](3-automate-09-checkpoint.png)
+	</IPadScreen>
+
+10. Review your automation settings. Turn off the "Ask Before Running" setting, so that you won't need to confirm the automation every time it runs.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "Ask Before Running" toggle is highlighted.](3-automate-10-ask-before-running.png)
+	</IPadScreen>
+
+11. Turning off the "Ask Before Running" setting will require a second confirmation that you really don't want to ask before running the automation. Confirm by selecting "Don't Ask".
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. A confirmation alert says, "Don't ask before running? Whenever this automation is triggered, it will perform actions on your behalf without asking first." The "Don't Ask" button is highlighted.](3-automate-11-ask-before-running-confirmation.png)
+	</IPadScreen>
+
+12. Now you should see an additional setting, "Notify When Run". Turn that setting on, so that you'll get a notification whenever your automation is run. (This will help you validate that the automation is working as expected. You can turn this setting off later if you'd prefer not to see a notification every time you close Obsidian.)
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. In the "New Automation" modal, the "Ask Before Running" toggle is turned off, and the "Notify When Run" toggle is turned on.](3-automate-12-notify-when-run.png)
+	</IPadScreen>
+
+13. Click "Done" to save your changes. Your new automation should appear under "Personal" on the Automation page.
+
+	<IPadScreen>
+		![iPad screenshot of Shortcuts. On the "Automation" page, there's a new Personal automation listed, "When 'Obsidian' is closed".](3-automate-13-automation-page.png)
+	</IPadScreen>
+
+And you're done!
+
+Test out your new automation by opening the Obsidian app (which triggers a notification that your "Opened Obsidian" automation is running), making some changes, and then closing the Obsidian app (by going back to your home screen). You should see a notification that your "Closed Obsidian" automation ran.
+
+<IPadScreen>
+	![iPad screenshot of the home screen, with a notification at the top of the screen that says, "Closed 'Obsidian'. Running your automation."](3-automate-14-closed-obsidian-notification.png)
+</IPadScreen>
+
+## Wrap It Up
+
+Obsidian has become a huge part of my day-to-day workflow. By syncing my vault across all my devices, I have the flexibility to capture notes on whichever device I have on hand.
+
+Want to learn how to make the most of your new note-taking freedom? I've learned a ton about Obsidian by watching Ben Hong's YouTube channel, [BenCodeZen](https://www.youtube.com/@BenCodeZen). You can also check out the [official Obsidian Community page](https://obsidian.md/community), which has links to a dedicated Discord server and online forum.
+
+If you like this post, reach out on [Mastodon](https://hachyderm.io/@meganesulli) and let me know! You can also subscribe to my newsletter (below) to get updates when I post new content.
+
+
+## Resources
+
+- [Obsidian on the App Store](https://apps.apple.com/us/app/obsidian-connected-notes/id1557175442)
+- [Working Copy on the App Store](https://apps.apple.com/us/app/working-copy-git-client/id896694807)
+	- [Working Copy website](https://workingcopyapp.com/)
+	- [Working Copy User Guide](https://workingcopyapp.com/manual.html)
+- [Shortcuts on the App Store](https://apps.apple.com/us/app/shortcuts/id915249334)
+	- Apple Support: [Shortcuts User Guide](https://support.apple.com/guide/shortcuts/welcome/ios)
+	- Apple Support: [Setting triggers in Shortcuts on iPhone or iPad](https://support.apple.com/guide/shortcuts/setting-triggers-apde31e9638b/5.0/ios/15.0)
+
+This tutorial was inspired by the following resources:
+- [Obsidian forum post by Richard Steele](https://forum.obsidian.md/t/mobile-setting-up-ios-git-based-syncing-with-mobile-app-using-working-copy/16499)
+- [GitHub comment by Julian Gonggrijp](https://github.com/denolehov/obsidian-git/issues/57#issuecomment-952297086)

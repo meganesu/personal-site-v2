@@ -46,6 +46,7 @@ export default {
             options: {
               maxWidth: 800,
               linkImagesToOriginal: false,
+              quality: 100,
             },
           },
         ],
