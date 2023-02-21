@@ -3,6 +3,8 @@
   border: solid 1.5rem black;
   outline: solid 0.25rem #ccc;
   background-color: black;
+
+  margin: 1rem 0;
 }
 
 .screenshot-contents {
