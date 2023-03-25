@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableOfContents component renders nested links in the correct DOM structure 1`] = `
+<ul>
+  <li
+    class="link"
+  >
+    <a
+      href="/#introduction"
+    >
+      Introduction
+    </a>
+  </li>
+  <li
+    class="link"
+  >
+    <a
+      href="/#a-quick-crash-course-on-rss-feeds"
+    >
+      A Quick Crash Course on RSS Feeds
+    </a>
+  </li>
+  <ul>
+    <li
+      class="link"
+    >
+      <a
+        href="/#how-does-an-rss-feed-work"
+      >
+        How does an RSS feed work?
+      </a>
+    </li>
+    <li
+      class="link"
+    >
+      <a
+        href="/#what-does-an-rss-feed-actually-look-like"
+      >
+        What does an RSS feed actually look like?
+      </a>
+    </li>
+  </ul>
+  <li
+    class="link"
+  >
+    <a
+      href="/#prerequisites"
+    >
+      Prerequisites
+    </a>
+  </li>
+  <li
+    class="link"
+  >
+    <a
+      href="/#the-starter-code"
+    >
+      The Starter Code
+    </a>
+  </li>
+  <li
+    class="link"
+  >
+    <a
+      href="/#adding-an-rss-feed"
+    >
+      Adding an RSS Feed
+    </a>
+  </li>
+  <ul>
+    <li
+      class="link"
+    >
+      <a
+        href="/#prerequisite-confirm-that-you-have-sitemetadata"
+      >
+        Prerequisite: Confirm that you have siteMetadata
+      </a>
+    </li>
+    <li
+      class="link"
+    >
+      <a
+        href="/#step-1-install-gatsby-plugin-feed"
+      >
+        Step 1: Install gatsby-plugin-feed
+      </a>
+    </li>
+    <li
+      class="link"
+    >
+      <a
+        href="/#step-2-configure-the-plugin-in-your-gatsby-configjs-file"
+      >
+        Step 2: Configure the plugin in your gatsby-config.js file
+      </a>
+    </li>
+    <ul>
+      <li
+        class="link"
+      >
+        <a
+          href="/#configuring-optionsquery-and-feedquery"
+        >
+          Configuring options.query and feed.query
+        </a>
+      </li>
+      <li
+        class="link"
+      >
+        <a
+          href="/#configuring-serialize"
+        >
+          Configuring serialize
+        </a>
+      </li>
+      <li
+        class="link"
+      >
+        <a
+          href="/#the-full-plugin-configuration"
+        >
+          The Full Plugin Configuration
+        </a>
+      </li>
+    </ul>
+    <li
+      class="link"
+    >
+      <a
+        href="/#step-3-build-and-serve-your-site-locally-to-test-the-rss-feed"
+      >
+        Step 3: Build and serve your site locally to test the RSS feed
+      </a>
+    </li>
+    <li
+      class="link"
+    >
+      <a
+        href="/#step-4-optional-add-a-link-to-your-rss-feed-to-your-site"
+      >
+        Step 4: (Optional) Add a link to your RSS feed to your site
+      </a>
+    </li>
+  </ul>
+  <li
+    class="link"
+  >
+    <a
+      href="/#troubleshooting-errors"
+    >
+      Troubleshooting Errors
+    </a>
+  </li>
+  <li
+    class="link"
+  >
+    <a
+      href="/#takeaways"
+    >
+      Takeaways
+    </a>
+  </li>
+  <li
+    class="link"
+  >
+    <a
+      href="/#wrap-it-up"
+    >
+      Wrap It Up
+    </a>
+  </li>
+  <li
+    class="link"
+  >
+    <a
+      href="/#additional-resources"
+    >
+      Additional Resources
+    </a>
+  </li>
+</ul>
+`;
