@@ -15,16 +15,16 @@ const ContentsList = ({contents}) => {
       {
         contents.map(({url, title, items}) => {
           return (
-            <>
-            <li className={linkStyles}>
-              <Link to={url}>{title}</Link>
-            </li>
-            {
-              items != undefined && (
-                <ContentsList contents={items} />
-              )
-            }
-            </>
+            <React.Fragment key={url}>
+              <li className={linkStyles}>
+                <Link to={url}>{title}</Link>
+              </li>
+              {
+                items != undefined && (
+                  <ContentsList contents={items} />
+                )
+              }
+            </React.Fragment>
           )
         })
       }
@@ -33,7 +33,6 @@ const ContentsList = ({contents}) => {
 }
 
 const TableOfContents = ({ tableOfContents }) => {
-  console.log(tableOfContents)
   return (
     <CalloutBox color="orange">
       <nav aria-label="Table of Contents" className={tocWrapperStyles}>
