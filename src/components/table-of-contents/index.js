@@ -9,24 +9,26 @@ import {
   link as linkStyles,
 } from "./styles.module.css"
 
-const ListItem = ({url, title, items}) => {
+const ContentsList = ({contents}) => {
   return (
-    <>
-      <li className={linkStyles}>
-        <Link to={url}>{title}</Link>
-      </li>
+    <ul>
       {
-        items != undefined && (
-          <ul>
+        contents.map(({url, title, items}) => {
+          return (
+            <>
+            <li className={linkStyles}>
+              <Link to={url}>{title}</Link>
+            </li>
             {
-              items.map(({url, title, items}) => {
-                return <ListItem url={url} title={title} items={items} />
-              })
+              items != undefined && (
+                <ContentsList contents={items} />
+              )
             }
-          </ul>
-        )
+            </>
+          )
+        })
       }
-    </>
+    </ul>
   )
 }
 
@@ -38,15 +40,7 @@ const TableOfContents = ({ tableOfContents }) => {
         <h2 className={headingStyles}>
           Table of Contents
         </h2>
-        <ul>
-        {
-          tableOfContents.items != undefined && (
-            tableOfContents?.items.map(({url, title, items}) => {
-              return <ListItem url={url} title={title} items={items} />
-            })
-          )
-        }
-        </ul>
+        <ContentsList contents={tableOfContents.items} />
       </nav>
     </CalloutBox>
   )
