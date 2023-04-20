@@ -7,7 +7,7 @@ import {
 } from "./styles.module.css"
 
 const NavBar = () => (
-  <nav id="navigation">
+  <nav id="navigation" aria-label="Main Menu">
     <ul className={navBarStyles}>
       <li>
         <Link to="/" activeClassName={activeLinkStyles}>

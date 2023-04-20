@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import RouteTargetHeading from "../components/route-target-heading"
 import MDXProvider from "../components/mdx-provider"
+import TableOfContents from "../components/table-of-contents"
 import MailingListSignupForm from "../components/mailing-list-signup-form"
 
 import {
@@ -25,6 +26,7 @@ export const query = graphql`
           minutesRoundedUp
         }
       }
+      tableOfContents
     }
   }
 `
@@ -47,6 +49,7 @@ const BlogPost = ({ data, location, children }) => {
       <p
         className={timeToReadStyles}
       >{`(${data.mdx.fields.timeToRead.minutesRoundedUp}-minute read)`}</p>
+      <TableOfContents tableOfContents={data.mdx.tableOfContents} />
       <MDXProvider>{children}</MDXProvider>
       <MailingListSignupForm />
     </Layout>
