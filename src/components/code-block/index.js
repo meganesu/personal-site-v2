@@ -8,9 +8,9 @@ import {
   container as containerStyles,
   fileTitle as fileTitleStyles,
   languageTag as languageTagStyles,
-  preWrapper as preWrapperStyles,
   pre as preStyles,
   code as codeStyles,
+  line as lineStyles,
   highlight as highlightStyles,
 } from "./styles.module.css"
 
@@ -23,34 +23,30 @@ const CodeBlock = (props) => {
   const fileTitle = props.title || ""
 
   return (
-    <div className={containerStyles}>
+    <figure className={containerStyles}>
       {fileTitle != "" && (
-        <div className={fileTitleStyles}>
+        <figcaption className={fileTitleStyles}>
           <span aria-label="file">📄</span> {fileTitle}
-        </div>
+        </figcaption>
       )}
       {language != "" &&
         <div className={languageTagStyles}>{language}</div>
       }
-      <div className={preWrapperStyles}>
-        <SyntaxHighlightWrapper
-          code={code}
-          language={language}
-          theme={theme}
-        >
-          {({ className, tokens, getLineProps, getTokenProps }) => {
-            console.log({
-              'className': className,
-              'tokens': tokens,
-              'getLineProps': getLineProps,
-              'getTokenProps': getTokenProps,
-            })
+      <SyntaxHighlightWrapper
+        code={code}
+        language={language}
+        theme={theme}
+      >
+        {({ className, tokens, getLineProps, getTokenProps }) => {
+          let currentlyInHighlightedBlock = false // for highlight-start / highlight-end
+          let shouldHighlightNextLine = false // for highlight-next-line
 
-            let currentlyInHighlightedBlock = false // for highlight-start / highlight-end
-            let shouldHighlightNextLine = false // for highlight-next-line
-
-            return (
-              <pre className={`${className} ${preStyles}`}>
+          return (
+            <pre
+              className={`${className} ${preStyles}`}
+              tabIndex="0"
+            >
+              <code className={codeStyles}>
                 {
                   // for each line in the code block
                   tokens.map((line, i) => {
@@ -101,29 +97,29 @@ const CodeBlock = (props) => {
                       return
                     }
 
-                    let codeClassNames = codeStyles
+                    let lineClassNames = lineStyles
                     if (shouldHighlightLine) {
-                      codeClassNames = codeClassNames.concat(` ${highlightStyles}`)
+                      lineClassNames = lineClassNames.concat(` ${highlightStyles}`)
                     }
 
                     return (
-                      <code
-                        {...getLineProps({ line, key: i, className: codeClassNames })}
+                      <div
+                        {...getLineProps({ line, key: i, className: lineClassNames })}
                       >
                         {/* for each token in the line */}
                         {tokensToRender.map((token, key) => (
                           <span {...getTokenProps({ token, key })} />
                         ))}
-                      </code>
+                      </div>
                     )}
                   )
                 }
-              </pre>
-            )}
-          }
-        </SyntaxHighlightWrapper>
-      </div>
-    </div>
+              </code>
+            </pre>
+          )}
+        }
+      </SyntaxHighlightWrapper>
+    </figure>
   )
 }
 

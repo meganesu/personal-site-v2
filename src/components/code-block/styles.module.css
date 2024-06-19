@@ -20,16 +20,18 @@
   display: inline-block;
 }
 
-.pre-wrapper {
-  overflow: auto;
-}
-
 .pre {
-  min-width: fit-content;
+  overflow: auto;
+  padding-bottom: 1rem;
 }
 
 .code {
   display: block;
+  width: 100%;
+  min-width: fit-content; /* for horizontal scroll */
+}
+
+.line {
   padding: 0rem 1rem;
 }
 

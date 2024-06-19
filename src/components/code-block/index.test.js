@@ -73,14 +73,17 @@ describe("CodeBlock component with line highlighting", () => {
     render(<MdxContent components={{ pre: CodeBlock }} />)
 
     // Then the highlight class is applied to the correct lines
-    const codeElements = screen.getAllByRole("code")
+    const codeElement = screen.getByRole("code")
+    const lines = codeElement.children
 
-    expect(codeElements[0].classList.contains("highlight")).toBe(true)
-    expect(codeElements[1].classList.contains("highlight")).toBe(false)
-    expect(codeElements[2].classList.contains("highlight")).toBe(true)
-    expect(codeElements[3].classList.contains("highlight")).toBe(true)
-    expect(codeElements[4].classList.contains("highlight")).toBe(false)
-    expect(codeElements[5].classList.contains("highlight")).toBe(false)
+    expect(lines.length).toBe(6)
+
+    expect(lines[0].classList.contains("highlight")).toBe(true)
+    expect(lines[1].classList.contains("highlight")).toBe(false)
+    expect(lines[2].classList.contains("highlight")).toBe(true)
+    expect(lines[3].classList.contains("highlight")).toBe(true)
+    expect(lines[4].classList.contains("highlight")).toBe(false)
+    expect(lines[5].classList.contains("highlight")).toBe(false)
   })
 
   it("supports highlight-start and highlight-end", async () => {
@@ -111,17 +114,18 @@ describe("CodeBlock component with line highlighting", () => {
     render(<MdxContent components={{ pre: CodeBlock }} />)
 
     // Then the highlight class is applied to the correct lines
-    const codeElements = screen.getAllByRole("code")
+    const codeElement = screen.getByRole("code")
+    const lines = codeElement.children
 
-    expect(codeElements[0].classList.contains("highlight")).toBe(false)
-    expect(codeElements[1].classList.contains("highlight")).toBe(false)
-    expect(codeElements[2].classList.contains("highlight")).toBe(true)
-    expect(codeElements[3].classList.contains("highlight")).toBe(true)
-    expect(codeElements[4].classList.contains("highlight")).toBe(false)
-    expect(codeElements[5].classList.contains("highlight")).toBe(false)
+    expect(lines[0].classList.contains("highlight")).toBe(false)
+    expect(lines[1].classList.contains("highlight")).toBe(false)
+    expect(lines[2].classList.contains("highlight")).toBe(true)
+    expect(lines[3].classList.contains("highlight")).toBe(true)
+    expect(lines[4].classList.contains("highlight")).toBe(false)
+    expect(lines[5].classList.contains("highlight")).toBe(false)
 
     // And the highlight-begin / highlight-end lines aren't rendered
-    expect(codeElements.length).toBe(6)
+    expect(lines.length).toBe(6)
   })
 
   it("supports highlight-next-line", async () => {
@@ -152,16 +156,17 @@ describe("CodeBlock component with line highlighting", () => {
     render(<MdxContent components={{ pre: CodeBlock }} />)
 
     // Then the highlight class is applied to the correct lines
-    const codeElements = screen.getAllByRole("code")
+    const codeElement = screen.getByRole("code")
+    const lines = codeElement.children
 
-    expect(codeElements[0].classList.contains("highlight")).toBe(false)
-    expect(codeElements[1].classList.contains("highlight")).toBe(false)
-    expect(codeElements[2].classList.contains("highlight")).toBe(true)
-    expect(codeElements[3].classList.contains("highlight")).toBe(false)
-    expect(codeElements[4].classList.contains("highlight")).toBe(false)
-    expect(codeElements[5].classList.contains("highlight")).toBe(true)
+    expect(lines[0].classList.contains("highlight")).toBe(false)
+    expect(lines[1].classList.contains("highlight")).toBe(false)
+    expect(lines[2].classList.contains("highlight")).toBe(true)
+    expect(lines[3].classList.contains("highlight")).toBe(false)
+    expect(lines[4].classList.contains("highlight")).toBe(false)
+    expect(lines[5].classList.contains("highlight")).toBe(true)
 
     // And the highlight-next-line lines aren't rendered
-    expect(codeElements.length).toBe(6)
+    expect(lines.length).toBe(6)
   })
 })
