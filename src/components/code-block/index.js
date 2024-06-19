@@ -45,40 +45,68 @@ const CodeBlock = (props) => {
               'getLineProps': getLineProps,
               'getTokenProps': getTokenProps,
             })
+
+            let currentlyInHighlightedBlock = false // for highlight-start / highlight-end
+
             return (
               <pre className={`${className} ${preStyles}`}>
-                {/* for each line in the code block */}
-                {tokens.map((line, i) => {
-                  let shouldHighlightLine = false
+                {
+                  // for each line in the code block
+                  tokens.map((line, i) => {
+                    let shouldHighlightLine = false
 
-                  const tokensToRender = []
-                  {/* for highlight-line */}
-                  line.forEach(token => {
-                    if (token.types.includes("comment") && token.content.includes("highlight-line")) {
+                    const tokensToRender = []
+                    let shouldRenderLine = true
+                    line.forEach(token => {
+                      // for highlight-line
+                      if (token.types.includes("comment") && token.content.includes("highlight-line")) {
+                        shouldHighlightLine = true
+                        return
+                      }
+
+                      // for highlight-start
+                      if (token.types.includes("comment") && token.content.includes("highlight-start")) {
+                        currentlyInHighlightedBlock = true
+                        shouldRenderLine = false
+                        return
+                      }
+
+                      // for highlight-end
+                      if (token.types.includes("comment") && token.content.includes("highlight-end")) {
+                        currentlyInHighlightedBlock = false
+                        shouldRenderLine = false
+                        return
+                      }
+
+                      tokensToRender.push(token)
+                    })
+
+                    if (!shouldRenderLine) {
+                      return
+                    }
+
+                    if (currentlyInHighlightedBlock) {
                       shouldHighlightLine = true
                     }
-                    else {
-                      tokensToRender.push(token)
+
+                    let codeClassNames = codeStyles
+                    if (shouldHighlightLine) {
+                      codeClassNames = codeClassNames.concat(` ${highlightStyles}`)
                     }
-                  })
 
-                  let codeClassNames = codeStyles
-                  if (shouldHighlightLine) {
-                    codeClassNames = codeClassNames.concat(` ${highlightStyles}`)
-                  }
-
-                  return (
-                    <code
-                      {...getLineProps({ line, key: i })}
-                      className={codeClassNames}
-                    >
-                      {/* for each token in the line */}
-                      {tokensToRender.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} />
-                      ))}
-                    </code>
-                  )}
-                )}
+                    return (
+                      <code
+                        {...getLineProps({ line, key: i })}
+                        className={codeClassNames}
+                      >
+                        {/* for each token in the line */}
+                        {tokensToRender.map((token, key) => (
+                          <span {...getTokenProps({ token, key })} />
+                        ))}
+                      </code>
+                    )}
+                  )
+                }
               </pre>
             )}
           }

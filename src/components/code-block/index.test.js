@@ -83,7 +83,46 @@ describe("CodeBlock component with line highlighting", () => {
     expect(codeElements[5].classList.contains("highlight")).toBe(false)
   })
 
-  it.todo("supports highlight-start and highlight-end")
+  it("supports highlight-start and highlight-end", async () => {
+    // Given an MDX code block using highlight-start and highlight-end
+    const mdFencedCodeBlock = `
+    \`\`\`javascript
+    const greeting = "Howdy"
+
+    // highlight-start
+    const name = "Megan"
+    console.log(greeting, ", my name is ", name)
+    // highlight-end
+
+    return true
+    \`\`\`
+    `
+
+    let MdxContent
+    const mdxModule = await evaluate(mdFencedCodeBlock, {
+      ...runtime,
+      development: false,
+      remarkPlugins: [remarkMdxCodeMeta],
+    })
+
+    MdxContent = mdxModule.default
+
+    // When the MDX code block is rendered
+    render(<MdxContent components={{ pre: CodeBlock }} />)
+
+    // Then the highlight class is applied to the correct lines
+    const codeElements = screen.getAllByRole("code")
+
+    expect(codeElements[0].classList.contains("highlight")).toBe(false)
+    expect(codeElements[1].classList.contains("highlight")).toBe(false)
+    expect(codeElements[2].classList.contains("highlight")).toBe(true)
+    expect(codeElements[3].classList.contains("highlight")).toBe(true)
+    expect(codeElements[4].classList.contains("highlight")).toBe(false)
+    expect(codeElements[5].classList.contains("highlight")).toBe(false)
+
+    // And the highlight-begin / highlight-end lines aren't rendered
+    expect(codeElements.length).toBe(6)
+  })
 
   it.todo("supports highlight-next-line")
 })
