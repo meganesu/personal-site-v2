@@ -1,14 +1,14 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 
-import * as runtime from 'react/jsx-runtime'
+import * as runtime from "react/jsx-runtime"
 import { evaluate } from "../../../vendor/mdx"
-import remarkMdxCodeMeta from '../../../vendor/remark-mdx-code-meta';
+import remarkMdxCodeMeta from "../../../vendor/remark-mdx-code-meta"
 
 import CodeBlock from "."
 
-describe('CodeBlock component', () => {
-  let MdxContent;
+describe("CodeBlock component", () => {
+  let MdxContent
 
   beforeAll(async () => {
     const mdFencedCodeBlock = `
@@ -27,32 +27,27 @@ describe('CodeBlock component', () => {
     )
 
     MdxContent = mdxModule.default
-  });
+  })
 
-  it('renders with file title', () => {
-    render(
-      <MdxContent components={{pre: CodeBlock}} />
-    )
+  it("renders with file title", () => {
+    render(<MdxContent components={{ pre: CodeBlock }} />)
 
     const element = screen.getByText("my-test-file.js")
 
     expect(element).toBeDefined()
-  });
+  })
 
-  it('renders with language tag', () => {
-    render(
-      <MdxContent components={{pre: CodeBlock}} />
-    )
+  it("renders with language tag", () => {
+    render(<MdxContent components={{ pre: CodeBlock }} />)
 
     const element = screen.getByText("javascript")
 
     expect(element).toBeDefined()
-  });
-});
+  })
+})
 
-describe('CodeBlock component with line highlighting', () => {
-  
-  it('supports highlight-line', async () => {
+describe("CodeBlock component with line highlighting", () => {
+  it("supports highlight-line", async () => {
     // Given an MDX code block using highlight-line
     const mdFencedCodeBlock = `
     \`\`\`javascript
@@ -64,23 +59,18 @@ describe('CodeBlock component with line highlighting', () => {
     return true
     \`\`\`
     `
-    
+
     let MdxContent
-    const mdxModule = await evaluate(
-      mdFencedCodeBlock,
-      {
-        ...runtime,
-        development: false,
-        remarkPlugins: [remarkMdxCodeMeta],
-      }
-    )
-      
+    const mdxModule = await evaluate(mdFencedCodeBlock, {
+      ...runtime,
+      development: false,
+      remarkPlugins: [remarkMdxCodeMeta],
+    })
+
     MdxContent = mdxModule.default
 
     // When the MDX code block is rendered
-    render(
-      <MdxContent components={{pre: CodeBlock}} />
-    )
+    render(<MdxContent components={{ pre: CodeBlock }} />)
 
     // Then the highlight class is applied to the correct lines
     const codeElements = screen.getAllByRole("code")
@@ -93,7 +83,7 @@ describe('CodeBlock component with line highlighting', () => {
     expect(codeElements[5].classList.contains("highlight")).toBe(false)
   })
 
-  it.todo('supports highlight-start and highlight-end')
+  it.todo("supports highlight-start and highlight-end")
 
-  it.todo('supports highlight-next-line')
+  it.todo("supports highlight-next-line")
 })
