@@ -47,6 +47,7 @@ const CodeBlock = (props) => {
             })
 
             let currentlyInHighlightedBlock = false // for highlight-start / highlight-end
+            let shouldHighlightNextLine = false // for highlight-next-line
 
             return (
               <pre className={`${className} ${preStyles}`}>
@@ -54,6 +55,11 @@ const CodeBlock = (props) => {
                   // for each line in the code block
                   tokens.map((line, i) => {
                     let shouldHighlightLine = false
+
+                    if (shouldHighlightNextLine) {
+                      shouldHighlightLine = true
+                      shouldHighlightNextLine = false
+                    }
 
                     const tokensToRender = []
                     let shouldRenderLine = true
@@ -76,6 +82,12 @@ const CodeBlock = (props) => {
                         currentlyInHighlightedBlock = false
                         shouldRenderLine = false
                         return
+                      }
+
+                      // for highlight-next-line
+                      if (token.types.includes("comment") && token.content.includes("highlight-next-line")) {
+                        shouldHighlightNextLine = true
+                        shouldRenderLine = false
                       }
 
                       tokensToRender.push(token)
