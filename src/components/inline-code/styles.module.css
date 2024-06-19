@@ -10,6 +10,7 @@
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
+	overflow-wrap: break-word;
 
 	line-height: 1.5;
 
