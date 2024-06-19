@@ -124,5 +124,44 @@ describe("CodeBlock component with line highlighting", () => {
     expect(codeElements.length).toBe(6)
   })
 
-  it.todo("supports highlight-next-line")
+  it("supports highlight-next-line", async () => {
+    // Given an MDX code block using highlight-next-line
+    const mdFencedCodeBlock = `
+    \`\`\`javascript
+    const greeting = "Howdy"
+
+    // highlight-next-line
+    const name = "Megan"
+    console.log(greeting, ", my name is ", name)
+
+    // highlight-next-line
+    return true
+    \`\`\`
+    `
+
+    let MdxContent
+    const mdxModule = await evaluate(mdFencedCodeBlock, {
+      ...runtime,
+      development: false,
+      remarkPlugins: [remarkMdxCodeMeta],
+    })
+
+    MdxContent = mdxModule.default
+
+    // When the MDX code block is rendered
+    render(<MdxContent components={{ pre: CodeBlock }} />)
+
+    // Then the highlight class is applied to the correct lines
+    const codeElements = screen.getAllByRole("code")
+
+    expect(codeElements[0].classList.contains("highlight")).toBe(false)
+    expect(codeElements[1].classList.contains("highlight")).toBe(false)
+    expect(codeElements[2].classList.contains("highlight")).toBe(true)
+    expect(codeElements[3].classList.contains("highlight")).toBe(false)
+    expect(codeElements[4].classList.contains("highlight")).toBe(false)
+    expect(codeElements[5].classList.contains("highlight")).toBe(true)
+
+    // And the highlight-next-line lines aren't rendered
+    expect(codeElements.length).toBe(6)
+  })
 })
