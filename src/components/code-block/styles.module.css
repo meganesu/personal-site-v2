@@ -20,15 +20,21 @@
   display: inline-block;
 }
 
-.pre-wrapper {
-  overflow: auto;
-  padding-right: 1rem;
-}
-
 .pre {
-  margin-left: 1rem;
+  overflow: auto;
+  padding-bottom: 1rem;
 }
 
 .code {
   display: block;
+  width: 100%;
+  min-width: fit-content; /* for horizontal scroll */
+}
+
+.line {
+  padding: 0rem 1rem;
+}
+
+.highlight {
+  background-color: #1d3b53;
 }
