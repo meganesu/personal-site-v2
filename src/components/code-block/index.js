@@ -108,8 +108,7 @@ const CodeBlock = (props) => {
 
                     return (
                       <code
-                        {...getLineProps({ line, key: i })}
-                        className={codeClassNames}
+                        {...getLineProps({ line, key: i, className: codeClassNames })}
                       >
                         {/* for each token in the line */}
                         {tokensToRender.map((token, key) => (
