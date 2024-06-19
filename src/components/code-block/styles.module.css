@@ -22,13 +22,17 @@
 
 .pre-wrapper {
   overflow: auto;
-  padding-right: 1rem;
 }
 
 .pre {
-  margin-left: 1rem;
+  min-width: fit-content;
 }
 
 .code {
   display: block;
+  padding: 0rem 1rem;
+}
+
+.highlight {
+  background-color: rgba(84, 146, 255, 0.25);
 }

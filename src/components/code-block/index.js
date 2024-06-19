@@ -10,6 +10,7 @@ import {
   preWrapper as preWrapperStyles,
   pre as preStyles,
   code as codeStyles,
+  highlight as highlightStyles,
 } from "./styles.module.css"
 
 const CodeBlock = (props) => {
