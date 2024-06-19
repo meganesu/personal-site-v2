@@ -22,12 +22,12 @@
 
 .pre {
   overflow: auto;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
+  margin-top: 0;
 }
 
 .code {
   display: block;
-  width: 100%;
   min-width: fit-content; /* for horizontal scroll */
 }
 
