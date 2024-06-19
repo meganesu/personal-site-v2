@@ -38,22 +38,50 @@ const CodeBlock = (props) => {
           language={language}
           theme={theme}
         >
-          {({ className, tokens, getLineProps, getTokenProps }) => (
-            <pre className={`${className} ${preStyles}`}>
-              {/* for each line in the code */}
-              {tokens.map((line, i) => (
-                <code
-                  {...getLineProps({ line, key: i })}
-                  className={codeStyles}
-                >
-                  {/* for each token in the line */}
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </code>
-              ))}
-            </pre>
-          )}
+          {({ className, tokens, getLineProps, getTokenProps }) => {
+            console.log({
+              'className': className,
+              'tokens': tokens,
+              'getLineProps': getLineProps,
+              'getTokenProps': getTokenProps,
+            })
+            return (
+              <pre className={`${className} ${preStyles}`}>
+                {/* for each line in the code block */}
+                {tokens.map((line, i) => {
+                  let shouldHighlightLine = false
+
+                  const tokensToRender = []
+                  {/* for highlight-line */}
+                  line.forEach(token => {
+                    if (token.types.includes("comment") && token.content.includes("highlight-line")) {
+                      shouldHighlightLine = true
+                    }
+                    else {
+                      tokensToRender.push(token)
+                    }
+                  })
+
+                  let codeClassNames = codeStyles
+                  if (shouldHighlightLine) {
+                    codeClassNames = codeClassNames.concat(` ${highlightStyles}`)
+                  }
+
+                  return (
+                    <code
+                      {...getLineProps({ line, key: i })}
+                      className={codeClassNames}
+                    >
+                      {/* for each token in the line */}
+                      {tokensToRender.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} />
+                      ))}
+                    </code>
+                  )}
+                )}
+              </pre>
+            )}
+          }
         </SyntaxHighlightWrapper>
       </div>
     </div>
