@@ -12,10 +12,10 @@
   }
 }
 
-.container :first-child {
+.container > :first-child {
   margin-top: 0rem;
 }
 
-.container :last-child {
+.container > :last-child {
   margin-bottom: 0rem;
 }
