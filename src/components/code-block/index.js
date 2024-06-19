@@ -17,8 +17,8 @@ import {
 const CodeBlock = (props) => {
   const code = props.children.props.children.trim()
 
-  const className = props.children.props.className || ""
-  const language = className.replace(/language-/, "")
+  const languageClassName = props.children.props.className || ""
+  const language = languageClassName.replace(/language-/, "")
 
   const fileTitle = props.title || ""
 
@@ -29,7 +29,9 @@ const CodeBlock = (props) => {
           <span aria-label="file">📄</span> {fileTitle}
         </div>
       )}
-      {language && <div className={languageTagStyles}>{language}</div>}
+      {language != "" &&
+        <div className={languageTagStyles}>{language}</div>
+      }
       <div className={preWrapperStyles}>
         <SyntaxHighlightWrapper
           code={code}
