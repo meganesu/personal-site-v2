@@ -61,6 +61,10 @@ const CodeBlock = (props) => {
                       shouldHighlightNextLine = false
                     }
 
+                    if (currentlyInHighlightedBlock) {
+                      shouldHighlightLine = true
+                    }
+
                     const tokensToRender = []
                     let shouldRenderLine = true
                     line.forEach(token => {
@@ -95,10 +99,6 @@ const CodeBlock = (props) => {
 
                     if (!shouldRenderLine) {
                       return
-                    }
-
-                    if (currentlyInHighlightedBlock) {
-                      shouldHighlightLine = true
                     }
 
                     let codeClassNames = codeStyles
