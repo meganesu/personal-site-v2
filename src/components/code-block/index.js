@@ -1,7 +1,8 @@
 import React from "react"
 
-import Highlight, { defaultProps } from "prism-react-renderer"
-import theme from "prism-react-renderer/themes/nightOwl"
+import { Highlight as SyntaxHighlightWrapper } from "prism-react-renderer"
+import { themes } from "prism-react-renderer"
+const theme = themes.nightOwl
 
 import {
   container as containerStyles,
@@ -30,8 +31,7 @@ const CodeBlock = (props) => {
       )}
       {language && <div className={languageTagStyles}>{language}</div>}
       <div className={preWrapperStyles}>
-        <Highlight
-          {...defaultProps}
+        <SyntaxHighlightWrapper
           code={code}
           language={language}
           theme={theme}
@@ -52,7 +52,7 @@ const CodeBlock = (props) => {
               ))}
             </pre>
           )}
-        </Highlight>
+        </SyntaxHighlightWrapper>
       </div>
     </div>
   )
