@@ -1,0 +1,16 @@
+.toc-wrapper {
+  background-color: var(--light-orange);
+}
+
+.heading {
+  margin-bottom: 1rem;
+}
+
+.link a {
+  line-height: 1.75;
+  border-bottom-color: var(--orange);
+}
+
+.link a:hover, .link a:focus {
+  border-bottom-color: var(--blue);
+}

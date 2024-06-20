@@ -1,7 +1,5 @@
 .container {
-  background-color: var(--light-blue);
   padding: 1rem;
-  border-left: 0.5rem solid var(--blue);
   margin: 1rem 3rem;
   overflow-wrap: break-word;
 }
@@ -18,4 +16,14 @@
 
 .container > :last-child {
   margin-bottom: 0rem;
+}
+
+.blue {
+  background-color: var(--light-blue);
+  border-left: 0.5rem solid var(--blue);
+}
+
+.orange {
+  background-color: var(--light-orange);
+  border-left: 0.5rem solid var(--orange);
 }
