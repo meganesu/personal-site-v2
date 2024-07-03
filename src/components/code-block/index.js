@@ -97,14 +97,22 @@ const CodeBlock = (props) => {
                       return
                     }
 
-                    let lineClassNames = lineStyles
                     if (shouldHighlightLine) {
-                      lineClassNames = lineClassNames.concat(` ${highlightStyles}`)
+                      return (
+                        <mark
+                          {...getLineProps({ line, key: i, className: `${lineStyles} ${highlightStyles}` })}
+                        >
+                            {/* for each token in the line */}
+                            {tokensToRender.map((token, key) => (
+                              <span {...getTokenProps({ token, key })} />
+                            ))}
+                        </mark>
+                      )
                     }
 
                     return (
                       <div
-                        {...getLineProps({ line, key: i, className: lineClassNames })}
+                        {...getLineProps({ line, key: i, className: lineStyles })}
                       >
                         {/* for each token in the line */}
                         {tokensToRender.map((token, key) => (
