@@ -1,59 +1,133 @@
 import React from "react"
 
-import Highlight, { defaultProps } from "prism-react-renderer"
-import theme from "prism-react-renderer/themes/nightOwl"
+import { Highlight as SyntaxHighlightWrapper } from "prism-react-renderer"
+import { themes } from "prism-react-renderer"
+const theme = themes.nightOwl
 
 import {
   container as containerStyles,
   fileTitle as fileTitleStyles,
   languageTag as languageTagStyles,
-  preWrapper as preWrapperStyles,
   pre as preStyles,
   code as codeStyles,
+  line as lineStyles,
+  highlight as highlightStyles,
 } from "./styles.module.css"
 
 const CodeBlock = (props) => {
   const code = props.children.props.children.trim()
 
-  const className = props.children.props.className || ""
-  const language = className.replace(/language-/, "")
+  const languageClassName = props.children.props.className || ""
+  const language = languageClassName.replace(/language-/, "")
 
   const fileTitle = props.title || ""
 
   return (
-    <div className={containerStyles}>
+    <figure className={containerStyles}>
       {fileTitle != "" && (
-        <div className={fileTitleStyles}>
+        <figcaption className={fileTitleStyles}>
           <span aria-label="file">📄</span> {fileTitle}
-        </div>
+        </figcaption>
       )}
-      {language && <div className={languageTagStyles}>{language}</div>}
-      <div className={preWrapperStyles}>
-        <Highlight
-          {...defaultProps}
-          code={code}
-          language={language}
-          theme={theme}
-        >
-          {({ className, tokens, getLineProps, getTokenProps }) => (
-            <pre className={`${className} ${preStyles}`}>
-              {/* for each line in the code */}
-              {tokens.map((line, i) => (
-                <code
-                  {...getLineProps({ line, key: i })}
-                  className={codeStyles}
-                >
-                  {/* for each token in the line */}
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </code>
-              ))}
+      {language != "" &&
+        <div className={languageTagStyles}>{language}</div>
+      }
+      <SyntaxHighlightWrapper
+        code={code}
+        language={language}
+        theme={theme}
+      >
+        {({ className, tokens, getLineProps, getTokenProps }) => {
+          let currentlyInHighlightedBlock = false // for highlight-start / highlight-end
+          let shouldHighlightNextLine = false // for highlight-next-line
+
+          return (
+            <pre
+              className={`${className} ${preStyles}`}
+              tabIndex="0"
+            >
+              <code className={codeStyles}>
+                {
+                  // for each line in the code block
+                  tokens.map((line, i) => {
+                    let shouldHighlightLine = false
+
+                    if (shouldHighlightNextLine) {
+                      shouldHighlightLine = true
+                      shouldHighlightNextLine = false
+                    }
+
+                    if (currentlyInHighlightedBlock) {
+                      shouldHighlightLine = true
+                    }
+
+                    const tokensToRender = []
+                    let shouldRenderLine = true
+                    line.forEach(token => {
+                      // for highlight-line
+                      if (token.types.includes("comment") && token.content.includes("highlight-line")) {
+                        shouldHighlightLine = true
+                        return
+                      }
+
+                      // for highlight-start
+                      if (token.types.includes("comment") && token.content.includes("highlight-start")) {
+                        currentlyInHighlightedBlock = true
+                        shouldRenderLine = false
+                        return
+                      }
+
+                      // for highlight-end
+                      if (token.types.includes("comment") && token.content.includes("highlight-end")) {
+                        currentlyInHighlightedBlock = false
+                        shouldRenderLine = false
+                        return
+                      }
+
+                      // for highlight-next-line
+                      if (token.types.includes("comment") && token.content.includes("highlight-next-line")) {
+                        shouldHighlightNextLine = true
+                        shouldRenderLine = false
+                      }
+
+                      tokensToRender.push(token)
+                    })
+
+                    if (!shouldRenderLine) {
+                      return
+                    }
+
+                    if (shouldHighlightLine) {
+                      return (
+                        <mark
+                          {...getLineProps({ line, key: i, className: `${lineStyles} ${highlightStyles}` })}
+                        >
+                            {/* for each token in the line */}
+                            {tokensToRender.map((token, key) => (
+                              <span {...getTokenProps({ token, key })} />
+                            ))}
+                        </mark>
+                      )
+                    }
+
+                    return (
+                      <div
+                        {...getLineProps({ line, key: i, className: lineStyles })}
+                      >
+                        {/* for each token in the line */}
+                        {tokensToRender.map((token, key) => (
+                          <span {...getTokenProps({ token, key })} />
+                        ))}
+                      </div>
+                    )}
+                  )
+                }
+              </code>
             </pre>
           )}
-        </Highlight>
-      </div>
-    </div>
+        }
+      </SyntaxHighlightWrapper>
+    </figure>
   )
 }
 

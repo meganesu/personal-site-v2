@@ -207,7 +207,7 @@ Then, find the place where that element is rendered. Add a `ref` attribute to th
 
 ```javascript
 return (
-  <button ref={myRef}> // add the ref attribute
+  <button ref={myRef}> // highlight-line
     Click me!
   </button>
 )
@@ -268,7 +268,7 @@ With that big picture in mind, let's get into the code to implement this:
      const [showSidebar, setShowSidebar] = useState(false)
      const [activeCell, setActiveCell] = useState(null)
 
-     const sidebarRef = useRef(null) // add this
+     const sidebarRef = useRef(null) // highlight-line
      // ...
    }
    ```
@@ -283,7 +283,7 @@ With that big picture in mind, let's get into the code to implement this:
          colors={activeCell}
          hideSidebar={hideSidebar}
          isHidden={!showSidebar}
-         sidebarRef={sidebarRef} // add this
+         sidebarRef={sidebarRef} // highlight-line
        />
        // ...
      )
@@ -295,14 +295,14 @@ With that big picture in mind, let's get into the code to implement this:
      colors,
      hideSidebar,
      isHidden,
-     sidebarRef, // add this
+     sidebarRef, // highlight-line
    }) => {
      // ...
      return (
        // ...
        <h1
-         ref={sidebarRef} // add this
-         tabIndex={-1} // add this
+         ref={sidebarRef} // highlight-line
+         tabIndex={-1} // highlight-line
        >
          {colors.output}
        </h1>
@@ -324,7 +324,7 @@ With that big picture in mind, let's get into the code to implement this:
      const updateSidebar = (colors) => {
        setActiveCell(colors)
        setShowSidebar(true)
-       sidebarRef.current.focus() // add this
+       sidebarRef.current.focus() // highlight-line
      }
      // ...
    }
@@ -384,7 +384,7 @@ Now let's implement this in code:
 1. Create `buttonRef`. Which component should we create it in? Since we want to have a separate `ref` object for each TableCell, let's define `buttonRef` in the TableCell component. That way, each TableCell that mounts will have its own unique `ref` that can be focused independently.
    ```javascript
    const TableCell = ({ colors, updateSidebar }) => {
-     const buttonRef = useRef(null) // add this
+     const buttonRef = useRef(null) // highlight-line
      // ...
    }
    ```
@@ -396,7 +396,7 @@ Now let's implement this in code:
        <td>
          <button
            onClick={() => updateSidebar(colors)}
-           ref={buttonRef} // add this
+           ref={buttonRef} // highlight-line
          >
            {colors.output}
          </button>
@@ -411,7 +411,7 @@ Now let's implement this in code:
      return (
        // ...
        <button
-         onClick={() => updateSidebar(colors, buttonRef)} // add buttonRef
+         onClick={() => updateSidebar(colors, buttonRef)} // highlight-line
          ref={buttonRef}
        >
        // ...
@@ -423,7 +423,7 @@ Now let's implement this in code:
    const App = () => {
      const [showSidebar, setShowSidebar] = useState(false)
      const [activeCell, setActiveCell] = useState(null)
-     const [lastCellClicked, setLastCellClicked] = useState(null) // add this
+     const [lastCellClicked, setLastCellClicked] = useState(null) // highlight-line
      // ...
    }
    ```
@@ -438,9 +438,8 @@ Now let's implement this in code:
    ```javascript
    const App = () => {
      // ...
-     const updateSidebar = (colors, buttonRef) => {
-       // add buttonRef parameter
-       setLastCellClicked(buttonRef) // add this
+     const updateSidebar = (colors, buttonRef) => { // highlight-line
+       setLastCellClicked(buttonRef) // highlight-line
        setActiveCell(colors)
        setShowSidebar(true)
        sidebarRef.current.focus()
@@ -455,7 +454,7 @@ Now let's implement this in code:
      // ...
      const hideSidebar = () => {
        setShowSidebar(false)
-       lastCellClicked.current.focus() // add this
+       lastCellClicked.current.focus() // highlight-line
      }
      // ...
    }
@@ -585,7 +584,7 @@ In this post, you learned about how to programmatically move a user's focus when
 
 The next improvement I'm hoping to make is trapping focus inside the sidebar when it's open. That is, when users have the sidebar open and they repeatedly hit the Tab key, their focus should stay inside of the sidebar and not end up back in the rest of the body of the page. I'm planning on using something like the inert polyfill described in this [A11ycasts YouTube Video: Inert Polyfill](https://www.youtube.com/watch?v=fGLp_gfMMGU).
 
-Until then, [reach out to me on Twitter](https://twitter.com/meganesulli) and let me know what you think about this post! I'm by no means an accessibility expert, and I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
+Until then, [reach out to me on Twitter](https://twitter.com/meganesulli) and let me know what you think about this post! I'm always looking for new things to learn. What other opportunities do you see for accessibility improvements, in this project or in general?
 
 ## Resources
 

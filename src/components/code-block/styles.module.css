@@ -4,6 +4,7 @@
   margin: 1.5rem 0;
   font-family: monospace;
   font-size: 1rem;
+  -webkit-text-size-adjust: 100%; /* to keep font size consistent on iOS */
 }
 
 .file-title {
@@ -20,15 +21,22 @@
   display: inline-block;
 }
 
-.pre-wrapper {
-  overflow: auto;
-  padding-right: 1rem;
-}
-
 .pre {
-  margin-left: 1rem;
+  overflow: auto;
+  padding: 1rem 0;
+  margin-top: 0;
 }
 
 .code {
+  display: block;
+  min-width: fit-content; /* for horizontal scroll */
+}
+
+.line {
+  padding: 0rem 1rem;
+}
+
+.highlight {
+  background-color: #1d3b53;
   display: block;
 }
