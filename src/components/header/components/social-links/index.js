@@ -37,7 +37,7 @@ const SocialLinks = () => (
         aria-label="Megan's YouTube channel"
         className={linkStyles}
       >
-        <FontAwesomeIcon icon={faTwitch} size="2x" className={iconStyles} />
+        <FontAwesomeIcon icon={faYoutube} size="2x" className={iconStyles} />
       </OutboundLink>
     </li>
     <li>
