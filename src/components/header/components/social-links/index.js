@@ -3,7 +3,7 @@ import React from "react"
 import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGithub, faTwitter, faMastodon, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { faGithub, faTwitch, faYoutube, faTwitter, faMastodon, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
 import {
   socialLinks as socialLinksStyles,
@@ -20,6 +20,24 @@ const SocialLinks = () => (
         className={linkStyles}
       >
         <FontAwesomeIcon icon={faGithub} size="2x" className={iconStyles} />
+      </OutboundLink>
+    </li>
+    <li>
+      <OutboundLink
+        href="https://twitch.tv/meganesulli"
+        aria-label="Megan's Twitch channel"
+        className={linkStyles}
+      >
+        <FontAwesomeIcon icon={faTwitch} size="2x" className={iconStyles} />
+      </OutboundLink>
+    </li>
+    <li>
+      <OutboundLink
+        href="https://youtube.com/@meganesulli"
+        aria-label="Megan's YouTube channel"
+        className={linkStyles}
+      >
+        <FontAwesomeIcon icon={faTwitch} size="2x" className={iconStyles} />
       </OutboundLink>
     </li>
     <li>
