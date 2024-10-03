@@ -1,0 +1,143 @@
+---
+title: "Getting Started with the Dialog Element"
+date: "2024-10-02"
+description: "Learn how to use the HTML dialog element to quickly create modals and popup windows."
+tags: ["html"]
+---
+
+## Introduction
+
+Recently, I was working on an app and needed to make a modal component. I thought I'd have to build it from scratch, but after doing some digging, it turns out there's an HTML element that comes with the expected behavior out of the box! In this post, I'll go over the key features of the `<dialog>` element and how to use it.
+
+## The `<dialog>` Element
+
+You can use the [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element for all kinds of things. Alerts to announce new updates or features, forms for leaving feedback or subscribing to a newsletter, onboarding messages to guide your users the first time they sign into your app.
+
+Here's an example:
+
+<iframe height="300" style={{width: "100%"}} scrolling="no" title="Dialog Element Example" src="https://codepen.io/meganesu/embed/XWvXvap?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/meganesu/pen/XWvXvap">
+  Dialog Element Example</a> by Megan Sullivan (<a href="https://codepen.io/meganesu">@meganesu</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+To get started, add the `<dialog>` opening and closing tags around the elements you want to display in the popup:
+
+```html
+<dialog>
+  <p>Hi! I'm a message in a popup box!</p>
+</dialog>
+```
+
+## Opening the Dialog
+
+There are multiple ways you can open a `<dialog>` element:
+- With the `open` attribute.
+- With the `.showModal()` method.
+- With the `.show()` method.
+
+### With the `open` Attribute
+
+When you're just getting started, you can add the `open` attribute to the `<dialog>` element to force it to render as open by default.
+
+```html
+<dialog open>
+  <p>Hi! I'm a message in a popup box!</p>
+</dialog>
+```
+
+<CalloutBox>
+**Note:** According to the MDN docs, this approach is not recommended, so use it for testing purposes only.
+</CalloutBox>
+
+### With JavaScript
+
+When it comes to opening a `<dialog>` element with JavaScript, you use a different method depending on whether you want the popup to behave as a modal or a dialog.
+
+What's the difference?
+
+- A **modal** traps the user's focus inside the popup, so elements in the background can't be focused or interacted with while the modal is open.
+- A **dialog** does not trap focus, so the user can still focus and interact with elements outside the dialog window.
+
+To open the popup as a modal, use the element's `.showModal()` method.
+
+```js
+const dialog = document.querySelector("dialog")
+
+dialog.showModal()
+```
+
+To open the popup as a dialog, use the element's `.show()` method.
+```js
+const dialog = document.querySelector("dialog")
+
+dialog.show()
+```
+
+Check out the following CodePen to see the difference:
+
+<iframe height="300" style={{width: "100%"}} scrolling="no" title="Modal vs. Dialog" src="https://codepen.io/meganesu/embed/MWNygBG?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/meganesu/pen/MWNygBG">
+  Modal vs. Dialog</a> by Megan Sullivan (<a href="https://codepen.io/meganesu">@meganesu</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+### Closing the Dialog
+
+You can close a modal by pressing the Escape key. (You get that behavior for free, just by using the `<dialog>` element!)
+
+You can also close modals or dialogs by using the element's `.close()` method.
+
+```js
+const dialog = document.querySelector("dialog")
+
+dialog.close()
+```
+
+Here's an example where the `<dialog>` element includes a button to close the modal:
+
+<iframe height="300" style={{width: "100%"}} scrolling="no" title="Modal Example with Close Button" src="https://codepen.io/meganesu/embed/yLmOLMG?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/meganesu/pen/yLmOLMG">
+  Modal Example with Close Button</a> by Megan Sullivan (<a href="https://codepen.io/meganesu">@meganesu</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+## Styling the Modal Backdrop
+
+The `<dialog>` element has a pseudo-element called `::backdrop`, which you can use to style the background behind the popup window.
+
+```css
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.8)
+}
+```
+
+The following example shows how you can use the `dialog::backdrop` pseudo-element selector to add a slightly translucent backdrop behind the popup window:
+
+<iframe height="300" style={{width: "100%"}} scrolling="no" title="Modal Example with Close Button" src="https://codepen.io/meganesu/embed/XWvdWgv?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/meganesu/pen/XWvdWgv">
+  Modal Example with Close Button</a> by Megan Sullivan (<a href="https://codepen.io/meganesu">@meganesu</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+## Key Takeaways
+
+Those are the basics you need to get started with the `<dialog>` element!
+
+Here's a quick recap:
+
+- Add the `open` attribute to render the popup as open by default. (Only use this for testing!)
+- Use `dialog.showModal()` to open the popup as a modal.
+- Use `dialog.show()` to open the popup as a dialog.
+- Use `dialog.close()` to close the popup.
+- Style the backdrop behind the modal using `dialog::backdrop` pseudo-element selector.
+
+## Resources
+
+- MDN: [The Dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
+- Web Dev Simplified: [HTML dialog](https://blog.webdevsimplified.com/2023-04/html-dialog/)
+- Colby Fayock: [How to create a modal in React with HTML Dialog element](https://spacejelly.dev/posts/how-to-create-a-modal-in-react-with-html-dialog)
+
