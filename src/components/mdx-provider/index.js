@@ -7,6 +7,7 @@ import CodeBlock from '../code-block'
 import Collapsible from '../collapsible'
 import InlineCode from '../inline-code'
 import IPadScreen from '../ipad-screen'
+import IPhoneScreen from '../iphone-screen'
 import YouTubeEmbed from '../youtube-embed'
 
 const components = {
@@ -14,6 +15,7 @@ const components = {
   CalloutBox,
   Collapsible,
   IPadScreen,
+  IPhoneScreen,
   YouTubeEmbed,
   code: props => <InlineCode {...props} />,
   pre: props => <CodeBlock {...props} />,
