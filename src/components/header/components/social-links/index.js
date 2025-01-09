@@ -3,7 +3,7 @@ import React from "react"
 import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGithub, faTwitch, faYoutube, faTwitter, faMastodon, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { faGithub, faBluesky, faTwitch, faYoutube, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
 import {
   socialLinks as socialLinksStyles,
@@ -24,6 +24,15 @@ const SocialLinks = () => (
     </li>
     <li>
       <OutboundLink
+        href="https://bsky.app/profile/meganesulli.bsky.social"
+        aria-label="Megan's BlueSky profile"
+        className={linkStyles}
+      >
+        <FontAwesomeIcon icon={faBluesky} size="2x" className={iconStyles} />
+      </OutboundLink>
+    </li>
+    <li>
+      <OutboundLink
         href="https://twitch.tv/meganesulli"
         aria-label="Megan's Twitch channel"
         className={linkStyles}
@@ -38,24 +47,6 @@ const SocialLinks = () => (
         className={linkStyles}
       >
         <FontAwesomeIcon icon={faYoutube} size="2x" className={iconStyles} />
-      </OutboundLink>
-    </li>
-    <li>
-      <OutboundLink
-        href="https://hachyderm.io/@meganesulli"
-        aria-label="Megan's Mastodon profile"
-        className={linkStyles}
-      >
-        <FontAwesomeIcon icon={faMastodon} size="2x" className={iconStyles} />
-      </OutboundLink>
-    </li>
-    <li>
-      <OutboundLink
-        href="https://twitter.com/meganesulli"
-        aria-label="Megan's Twitter profile"
-        className={linkStyles}
-      >
-        <FontAwesomeIcon icon={faTwitter} size="2x" className={iconStyles} />
       </OutboundLink>
     </li>
     <li>
